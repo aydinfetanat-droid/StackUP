@@ -1,0 +1,59 @@
+{
+  "id": "unit1-lesson1",
+  "unit": 1,
+  "order": 1,
+  "title": "Needs vs. Wants",
+  "summary": "Learn to tell the difference so your money goes where it matters.",
+  "cards": [
+    {
+      "type": "explain",
+      "prompt": "Every dollar you spend is either a need or a want.",
+      "explanation": "Nail this one distinction and budgeting gets a lot easier. Let's break it down with stuff you actually deal with."
+    },
+    {
+      "type": "mcq",
+      "prompt": "You just got your first paycheck from your part-time job. Which of these is a NEED?",
+      "options": ["New AirPods Pro", "Gas money to get to your shift", "A skincare haul", "Concert tickets"],
+      "correctIndex": 1,
+      "explanation": "You need to physically get to work to keep earning money. No gas, no paycheck."
+    },
+    {
+      "type": "truefalse",
+      "prompt": "True or false: if something makes your life easier, it automatically counts as a need.",
+      "correctAnswer": false,
+      "explanation": "Lots of things make life easier without being needs. A need is something you can't reasonably do without — food, shelter, transportation to work or school, basic health care."
+    },
+    {
+      "type": "mcq",
+      "prompt": "Your phone bill is a...",
+      "options": ["Need", "Want"],
+      "correctIndex": 0,
+      "explanation": "A working phone is how school, work, and your parents reach you in an emergency. The $1,200 phone upgrade is a different story."
+    },
+    {
+      "type": "mcq",
+      "prompt": "You already have working wireless earbuds. New AirPods Pro would be a...",
+      "options": ["Need", "Want"],
+      "correctIndex": 1,
+      "explanation": "Same category of item, different situation. You already have a working version — this is an upgrade, which makes it a want."
+    },
+    {
+      "type": "explain",
+      "prompt": "The trick: needs keep you fed, housed, safe, healthy, or able to work and go to school.",
+      "explanation": "Everything else — even stuff you use every day, even stuff that feels essential in the moment — is a want. Wants aren't bad. You just budget for them after needs."
+    },
+    {
+      "type": "truefalse",
+      "prompt": "True or false: car insurance is a want if you only drive occasionally.",
+      "correctAnswer": false,
+      "explanation": "If you're driving at all, insurance is legally required in almost every state and covers you if something goes wrong. That makes it a need, no matter how often you drive."
+    },
+    {
+      "type": "fillnumber",
+      "prompt": "Say you take home $200 from a weekend of work. $130 has to go to actual needs (gas, phone bill, saving toward your car payment). How many dollars are left over for wants?",
+      "unit": "$",
+      "correctAnswer": 70,
+      "explanation": "$200 − $130 = $70. That's the number you actually get to have fun with — everything else was already spoken for."
+    }
+  ]
+}
