@@ -1,0 +1,79 @@
+{
+  "id": "unit4-lesson1",
+  "unit": 4,
+  "order": 1,
+  "title": "Pay Yourself First",
+  "summary": "The single habit that makes saving actually happen.",
+  "lastReviewed": "2026-07-11",
+  "doThisToday": "Pick a percentage (even just 5%) and move that much from any money you have right now into a separate savings spot.",
+  "cards": [
+    {
+      "type": "explain",
+      "prompt": "Most people save whatever's left at the end of the month. Usually, that's nothing.",
+      "explanation": "\"Pay yourself first\" flips the order: the moment money comes in, a chunk goes straight to savings — before a single dollar gets spent on anything else."
+    },
+    {
+      "type": "mcq",
+      "prompt": "You get a $200 paycheck. Which approach is \"pay yourself first\"?",
+      "options": [
+        "Spend on whatever you want all month, save whatever happens to be left over",
+        "Immediately move $20 (10%) to savings the day you're paid, then spend from the remaining $180",
+        "Wait until the end of the month to decide if you have extra to save"
+      ],
+      "correctIndex": 1,
+      "explanation": "Savings gets treated like a required bill you pay to yourself — not an optional leftover. That one order-of-operations change is why it works so much better."
+    },
+    {
+      "type": "truefalse",
+      "prompt": "True or false: \"pay yourself first\" means saving whatever's left after you've spent on everything else.",
+      "correctAnswer": false,
+      "explanation": "That's the opposite — that's how most people accidentally save nothing. Pay yourself first means savings comes out FIRST, before spending money on wants."
+    },
+    {
+      "type": "fillnumber",
+      "prompt": "You get a $200 paycheck and decide to pay yourself first at 10%. How many dollars go straight to savings before you spend anything?",
+      "unit": "$",
+      "correctAnswer": 20,
+      "explanation": "10% of $200 is $20 — moved to savings immediately, no debate about it later in the month when temptation is higher."
+    },
+    {
+      "type": "explain",
+      "prompt": "The upgrade: automate it so you don't have to rely on willpower every single time.",
+      "explanation": "Most banking apps let you set up an automatic transfer the day you get paid — savings happens without you having to remember or resist temptation."
+    },
+    {
+      "type": "mcq",
+      "prompt": "Why does automating your savings transfer usually work better than \"I'll just remember to save some\"?",
+      "options": [
+        "It removes the decision entirely, so willpower and memory aren't required",
+        "It doesn't actually work better, it's the same thing",
+        "Automation saves more money than manual transfers, mathematically"
+      ],
+      "correctIndex": 0,
+      "explanation": "Willpower runs out, especially by the end of a long day of temptations. A system that doesn't need willpower is a system that actually works long-term."
+    },
+    {
+      "type": "sequence",
+      "prompt": "Put a \"pay yourself first\" paycheck in the right order.",
+      "steps": [
+        { "id": "paid", "label": "Paycheck lands in your account" },
+        { "id": "transfer", "label": "Automatic transfer moves 10% to savings" },
+        { "id": "spend", "label": "You spend from what's left" }
+      ],
+      "correctOrder": ["paid", "transfer", "spend"],
+      "explanation": "The whole system only works because the transfer happens BEFORE spending starts — reverse the order and you're back to \"save whatever's left,\" which is usually nothing."
+    },
+    {
+      "type": "flip",
+      "prompt": "There's a real psychological reason willpower-based plans fail by evening.",
+      "frontText": "What do psychologists call the idea that willpower gets used up like a limited resource throughout the day?",
+      "backText": "Ego depletion. The theory is that resisting temptation repeatedly — a big lunch, a tempting purchase, a hard conversation — leaves less willpower for the next decision. It's debated among researchers, but it matches most people's real experience: it's way easier to make a good money decision at 9am than at 9pm.",
+      "explanation": "This is exactly why automation beats willpower — a system that runs automatically doesn't care what time of day it is or how tired you are."
+    },
+    {
+      "type": "explain",
+      "prompt": "Start with any percentage you can actually stick to — even 5%.",
+      "explanation": "A small amount you save every single time beats a big amount you plan to save but never actually do."
+    }
+  ]
+}

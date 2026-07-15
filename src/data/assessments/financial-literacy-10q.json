@@ -1,0 +1,100 @@
+{
+  "questions": [
+    {
+      "id": "assess-1",
+      "prompt": "Which of these is generally considered a \"need\" rather than a \"want\"?",
+      "options": ["The newest phone model", "Gas money to get to your job", "Concert tickets"],
+      "correctIndex": 1,
+      "explanation": "Getting to work reliably is a need — the other two are wants, even if they feel important.",
+      "topic": "Needs vs. Wants"
+    },
+    {
+      "id": "assess-2",
+      "prompt": "In the 50/30/20 budgeting rule, what does the 20% usually go toward?",
+      "options": ["Wants", "Needs", "Savings or paying off debt"],
+      "correctIndex": 2,
+      "explanation": "The 20% slice is for savings and debt payoff — the part of your budget that builds your future.",
+      "topic": "Budgeting"
+    },
+    {
+      "id": "assess-3",
+      "prompt": "What does it mean when prices \"inflate\" over time?",
+      "options": ["Prices generally rise, so money buys less over time", "Prices generally fall", "Nothing changes about prices"],
+      "correctIndex": 0,
+      "explanation": "Inflation means rising prices over time, which means the same amount of money buys less in the future than it does today.",
+      "topic": "Money Basics"
+    },
+    {
+      "id": "assess-4",
+      "prompt": "What's the main purpose of an emergency fund?",
+      "options": ["Buying things on sale", "Covering unexpected, necessary costs", "Investing in the stock market"],
+      "correctIndex": 1,
+      "explanation": "Emergency funds exist for unplanned necessary expenses — not sales, wants, or investing.",
+      "topic": "Saving"
+    },
+    {
+      "id": "assess-5",
+      "prompt": "What's the difference between gross pay and net pay?",
+      "options": [
+        "There's no real difference",
+        "Gross pay is before taxes/withholdings; net pay is what actually lands in your account",
+        "Net pay is always higher than gross pay"
+      ],
+      "correctIndex": 1,
+      "explanation": "Gross pay is your full earnings before anything is taken out; net pay is what's left after taxes and other withholdings.",
+      "topic": "Earning Money"
+    },
+    {
+      "id": "assess-6",
+      "prompt": "What typically happens if you spend more money than what's in your checking account with overdraft coverage on?",
+      "options": ["Nothing happens", "The purchase may go through, but you're usually charged a fee", "Your bank account is automatically closed"],
+      "correctIndex": 1,
+      "explanation": "Overdraft coverage can let a purchase go through even without enough funds, but typically comes with a real fee.",
+      "topic": "Banking"
+    },
+    {
+      "id": "assess-7",
+      "prompt": "What's the main difference between a debit card and a credit card?",
+      "options": [
+        "A debit card spends money you already have; a credit card is borrowed money you repay later",
+        "They work exactly the same way",
+        "Credit cards can only be used in stores"
+      ],
+      "correctIndex": 0,
+      "explanation": "Debit pulls from your own balance right now. Credit is a loan you're expected to pay back.",
+      "topic": "Credit Basics"
+    },
+    {
+      "id": "assess-8",
+      "prompt": "You put $100 in a savings account that earns interest. What does \"earning interest\" mean?",
+      "options": [
+        "The bank pays you extra money over time just for keeping your money there",
+        "You have to pay the bank extra money",
+        "The $100 disappears and is replaced with stock"
+      ],
+      "correctIndex": 0,
+      "explanation": "Interest is money the bank pays you for keeping your funds with them — your balance grows over time just by sitting there.",
+      "topic": "Saving"
+    },
+    {
+      "id": "assess-9",
+      "prompt": "Which of these best describes \"opportunity cost\"?",
+      "options": [
+        "The listed price of an item",
+        "Whatever you give up by choosing to spend money on one thing instead of another",
+        "A discount you get for buying in bulk"
+      ],
+      "correctIndex": 1,
+      "explanation": "Opportunity cost is what you give up by choosing one option — every dollar spent one way can't be spent another way.",
+      "topic": "Smart Spending"
+    },
+    {
+      "id": "assess-10",
+      "prompt": "Which of these is a realistic effective hourly rate calculation for a side hustle that earns $30 profit over 3 total hours (including setup and cleanup)?",
+      "options": ["$30/hour", "$10/hour", "$3/hour"],
+      "correctIndex": 1,
+      "explanation": "$30 ÷ 3 hours = $10/hour — dividing total profit by total time (not just the fun parts) gives the real hourly value.",
+      "topic": "Value of Time"
+    }
+  ]
+}

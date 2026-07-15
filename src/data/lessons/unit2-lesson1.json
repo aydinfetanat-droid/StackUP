@@ -1,0 +1,57 @@
+{
+  "id": "unit2-lesson1",
+  "unit": 2,
+  "order": 1,
+  "title": "Needs vs. Wants",
+  "summary": "Learn to tell the difference so your money goes where it matters.",
+  "lastReviewed": "2026-07-11",
+  "doThisToday": "Look at your last 5 purchases. Label each one need or want — no judgment, just data.",
+  "cards": [
+    {
+      "type": "explain",
+      "prompt": "Every dollar you spend is either a need or a want.",
+      "explanation": "Nail this one distinction and budgeting gets a lot easier. Let's break it down with stuff you actually deal with."
+    },
+    {
+      "type": "flip",
+      "prompt": "Psychologists have actually studied what humans need to survive and thrive.",
+      "frontText": "What are the most basic things every human needs, according to psychology?",
+      "backText": "Psychologist Abraham Maslow ranked it: food, water, and shelter come first. Only once those are covered do things like safety, relationships, and personal growth matter. Money needs work the same way — cover the basics first.",
+      "explanation": "This is where the whole \"needs before wants\" idea in personal finance actually comes from — it mirrors how humans are wired."
+    },
+    {
+      "type": "sort",
+      "prompt": "Sort each item into Need or Want.",
+      "buckets": ["Need", "Want"],
+      "items": [
+        { "id": "gas", "label": "Gas money for work", "bucket": 0 },
+        { "id": "airpods", "label": "New AirPods Pro", "bucket": 1 },
+        { "id": "rent", "label": "Rent / housing", "bucket": 0 },
+        { "id": "concert", "label": "Concert tickets", "bucket": 1 },
+        { "id": "groceries", "label": "Groceries", "bucket": 0 },
+        { "id": "skincare", "label": "Skincare haul", "bucket": 1 },
+        { "id": "phonebill", "label": "Phone bill", "bucket": 0 },
+        { "id": "gamepass", "label": "Video game subscription", "bucket": 1 }
+      ],
+      "explanation": "Needs keep you fed, housed, safe, healthy, or able to work and get to school. Everything else — even stuff you use daily — is a want you budget for after needs are covered."
+    },
+    {
+      "type": "explain",
+      "prompt": "The trick: needs keep you fed, housed, safe, healthy, or able to work and go to school.",
+      "explanation": "Everything else — even stuff you use every day, even stuff that feels essential in the moment — is a want. Wants aren't bad. You just budget for them after needs."
+    },
+    {
+      "type": "truefalse",
+      "prompt": "True or false: car insurance is a want if you only drive occasionally.",
+      "correctAnswer": false,
+      "explanation": "If you're driving at all, insurance is legally required in almost every state and covers you if something goes wrong. That makes it a need, no matter how often you drive."
+    },
+    {
+      "type": "fillnumber",
+      "prompt": "Say you take home $200 from a weekend of work. $130 has to go to actual needs (gas, phone bill, saving toward your car payment). How many dollars are left over for wants?",
+      "unit": "$",
+      "correctAnswer": 70,
+      "explanation": "$200 − $130 = $70. That's the number you actually get to have fun with — everything else was already spoken for."
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "id": "unit3-lesson1",
+  "unit": 3,
+  "order": 1,
+  "title": "The 50/30/20 Rule",
+  "summary": "A simple split for every dollar you make.",
+  "lastReviewed": "2026-07-11",
+  "doThisToday": "Take whatever cash you have right now and mentally split it 50/30/20. See how it feels.",
+  "cards": [
+    {
+      "type": "explain",
+      "prompt": "Once you can spot needs vs. wants, you need a plan for how much goes where.",
+      "explanation": "That's what the 50/30/20 rule is for — a fast way to divide up any money you earn."
+    },
+    {
+      "type": "explain",
+      "prompt": "The split: 50% needs, 30% wants, 20% savings.",
+      "explanation": "50% of your money covers needs, 30% covers wants, and 20% goes to savings or paying off debt. It's a starting point, not a law."
+    },
+    {
+      "type": "allocator",
+      "prompt": "You made $300 this month. Drag the sliders to build the 50/30/20 split yourself.",
+      "totalAmount": 300,
+      "unit": "$",
+      "categories": [
+        { "id": "needs", "label": "Needs", "correctPercent": 50, "tolerancePercent": 5 },
+        { "id": "wants", "label": "Wants", "correctPercent": 30, "tolerancePercent": 5 },
+        { "id": "savings", "label": "Savings", "correctPercent": 20, "tolerancePercent": 5 }
+      ],
+      "explanation": "50% ($150) to needs, 30% ($90) to wants, 20% ($60) to savings. Once you can build this split yourself, you can apply it to any amount of money you ever earn."
+    },
+    {
+      "type": "fillnumber",
+      "prompt": "Quick check: using 50/30/20, how much of a $500 paycheck should go toward needs?",
+      "unit": "$",
+      "correctAnswer": 250,
+      "explanation": "50% of $500 is $250 — same math, different number."
+    },
+    {
+      "type": "mcq",
+      "prompt": "You want to save up for a car in 8 months. Which part of the 50/30/20 split should you try to grow?",
+      "options": ["The 50% needs slice", "The 30% wants slice", "The 20% savings slice"],
+      "correctIndex": 2,
+      "explanation": "Big goals get funded by the savings slice. You might even flex it up to 30-40% temporarily if the goal matters enough."
+    },
+    {
+      "type": "truefalse",
+      "prompt": "True or false: the 50/30/20 rule means you must split your money exactly that way every single month.",
+      "correctAnswer": false,
+      "explanation": "It's a guideline, not a law. Some months needs run higher, some months you push savings harder for a goal. The point is making sure needs and savings get covered before wants eat the whole paycheck."
+    },
+    {
+      "type": "flip",
+      "prompt": "The 50/30/20 rule has a well-known origin.",
+      "frontText": "Who popularized the 50/30/20 rule in a bestselling personal finance book?",
+      "backText": "Senator Elizabeth Warren, in the 2005 book \"All Your Worth,\" co-written with her daughter Amelia Warren Tyagi — before her political career, she was a bankruptcy law professor who studied why families ran out of money.",
+      "explanation": "It's stuck around for two decades because it's simple enough to actually use, which matters more than being perfectly precise."
+    },
+    {
+      "type": "explain",
+      "prompt": "50/30/20 isn't magic — it's a fast gut-check.",
+      "explanation": "If your wants are eating up more than 30% of your money most months, your savings is almost always what pays the price."
+    }
+  ]
+}

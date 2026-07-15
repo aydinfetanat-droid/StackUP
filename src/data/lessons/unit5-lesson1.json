@@ -1,0 +1,55 @@
+{
+  "id": "unit5-lesson1",
+  "unit": 5,
+  "order": 1,
+  "title": "Checking vs. Savings Accounts",
+  "summary": "Two accounts, two very different jobs.",
+  "lastReviewed": "2026-07-11",
+  "doThisToday": "If you have a bank account, check whether it's checking, savings, or both — and notice which one your debit card is connected to.",
+  "cards": [
+    {
+      "type": "explain",
+      "prompt": "Most banks offer two basic account types: checking and savings. They're not interchangeable.",
+      "explanation": "Checking is for money you're actively spending — your debit card pulls from it. Savings is for money you're setting aside and not touching often."
+    },
+    {
+      "type": "sort",
+      "prompt": "Sort each kind of money into Checking or Savings.",
+      "buckets": ["Checking", "Savings"],
+      "items": [
+        { "id": "weeklyspend", "label": "This week's spending money", "bucket": 0 },
+        { "id": "carfund", "label": "Car fund (buying in 8 months)", "bucket": 1 },
+        { "id": "debitswipes", "label": "Money for everyday debit swipes", "bucket": 0 },
+        { "id": "emergency", "label": "Emergency fund", "bucket": 1 },
+        { "id": "billpay", "label": "Money for paying your phone bill", "bucket": 0 },
+        { "id": "collegefund", "label": "Money you're not touching for years", "bucket": 1 }
+      ],
+      "explanation": "Checking = money moving frequently. Savings = money sitting and growing until you need it. Mixing the two makes it way too easy to accidentally spend your goals."
+    },
+    {
+      "type": "flip",
+      "prompt": "Your bank deposits are actually protected by the government.",
+      "frontText": "What federal program insures your bank deposits if the bank itself fails?",
+      "backText": "FDIC insurance (Federal Deposit Insurance Corporation), created in 1933 after Great Depression bank runs wiped out people's savings. It covers up to $250,000 per depositor, per bank — so if your bank fails, your money (up to that limit) is still safe.",
+      "explanation": "Look for \"FDIC insured\" (or \"NCUA insured\" for credit unions) when picking a bank — it's a free, built-in safety net."
+    },
+    {
+      "type": "truefalse",
+      "prompt": "True or false: savings accounts typically earn some interest over time, while basic checking accounts usually earn little to none.",
+      "correctAnswer": true,
+      "explanation": "Banks pay you a small amount for keeping money in savings, since they use those deposits elsewhere. Checking accounts are built for movement, not growth, so they rarely pay much interest."
+    },
+    {
+      "type": "fillnumber",
+      "prompt": "You keep $100 in a savings account earning 2% interest for one year. Roughly how many dollars of interest do you earn (ignore any compounding for now)?",
+      "unit": "$",
+      "correctAnswer": 2,
+      "explanation": "$100 × 2% = $2. Not exciting on its own — but you'll see in the next unit how this same idea gets a lot more powerful over many years."
+    },
+    {
+      "type": "explain",
+      "prompt": "Simple rule of thumb: checking for spending, savings for everything you're not touching this week.",
+      "explanation": "Some people even use multiple savings accounts — one for emergencies, one for a car, one for a trip — to keep goals visually separate. You'll build on this idea more soon."
+    }
+  ]
+}

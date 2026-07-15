@@ -91,3 +91,14 @@ create policy "users can insert their own analytics events"
 
 create index if not exists analytics_events_type_idx on public.analytics_events (event_type);
 create index if not exists analytics_events_user_idx on public.analytics_events (user_id);
+
+-- ---------------------------------------------------------------------------
+-- Table-level grants. RLS policies above only take effect once the
+-- `authenticated` role has base privileges on these tables — without this,
+-- every query fails with "permission denied for table ..." before RLS is
+-- even evaluated.
+-- ---------------------------------------------------------------------------
+grant usage on schema public to authenticated;
+grant select, insert, update on public.profiles to authenticated;
+grant select, insert, update on public.lesson_completions to authenticated;
+grant select, insert on public.analytics_events to authenticated;

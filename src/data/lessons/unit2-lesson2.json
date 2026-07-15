@@ -1,0 +1,86 @@
+{
+  "id": "unit2-lesson2",
+  "unit": 2,
+  "order": 2,
+  "title": "Opportunity Cost & Why Ads Work on You",
+  "summary": "Every purchase has a hidden cost, and advertising is built to make you forget it.",
+  "lastReviewed": "2026-07-11",
+  "doThisToday": "Before your next purchase over $20, ask out loud: \"what am I giving up to buy this?\"",
+  "cards": [
+    {
+      "type": "explain",
+      "prompt": "Opportunity cost: whatever you give up by choosing one thing over another.",
+      "explanation": "Money you spend on one thing is money you can't spend on anything else. That's not just a budgeting rule — it's math you can't escape, no matter how much you earn."
+    },
+    {
+      "type": "mcq",
+      "prompt": "You're saving for a $1,200 used car. You spend $150 on new AirPods Pro instead of saving it. What's the real opportunity cost?",
+      "options": [
+        "Nothing, it's just $150",
+        "You're now $150 further from your car, meaning more weeks of work before you can buy it",
+        "AirPods have no opportunity cost since you'll use them daily"
+      ],
+      "correctIndex": 1,
+      "explanation": "The AirPods aren't just $150 — they're $150 worth of progress toward your car goal, gone. That's the real price, even though the sticker only said $150."
+    },
+    {
+      "type": "explain",
+      "prompt": "Companies spend billions of dollars specifically to make you forget about opportunity cost.",
+      "explanation": "Advertising isn't neutral information — it's designed, tested, and optimized to make you want things, often faster than you can think it through."
+    },
+    {
+      "type": "truefalse",
+      "prompt": "True or false: ads mostly just tell you facts about a product so you can make an informed choice.",
+      "correctAnswer": false,
+      "explanation": "Some ads do inform, but most are built around emotion — making you feel like you're missing out, falling behind, or not enough without the product. Facts are often secondary to feelings."
+    },
+    {
+      "type": "mcq",
+      "prompt": "You see \"Only 3 left in stock — order in the next 10 minutes!\" on a website. What's this tactic designed to do?",
+      "options": [
+        "Give you an honest inventory update",
+        "Create urgency so you buy before thinking it through",
+        "Help you comparison shop"
+      ],
+      "correctIndex": 1,
+      "explanation": "Scarcity and countdown timers short-circuit your ability to pause and think. Sometimes the stock claim is even true — but the tactic exists specifically to rush your decision either way."
+    },
+    {
+      "type": "mcq",
+      "prompt": "Which of these is a common advertising trick aimed at teens specifically?",
+      "options": [
+        "Showing influencers you follow using a product to make it feel like a must-have",
+        "Publishing the ingredient list",
+        "Comparing prices to competitors"
+      ],
+      "correctIndex": 0,
+      "explanation": "Social proof from people you already trust or admire is one of the most effective tactics out there — it doesn't feel like an ad, which is exactly why it works so well."
+    },
+    {
+      "type": "sort",
+      "prompt": "Sort each into Real Information or Persuasion Trick.",
+      "buckets": ["Real Information", "Persuasion Trick"],
+      "items": [
+        { "id": "ingredients", "label": "Ingredient list on packaging", "bucket": 0 },
+        { "id": "countdown", "label": "\"Sale ends in 10 minutes!\" countdown", "bucket": 1 },
+        { "id": "pricecompare", "label": "Side-by-side price comparison", "bucket": 0 },
+        { "id": "influencer", "label": "Influencer says it \"changed my life\"", "bucket": 1 },
+        { "id": "stockleft", "label": "\"Only 2 left!\" stock warning", "bucket": 1 },
+        { "id": "specs", "label": "Technical specs and dimensions", "bucket": 0 }
+      ],
+      "explanation": "Real information helps you compare and decide. Persuasion tricks are built to create urgency or emotion so you decide faster — before you've actually compared anything."
+    },
+    {
+      "type": "flip",
+      "prompt": "Stores design their layout to trigger impulse buys, on purpose.",
+      "frontText": "Why is candy almost always placed right next to the checkout line?",
+      "backText": "It's deliberate retail psychology — checkout lines create idle waiting time, and small, cheap, craveable items placed right there trigger impulse grabs. You weren't planning to buy it when you walked in; the placement did the convincing.",
+      "explanation": "The same principle shows up online: recommended add-ons at checkout, \"customers also bought,\" and one-click upsells are the digital version of the candy aisle."
+    },
+    {
+      "type": "explain",
+      "prompt": "None of this means ads are evil or that wants are bad.",
+      "explanation": "It just means: every time something feels like a must-have right now, that urgency might be doing its job on purpose. Naming that gives you back the choice."
+    }
+  ]
+}

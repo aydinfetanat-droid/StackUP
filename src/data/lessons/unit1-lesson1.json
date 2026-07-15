@@ -2,58 +2,69 @@
   "id": "unit1-lesson1",
   "unit": 1,
   "order": 1,
-  "title": "Needs vs. Wants",
-  "summary": "Learn to tell the difference so your money goes where it matters.",
+  "title": "Where Money Comes From",
+  "summary": "Why we use money at all, and why things cost what they cost.",
+  "lastReviewed": "2026-07-11",
+  "doThisToday": "Look at one price tag today and guess why it's priced that way — lots of demand? Expensive to make? Little competition?",
   "cards": [
     {
       "type": "explain",
-      "prompt": "Every dollar you spend is either a need or a want.",
-      "explanation": "Nail this one distinction and budgeting gets a lot easier. Let's break it down with stuff you actually deal with."
+      "prompt": "Before money existed, people traded stuff directly for other stuff.",
+      "explanation": "That's called bartering. Problem: if you have chickens and need shoes, you have to find a shoemaker who happens to want chickens right now. Money fixes that — it's a tool everyone agrees to accept, so you can trade with anyone."
+    },
+    {
+      "type": "sequence",
+      "prompt": "Put the history of money in the order it actually happened.",
+      "steps": [
+        { "id": "barter", "label": "Direct bartering (trading goods for goods)" },
+        { "id": "commodity", "label": "Commodity money (salt, shells, cattle)" },
+        { "id": "coins", "label": "Metal coins" },
+        { "id": "paper", "label": "Paper currency" },
+        { "id": "digital", "label": "Digital/electronic money" }
+      ],
+      "correctOrder": ["barter", "commodity", "coins", "paper", "digital"],
+      "explanation": "Each step solved a problem with the one before it — commodities were easier to trade than random goods, coins were more durable and portable than commodities, paper was lighter than metal, and digital money is instant."
+    },
+    {
+      "type": "flip",
+      "prompt": "Salt used to be seriously valuable money.",
+      "frontText": "What everyday word comes from Roman soldiers sometimes being paid in salt?",
+      "backText": "\"Salary.\" It comes from the Latin \"salarium,\" tied to salt payments — salt was that valuable before refrigeration existed, since it was one of the only ways to preserve food.",
+      "explanation": "Money has taken a lot of forms throughout history — the idea is old, the format keeps changing."
     },
     {
       "type": "mcq",
-      "prompt": "You just got your first paycheck from your part-time job. Which of these is a NEED?",
-      "options": ["New AirPods Pro", "Gas money to get to your shift", "A skincare haul", "Concert tickets"],
+      "prompt": "You mow lawns for cash instead of trading lawn-mowing directly for a used bike. Why is that better?",
+      "options": [
+        "It's not actually better, cash is just tradition",
+        "You can save the cash and use it for anything later, not just a bike",
+        "Cash weighs less than a bike"
+      ],
       "correctIndex": 1,
-      "explanation": "You need to physically get to work to keep earning money. No gas, no paycheck."
-    },
-    {
-      "type": "truefalse",
-      "prompt": "True or false: if something makes your life easier, it automatically counts as a need.",
-      "correctAnswer": false,
-      "explanation": "Lots of things make life easier without being needs. A need is something you can't reasonably do without — food, shelter, transportation to work or school, basic health care."
-    },
-    {
-      "type": "mcq",
-      "prompt": "Your phone bill is a...",
-      "options": ["Need", "Want"],
-      "correctIndex": 0,
-      "explanation": "A working phone is how school, work, and your parents reach you in an emergency. The $1,200 phone upgrade is a different story."
-    },
-    {
-      "type": "mcq",
-      "prompt": "You already have working wireless earbuds. New AirPods Pro would be a...",
-      "options": ["Need", "Want"],
-      "correctIndex": 1,
-      "explanation": "Same category of item, different situation. You already have a working version — this is an upgrade, which makes it a want."
+      "explanation": "Money is flexible. Cash from mowing lawns can become a bike, concert tickets, or savings — whatever you decide later. That flexibility is the entire point of money."
     },
     {
       "type": "explain",
-      "prompt": "The trick: needs keep you fed, housed, safe, healthy, or able to work and go to school.",
-      "explanation": "Everything else — even stuff you use every day, even stuff that feels essential in the moment — is a want. Wants aren't bad. You just budget for them after needs."
+      "prompt": "So why does a PS5 cost more than a phone case? Supply and demand.",
+      "explanation": "Demand = how many people want something. Supply = how much of it exists. When lots of people want something and there isn't much of it, the price goes up. When there's tons of it and few people want it, the price drops."
+    },
+    {
+      "type": "mcq",
+      "prompt": "A new gaming console just launched and stores keep selling out immediately. What happens to resale prices online?",
+      "options": ["They go up — high demand, low supply", "They go down — everyone already has one", "They stay exactly at the store price"],
+      "correctIndex": 0,
+      "explanation": "Limited supply plus high demand pushes prices up, which is exactly why scalpers exist — they're betting on that gap."
     },
     {
       "type": "truefalse",
-      "prompt": "True or false: car insurance is a want if you only drive occasionally.",
+      "prompt": "True or false: the price of something is just whatever it costs the company to make it.",
       "correctAnswer": false,
-      "explanation": "If you're driving at all, insurance is legally required in almost every state and covers you if something goes wrong. That makes it a need, no matter how often you drive."
+      "explanation": "Cost to make is only part of it. Companies price based on what people are willing to pay, how much competition exists, and how badly people want it — not just materials and labor."
     },
     {
-      "type": "fillnumber",
-      "prompt": "Say you take home $200 from a weekend of work. $130 has to go to actual needs (gas, phone bill, saving toward your car payment). How many dollars are left over for wants?",
-      "unit": "$",
-      "correctAnswer": 70,
-      "explanation": "$200 − $130 = $70. That's the number you actually get to have fun with — everything else was already spoken for."
+      "type": "explain",
+      "prompt": "Money itself doesn't create value — it just makes trading value way easier.",
+      "explanation": "Everything you learn from here on out is really about one question: how do you get, keep, and grow the value that money represents?"
     }
   ]
 }

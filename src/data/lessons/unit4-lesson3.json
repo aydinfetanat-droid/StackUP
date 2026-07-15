@@ -1,0 +1,68 @@
+{
+  "id": "unit4-lesson3",
+  "unit": 4,
+  "order": 3,
+  "title": "Emergency Funds: Money for When Life Happens",
+  "summary": "Not a savings goal — a shock absorber for the unexpected.",
+  "lastReviewed": "2026-07-11",
+  "doThisToday": "If you don't already have money set aside for surprises, open a separate savings spot today and drop in whatever you can — even $10 counts as a start.",
+  "cards": [
+    {
+      "type": "explain",
+      "prompt": "An emergency fund is money set aside for one job only: covering unexpected costs.",
+      "explanation": "Not concert tickets. Not a sale you don't want to miss. A cracked phone screen, a flat tire, a surprise fee — the stuff that happens whether you planned for it or not."
+    },
+    {
+      "type": "sort",
+      "prompt": "Sort each situation into Real Emergency or Not an Emergency.",
+      "buckets": ["Real Emergency", "Not an Emergency"],
+      "items": [
+        { "id": "screen", "label": "Cracked phone screen needs repair", "bucket": 0 },
+        { "id": "concertsale", "label": "Concert tickets go on sale", "bucket": 1 },
+        { "id": "flattire", "label": "Flat tire needs replacing", "bucket": 0 },
+        { "id": "sneakerdrop", "label": "Limited sneaker drop", "bucket": 1 },
+        { "id": "medicalcopay", "label": "Unexpected doctor visit copay", "bucket": 0 },
+        { "id": "gamesale", "label": "Video game is 50% off this weekend", "bucket": 1 }
+      ],
+      "explanation": "Real emergencies are unplanned AND necessary. Sales and drops are just wants with a deadline attached to make them feel urgent — that's marketing, not an emergency."
+    },
+    {
+      "type": "truefalse",
+      "prompt": "True or false: your emergency fund should be easy to access quickly, not locked away somewhere hard to reach.",
+      "correctAnswer": true,
+      "explanation": "Emergencies don't wait. A regular savings account you can transfer from in a day or two is ideal — not something tied up for months, which defeats the purpose."
+    },
+    {
+      "type": "explain",
+      "prompt": "Adults are often told to save 3-6 months of essential expenses. As a teen, that math doesn't really apply yet.",
+      "explanation": "Your version: aim for enough to cover the specific surprises that actually hit teens — a phone repair, a contribution toward a car repair, replacing something that breaks. Often $100-300 covers most of it."
+    },
+    {
+      "type": "mcq",
+      "prompt": "Your phone screen cracks and repair costs $150. You have $200 in an emergency fund. What happens?",
+      "options": [
+        "You panic-borrow from a friend or put it on a parent's card with stress",
+        "You pay for the repair from the fund, no panic, no debt, no derailing your other savings goals",
+        "You just live with a cracked screen forever"
+      ],
+      "correctIndex": 1,
+      "explanation": "That's the entire point of the fund — it absorbs the shock so a bad-luck moment doesn't wreck your budget or force you into debt."
+    },
+    {
+      "type": "mcq",
+      "prompt": "You have both a car-fund goal AND no emergency fund yet. What's usually the smarter order?",
+      "options": [
+        "Build at least a small emergency fund first, so a surprise expense doesn't force you to raid your car savings",
+        "Ignore the emergency fund completely and focus only on the car",
+        "It doesn't matter which comes first"
+      ],
+      "correctIndex": 0,
+      "explanation": "Without an emergency cushion, any surprise cost eats into your other goals — so a small emergency fund usually comes first, even before bigger dream-goal savings."
+    },
+    {
+      "type": "explain",
+      "prompt": "You don't need $1,000 saved to call it an emergency fund. You need SOME amount set aside for exactly this purpose, and nothing else.",
+      "explanation": "Start with whatever you can. The habit of having a separate \"only for real emergencies\" fund matters more than the size, at least at the start."
+    }
+  ]
+}

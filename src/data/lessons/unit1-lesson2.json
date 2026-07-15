@@ -2,61 +2,78 @@
   "id": "unit1-lesson2",
   "unit": 1,
   "order": 2,
-  "title": "The 50/30/20 Rule",
-  "summary": "A simple split for every dollar you make.",
+  "title": "Why Everything Costs More Than It Used To",
+  "summary": "Inflation, explained without the jargon.",
+  "lastReviewed": "2026-07-11",
+  "doThisToday": "Ask a parent or grandparent what a candy bar, movie ticket, or gallon of gas cost when they were your age.",
   "cards": [
     {
       "type": "explain",
-      "prompt": "Once you can spot needs vs. wants, you need a plan for how much goes where.",
-      "explanation": "That's what the 50/30/20 rule is for — a fast way to divide up any money you earn."
-    },
-    {
-      "type": "explain",
-      "prompt": "The split: 50% needs, 30% wants, 20% savings.",
-      "explanation": "50% of your money covers needs, 30% covers wants, and 20% goes to savings or paying off debt. It's a starting point, not a law."
-    },
-    {
-      "type": "fillnumber",
-      "prompt": "You made $300 this month babysitting and mowing lawns. Using the 50/30/20 rule, how much should go toward needs (the 50% slice)?",
-      "unit": "$",
-      "correctAnswer": 150,
-      "explanation": "50% of $300 is $150. That covers stuff like your phone bill or gas money first."
-    },
-    {
-      "type": "fillnumber",
-      "prompt": "Same $300. How much should go toward wants (the 30% slice)?",
-      "unit": "$",
-      "correctAnswer": 90,
-      "explanation": "30% of $300 is $90 — your guilt-free spending money for the month."
-    },
-    {
-      "type": "slider",
-      "prompt": "Drag the slider: how much of that $300 should land in savings (the 20% slice)?",
-      "min": 0,
-      "max": 300,
-      "step": 10,
-      "unit": "$",
-      "correctAnswer": 60,
-      "tolerance": 15,
-      "explanation": "20% of $300 is $60. Even small, consistent savings like this add up fast — more on that in the next unit."
-    },
-    {
-      "type": "mcq",
-      "prompt": "You want to save up for a car in 8 months. Which part of the 50/30/20 split should you try to grow?",
-      "options": ["The 50% needs slice", "The 30% wants slice", "The 20% savings slice"],
-      "correctIndex": 2,
-      "explanation": "Big goals get funded by the savings slice. You might even flex it up to 30-40% temporarily if the goal matters enough."
+      "prompt": "Ask your parents what a candy bar cost when they were a kid. It was probably way cheaper.",
+      "explanation": "That's not because candy got fancier. It's because of inflation — prices tend to rise over time, which means each dollar buys a little less than it used to."
     },
     {
       "type": "truefalse",
-      "prompt": "True or false: the 50/30/20 rule means you must split your money exactly that way every single month.",
+      "prompt": "True or false: inflation means your money can buy MORE stuff over time.",
       "correctAnswer": false,
-      "explanation": "It's a guideline, not a law. Some months needs run higher, some months you push savings harder for a goal. The point is making sure needs and savings get covered before wants eat the whole paycheck."
+      "explanation": "It's the opposite. Inflation means prices rise, so the same amount of money buys LESS over time. $20 today won't stretch as far in 10 years as it does right now."
+    },
+    {
+      "type": "mcq",
+      "prompt": "Historically, prices in the US have risen roughly 2-3% per year on average. Over 20-30 years, what does that add up to?",
+      "options": [
+        "Barely any difference — a few cents here and there",
+        "Prices can roughly double or more over a few decades",
+        "Prices always go back down eventually"
+      ],
+      "correctIndex": 1,
+      "explanation": "Small yearly increases compound. Even a modest 2-3% a year roughly doubles prices over 25-30 years — which is exactly why things cost so much more now than when your parents were teens."
     },
     {
       "type": "explain",
-      "prompt": "50/30/20 isn't magic — it's a fast gut-check.",
-      "explanation": "If your wants are eating up more than 30% of your money most months, your savings is almost always what pays the price."
+      "prompt": "This is why cash sitting in a piggy bank quietly loses value.",
+      "explanation": "$100 stuffed under your mattress for 10 years is still $100 — but it buys less than it does today, because prices around it kept rising. Money that just sits still is losing a race against inflation."
+    },
+    {
+      "type": "flip",
+      "prompt": "Some countries have dealt with extreme inflation.",
+      "frontText": "What's it called when inflation spirals out of control, sometimes hitting 50%+ in a single month?",
+      "backText": "Hyperinflation. It's happened in places like Germany in the 1920s and Zimbabwe in the 2000s — prices changed by the hour, and people rushed to spend money the second they got it because it lost value that fast. Normal US inflation is nowhere near this, but it shows why keeping inflation low matters.",
+      "explanation": "Extreme cases like this are rare, but they show the same force you're learning about here, just turned way up."
+    },
+    {
+      "type": "sort",
+      "prompt": "Sort each move into \"Loses to inflation\" or \"Fights inflation.\"",
+      "buckets": ["Loses to inflation", "Fights inflation"],
+      "items": [
+        { "id": "mattress", "label": "Cash under your mattress", "bucket": 0 },
+        { "id": "checking0", "label": "Checking account earning 0%", "bucket": 0 },
+        { "id": "savings", "label": "Savings account earning interest", "bucket": 1 },
+        { "id": "investing", "label": "Money invested and growing over time", "bucket": 1 }
+      ],
+      "explanation": "Anything that just sits there loses a slow race against rising prices. Anything earning a return has a chance to outpace inflation instead — you'll dig into savings accounts and investing in the next few units."
+    },
+    {
+      "type": "mcq",
+      "prompt": "Your grandpa says \"back in my day, minimum wage was $3.35 an hour and gas was way cheaper too — it evens out.\" What's he getting at?",
+      "options": [
+        "He's wrong, wages never keep up with prices",
+        "Both wages AND prices rise with inflation, so comparing raw numbers across decades is misleading",
+        "Gas prices have nothing to do with inflation"
+      ],
+      "correctIndex": 1,
+      "explanation": "Inflation affects wages and prices together. A low old wage bought a low old price — comparing dollar amounts across decades without adjusting for inflation doesn't tell you much."
+    },
+    {
+      "type": "truefalse",
+      "prompt": "True or false: because of inflation, money that just sits in cash and earns nothing is quietly losing purchasing power every year.",
+      "correctAnswer": true,
+      "explanation": "Exactly right — and it's a big reason people don't just stuff cash under a mattress long-term. You'll learn how savings accounts and investing help fight back against this in later units."
+    },
+    {
+      "type": "explain",
+      "prompt": "You don't need to memorize inflation math right now.",
+      "explanation": "Just remember the big idea: prices creep up over time, so money that isn't growing is quietly shrinking in what it can buy. That's why \"just save cash\" is only step one, not the whole plan."
     }
   ]
 }

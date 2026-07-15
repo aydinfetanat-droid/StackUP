@@ -1,0 +1,77 @@
+{
+  "id": "unit6-lesson3",
+  "unit": 6,
+  "order": 3,
+  "title": "Side Hustles & The Value of Your Time",
+  "summary": "Not all ways of making money are worth the same amount of your life.",
+  "lastReviewed": "2026-07-11",
+  "doThisToday": "If you have a side hustle, calculate your real hourly rate — profit divided by hours, including prep and cleanup time.",
+  "cards": [
+    {
+      "type": "explain",
+      "prompt": "Babysitting, mowing lawns, tutoring, reselling sneakers, making content — side hustles come in a lot of shapes.",
+      "explanation": "But not all side hustles are equally worth your time, and the sticker number (\"I made $50!\") doesn't tell the whole story on its own."
+    },
+    {
+      "type": "mcq",
+      "prompt": "You mow a lawn for $30 and it takes you 1 hour total. Your friend resells sneakers for $30 profit but it takes them 4 hours of searching, buying, and reselling. Whose time is being paid better?",
+      "options": ["Both are equal since the profit is the same", "You — $30/hour beats $7.50/hour", "Your friend, because reselling is more skilled"],
+      "correctIndex": 1,
+      "explanation": "Same profit, very different value per hour. This is exactly why comparing side hustles by total profit alone can be misleading — the effective hourly rate tells the real story."
+    },
+    {
+      "type": "fillnumber",
+      "prompt": "A side hustle nets you $45 in profit and takes 3 hours total (including setup and cleanup). What's your effective hourly rate?",
+      "unit": "$",
+      "correctAnswer": 15,
+      "explanation": "$45 ÷ 3 hours = $15/hour. Always divide by TOTAL time, including the parts that don't feel like \"work\" — driving, prepping, packaging, posting."
+    },
+    {
+      "type": "truefalse",
+      "prompt": "True or false: any side hustle is worth doing as long as it makes some money.",
+      "correctAnswer": false,
+      "explanation": "A side hustle that pays $4/hour after all the time involved might not be worth it compared to a part-time job paying real minimum wage — or compared to the value of your free time and rest."
+    },
+    {
+      "type": "mcq",
+      "prompt": "You're offered a side hustle that pays well per hour, but it would eat into time you need for homework and sleep. What should factor into your decision?",
+      "options": [
+        "Only the pay rate — more money is always the right call",
+        "The pay rate AND the real cost of losing sleep or falling behind in school, which have their own long-term value",
+        "Side hustles should always come before schoolwork"
+      ],
+      "correctIndex": 1,
+      "explanation": "Opportunity cost applies to time too, not just money. Trading sleep or grades for extra cash can cost you more in the long run than the dollars are worth."
+    },
+    {
+      "type": "mcq",
+      "prompt": "What usually makes a side hustle actually worth scaling up?",
+      "options": [
+        "A decent hourly rate, low startup cost, and it doesn't wreck your schedule or sleep",
+        "It has to involve reselling something",
+        "It has to be something you saw on social media"
+      ],
+      "correctIndex": 0,
+      "explanation": "The best side hustles pay reasonably for your time, don't require much upfront money, and fit around the rest of your life — not just whatever's trending."
+    },
+    {
+      "type": "sort",
+      "prompt": "Sort each side hustle into Good Time Investment or Bad Time Investment, based on effective hourly rate.",
+      "buckets": ["Good Investment", "Bad Investment"],
+      "items": [
+        { "id": "tutoring", "label": "Tutoring: $60 profit for 2 hours ($30/hr)", "bucket": 0 },
+        { "id": "reselling", "label": "Reselling: $12 profit for 6 hours of hunting ($2/hr)", "bucket": 1 },
+        { "id": "babysitting", "label": "Babysitting: $45 profit for 3 hours ($15/hr)", "bucket": 0 },
+        { "id": "giveaway", "label": "Contest entries: $8 profit for 5 hours of entering ($1.60/hr)", "bucket": 1 },
+        { "id": "lawns", "label": "Lawn mowing: $30 profit for 1 hour ($30/hr)", "bucket": 0 },
+        { "id": "surveys", "label": "Online surveys: $6 profit for 4 hours ($1.50/hr)", "bucket": 1 }
+      ],
+      "explanation": "The pattern: skilled or in-demand work (tutoring, lawn care, watching kids) tends to pay well per hour. Low-effort-sounding \"passive\" hustles (surveys, contest entries, hunting for resale deals) often pay far less per hour than they seem to promise."
+    },
+    {
+      "type": "explain",
+      "prompt": "Your time isn't free just because you're a teenager. Treat it like the limited resource it is.",
+      "explanation": "Whether it's a job, a side hustle, or deciding what to do with a Saturday — the real question is always the same: is this worth my hours?"
+    }
+  ]
+}

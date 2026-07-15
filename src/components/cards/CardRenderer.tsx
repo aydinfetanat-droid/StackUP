@@ -4,6 +4,10 @@ import { McqCardView } from "./McqCardView";
 import { TrueFalseCardView } from "./TrueFalseCardView";
 import { SliderCardView } from "./SliderCardView";
 import { FillNumberCardView } from "./FillNumberCardView";
+import { FlipCardView } from "./FlipCardView";
+import { SortCardView } from "./SortCardView";
+import { AllocatorCardView } from "./AllocatorCardView";
+import { SequenceCardView } from "./SequenceCardView";
 
 interface Props {
   card: LessonCard;
@@ -22,5 +26,13 @@ export function CardRenderer({ card, onComplete }: Props) {
       return <SliderCardView card={card} onComplete={onComplete} />;
     case "fillnumber":
       return <FillNumberCardView card={card} onComplete={onComplete} />;
+    case "flip":
+      return <FlipCardView card={card} onContinue={() => onComplete(true)} />;
+    case "sort":
+      return <SortCardView card={card} onComplete={onComplete} />;
+    case "allocator":
+      return <AllocatorCardView card={card} onComplete={onComplete} />;
+    case "sequence":
+      return <SequenceCardView card={card} onComplete={onComplete} />;
   }
 }

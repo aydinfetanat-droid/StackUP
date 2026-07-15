@@ -1,0 +1,88 @@
+{
+  "id": "unit3-lesson2",
+  "unit": 3,
+  "order": 2,
+  "title": "Building a First Budget",
+  "summary": "Turn income, needs, and wants into an actual plan.",
+  "lastReviewed": "2026-07-11",
+  "doThisToday": "Write down your real monthly income and your real needs total. Just those two numbers.",
+  "cards": [
+    {
+      "type": "explain",
+      "prompt": "You know needs vs. wants and the 50/30/20 split. Time to build a real budget.",
+      "explanation": "It's just three steps: total your income, cover your needs, then split what's left."
+    },
+    {
+      "type": "explain",
+      "prompt": "Step 1: Add up your income.",
+      "explanation": "This is every dollar coming in during the month — paycheck, allowance, birthday money you're not immediately spending."
+    },
+    {
+      "type": "fillnumber",
+      "prompt": "You earn $150/week from your job (4 weeks this month) plus $40 in allowance. What's your total monthly income?",
+      "unit": "$",
+      "correctAnswer": 640,
+      "explanation": "$150 × 4 = $600, plus $40 allowance = $640 total income for the month."
+    },
+    {
+      "type": "explain",
+      "prompt": "Step 2: List your needs and give each one a dollar amount before planning anything else.",
+      "explanation": "Needs come first because they're non-negotiable — you're not choosing whether to pay them, just how much."
+    },
+    {
+      "type": "mcq",
+      "prompt": "Which of these belongs on your 'needs' list?",
+      "options": ["Bus pass to get to school", "New sneakers because yours are 'kind of old'", "A streaming subscription", "Fast food with friends"],
+      "correctIndex": 0,
+      "explanation": "Getting to school reliably is a need. The rest are wants, even if some feel more urgent than others."
+    },
+    {
+      "type": "fillnumber",
+      "prompt": "Your needs this month: $60 phone bill + $45 gas + $25 for your share of a family streaming/utility bill. What's the total?",
+      "unit": "$",
+      "correctAnswer": 130,
+      "explanation": "$60 + $45 + $25 = $130 in needs for the month."
+    },
+    {
+      "type": "explain",
+      "prompt": "Step 3: Subtract needs from income.",
+      "explanation": "What's left is your 'free money' — split it between wants and savings using a ratio like 50/30/20, adjusted to your real needs."
+    },
+    {
+      "type": "fillnumber",
+      "prompt": "Income $640 minus needs $130. How much is left for wants + savings combined?",
+      "unit": "$",
+      "correctAnswer": 510,
+      "explanation": "$640 − $130 = $510 left to split between wants and savings — you decide the exact ratio."
+    },
+    {
+      "type": "truefalse",
+      "prompt": "True or false: a budget only works if you never spend on wants.",
+      "correctAnswer": false,
+      "explanation": "A budget isn't about cutting out fun — it's about deciding on purpose how much fun you can afford, so you're not surprised when your account hits $12 the week before payday."
+    },
+    {
+      "type": "flip",
+      "prompt": "There's a stricter version of budgeting some adults swear by.",
+      "frontText": "What's it called when every single dollar of your income gets assigned a job — spending, saving, or debt — until there's nothing left unassigned?",
+      "backText": "Zero-based budgeting. Income minus every planned expense and savings goal should equal zero — not because you spent it all, but because every dollar has a job, even the dollars going to savings.",
+      "explanation": "It's more detailed than 50/30/20, but the core idea is the same one you just practiced: give every dollar a purpose before it disappears into \"where did that go?\""
+    },
+    {
+      "type": "sequence",
+      "prompt": "Recap: put the 3 budgeting steps back in order.",
+      "steps": [
+        { "id": "income", "label": "Add up your total income" },
+        { "id": "needs", "label": "List and total your needs" },
+        { "id": "split", "label": "Split what's left between wants and savings" }
+      ],
+      "correctOrder": ["income", "needs", "split"],
+      "explanation": "Income first because you can't plan around a number you don't know. Needs second because they're non-negotiable. Everything else is what's actually left to decide on."
+    },
+    {
+      "type": "explain",
+      "prompt": "That's the whole system: income, then needs, then split what's left.",
+      "explanation": "Do this every time money comes in and you'll always know exactly where you stand."
+    }
+  ]
+}

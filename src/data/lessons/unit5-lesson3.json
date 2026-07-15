@@ -1,0 +1,72 @@
+{
+  "id": "unit5-lesson3",
+  "unit": 5,
+  "order": 3,
+  "title": "Reading a Statement & Opening Your First Account",
+  "summary": "What's actually on that page of numbers, and how teens open accounts at all.",
+  "lastReviewed": "2026-07-11",
+  "doThisToday": "If you have any account already, open the app and find one transaction you don't recognize or remember — then figure out what it was.",
+  "cards": [
+    {
+      "type": "explain",
+      "prompt": "A bank statement lists every transaction in your account over a period: the date, what it was, how much, and your running balance after each one.",
+      "explanation": "Reading one takes two minutes and tells you exactly where your money went — no guessing required."
+    },
+    {
+      "type": "mcq",
+      "prompt": "On your statement, you see: \"07/03 — POS Withdrawal — Corner Market — $4.50 — Balance: $85.20.\" What does this line tell you?",
+      "options": [
+        "Nothing useful without more context",
+        "You spent $4.50 at Corner Market on July 3rd, leaving $85.20 in the account afterward",
+        "You deposited $4.50 into your account"
+      ],
+      "correctIndex": 1,
+      "explanation": "\"POS Withdrawal\" just means a card purchase (point of sale). Every line on a statement follows this same pattern: what happened, how much, and your balance right after."
+    },
+    {
+      "type": "mcq",
+      "prompt": "Scrolling your statement, you spot a $9.99 charge labeled a subscription you don't remember signing up for. What should you do?",
+      "options": [
+        "Ignore it, it's probably fine",
+        "Look it up, and if it's unrecognized or unwanted, cancel it and consider disputing the charge with your bank",
+        "Close your entire bank account immediately"
+      ],
+      "correctIndex": 1,
+      "explanation": "This is exactly why checking statements regularly matters — forgotten subscriptions and unauthorized charges hide in plain sight if nobody's looking."
+    },
+    {
+      "type": "flip",
+      "prompt": "Bank statements are full of abbreviations that look confusing but aren't.",
+      "frontText": "What do the common abbreviations POS, ACH, and ATM WD mean on a bank statement?",
+      "backText": "POS = Point of Sale (a card purchase). ACH = Automated Clearing House (a bank transfer, like direct deposit or a bill autopay). ATM WD = ATM Withdrawal (cash you took out). Once you know these three, most of a statement makes sense at a glance.",
+      "explanation": "None of it is secret code — it's just shorthand for a handful of common transaction types."
+    },
+    {
+      "type": "truefalse",
+      "prompt": "True or false: you have to be 18 to open any kind of bank account.",
+      "correctAnswer": false,
+      "explanation": "Many banks offer teen or custodial accounts for minors, usually co-owned or supervised by a parent until you turn 18. Some start as young as 13, sometimes younger with a parent as primary owner."
+    },
+    {
+      "type": "explain",
+      "prompt": "A custodial or teen account usually needs a parent or guardian as a co-owner or supervisor.",
+      "explanation": "They can often see your transactions and may need to approve certain actions — but the account, debit card, and habit-building are yours."
+    },
+    {
+      "type": "mcq",
+      "prompt": "What should you look for when choosing your first bank account?",
+      "options": [
+        "The bank with the flashiest ads",
+        "No monthly fees, no minimum balance requirement, and an app you'll actually use to check things regularly",
+        "Whichever bank has the most branch locations, even if you'll never visit one"
+      ],
+      "correctIndex": 1,
+      "explanation": "Most teens do all their banking from a phone. A clean app and zero fees for having a normal balance matter far more than physical branches or flashy marketing."
+    },
+    {
+      "type": "explain",
+      "prompt": "Opening your first account isn't complicated — bring ID, expect a parent to be involved, and pick a bank with no fees and a solid app.",
+      "explanation": "The account itself is just a tool. Everything you've learned this unit — checking vs. savings, avoiding fees, reading statements — is what makes that tool actually work for you."
+    }
+  ]
+}

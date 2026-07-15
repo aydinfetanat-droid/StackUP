@@ -1,0 +1,64 @@
+{
+  "id": "unit6-lesson1",
+  "unit": 6,
+  "order": 1,
+  "title": "First Jobs & Minimum Wage",
+  "summary": "What minimum wage actually means, and why it's not one single number.",
+  "lastReviewed": "2026-07-11",
+  "doThisToday": "Look up your actual state or city's minimum wage — it's often higher than the federal number.",
+  "cards": [
+    {
+      "type": "explain",
+      "prompt": "First jobs — retail, food service, babysitting, lifeguarding — are most teens' first real contact with earning money on the books.",
+      "explanation": "Along with the paycheck comes a bunch of new vocabulary: minimum wage, gross pay, withholding. This unit covers all of it in plain English."
+    },
+    {
+      "type": "explain",
+      "prompt": "Minimum wage is the legal floor for hourly pay — but it's not one nationwide number.",
+      "explanation": "There's a federal minimum wage, but states and even cities can legally set their own minimum higher than the federal rate (never lower). Because this number changes over time and by location, always check your actual state or city's current rate instead of trusting a number you heard once."
+    },
+    {
+      "type": "mcq",
+      "prompt": "The federal minimum wage is one number, but your state's minimum wage is higher. Which rate does your employer legally have to pay you?",
+      "options": ["The federal rate, always", "Whichever rate is higher — your state's, in this case", "Employers choose whichever is cheaper for them"],
+      "correctIndex": 1,
+      "explanation": "Employers must pay at least the highest minimum wage that applies to you — federal, state, or city, whichever is greatest. States and cities are allowed to require more than the federal floor, never less."
+    },
+    {
+      "type": "truefalse",
+      "prompt": "True or false: no state or city is allowed to set a minimum wage higher than the federal one.",
+      "correctAnswer": false,
+      "explanation": "States and cities regularly set higher minimums than the federal rate — many are significantly higher. The federal number is a floor, not a ceiling."
+    },
+    {
+      "type": "fillnumber",
+      "prompt": "You work 15 hours this week at $16/hour. What's your gross pay (before any taxes) for the week?",
+      "unit": "$",
+      "correctAnswer": 240,
+      "explanation": "15 × $16 = $240 gross. \"Gross\" just means the full amount before anything gets taken out — you'll learn exactly what gets taken out in the next lesson."
+    },
+    {
+      "type": "explain",
+      "prompt": "One wrinkle: some tipped jobs (like serving) can legally pay a lower base wage, as long as tips bring your total up to at least the regular minimum wage.",
+      "explanation": "If tips don't get you there in a given period, the employer is legally required to make up the difference. It's a different pay structure, not a loophole to pay less overall."
+    },
+    {
+      "type": "mcq",
+      "prompt": "A server's base wage is below the standard minimum wage, but with tips included, their hourly average comes out higher than minimum wage most shifts. Is this legal?",
+      "options": [
+        "No, tipped wages are always illegal",
+        "Yes — as long as tips bring total pay up to at least minimum wage, this pay structure is legal",
+        "Only if the employer asks permission from every customer"
+      ],
+      "correctIndex": 1,
+      "explanation": "Tipped minimum wage rules exist specifically for this setup, and employers are on the hook to cover the gap on slow shifts if tips don't reach the regular minimum."
+    },
+    {
+      "type": "flip",
+      "prompt": "Minimum wage as a concept is nearly a century old in the US.",
+      "frontText": "What year did the US get its first federal minimum wage, and what was it?",
+      "backText": "1938, as part of the Fair Labor Standards Act — set at 25 cents an hour. It was created during the Great Depression to stop employers from paying wages so low that full-time workers still couldn't afford basic living costs.",
+      "explanation": "The number has changed a lot since then, but the core idea — a legal wage floor — has been part of US law for generations."
+    }
+  ]
+}

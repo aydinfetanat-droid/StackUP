@@ -1,0 +1,258 @@
+{
+  "questions": [
+    {
+      "id": "vp-1", "kind": "fillnumber", "scenarioId": "jordan-job",
+      "prompt": "Jordan works 18 hours this week at $17.50/hour. What's Jordan's gross pay, to the nearest dollar?",
+      "unit": "$", "correctAnswer": 315,
+      "explanation": "18 × $17.50 = $315 gross pay.", "topic": "Pay & Income"
+    },
+    {
+      "id": "vp-2", "kind": "fillnumber", "scenarioId": "jordan-job",
+      "prompt": "Jordan's $315 gross pay has $24 withheld for federal tax and $24.10 withheld for FICA (Social Security + Medicare). What's Jordan's net pay, to the nearest dollar?",
+      "unit": "$", "correctAnswer": 267,
+      "explanation": "$315 − $24 − $24.10 = $266.90, which rounds to $267. FICA applies to nearly every paycheck regardless of income level.", "topic": "Pay & Income"
+    },
+    {
+      "id": "vp-3", "kind": "mcq", "scenarioId": "jordan-job",
+      "prompt": "Jordan wants to budget for next month using this week's numbers. Which figure should Jordan use as the basis for the budget?",
+      "options": ["The $315 gross pay", "The $267 net pay", "An average of gross and net"],
+      "correctIndex": 1,
+      "explanation": "Budgets should always be built on net (take-home) pay — the money that actually lands in the account — not gross pay.", "topic": "Pay & Income"
+    },
+    {
+      "id": "vp-4", "kind": "fillnumber", "scenarioId": "budget-split",
+      "prompt": "Using the 50/30/20 rule on a $600 monthly net income, how many dollars should go to needs?",
+      "unit": "$", "correctAnswer": 300,
+      "explanation": "50% of $600 is $300.", "topic": "Budgeting"
+    },
+    {
+      "id": "vp-5", "kind": "mcq", "scenarioId": "budget-split",
+      "prompt": "That same month, actual needs come to $360 instead of $300. What's the most financially sound adjustment?",
+      "options": [
+        "Keep wants and savings the same and let the budget go negative",
+        "Reduce the wants and/or savings slices to absorb the extra $60 in needs",
+        "Just stop tracking the budget since it didn't match the plan"
+      ],
+      "correctIndex": 1,
+      "explanation": "50/30/20 is a guideline, not a law — when needs run higher than expected, wants and/or savings should flex down to keep the budget balanced.", "topic": "Budgeting"
+    },
+    {
+      "id": "vp-6", "kind": "fillnumber", "scenarioId": "budget-split",
+      "prompt": "After bumping needs to $360, this person keeps savings fixed at the original $120 (20% of $600). How many dollars are left for wants?",
+      "unit": "$", "correctAnswer": 120,
+      "explanation": "$600 − $360 (needs) − $120 (savings) = $120 left for wants.", "topic": "Budgeting"
+    },
+    {
+      "id": "vp-7", "kind": "fillnumber", "scenarioId": "compound-interest",
+      "prompt": "$500 is deposited in an account earning 5% simple interest per year. How much interest is earned after 1 year?",
+      "unit": "$", "correctAnswer": 25,
+      "explanation": "$500 × 5% = $25.", "topic": "Saving & Interest"
+    },
+    {
+      "id": "vp-8", "kind": "mcq", "scenarioId": "compound-interest",
+      "prompt": "Instead of simple interest, that $500 earns 5% COMPOUND interest annually. After several years, how will the total compare to simple interest at the same rate?",
+      "options": [
+        "Compound interest earns more over time, since interest starts earning interest too",
+        "They earn exactly the same amount always",
+        "Simple interest always earns more"
+      ],
+      "correctIndex": 0,
+      "explanation": "Compound interest grows faster because each year's interest gets added to the balance and starts earning its own interest — the gap widens the longer the money sits.", "topic": "Saving & Interest"
+    },
+    {
+      "id": "vp-9", "kind": "fillnumber", "scenarioId": "compound-interest",
+      "prompt": "Using the Rule of 72, roughly how many years does it take money to double at an 8% annual interest rate? (72 ÷ interest rate)",
+      "correctAnswer": 9,
+      "explanation": "72 ÷ 8 = 9 years — a quick mental-math estimate for doubling time at a given interest rate.", "topic": "Saving & Interest"
+    },
+    {
+      "id": "vp-10", "kind": "fillnumber", "scenarioId": "credit-trap",
+      "prompt": "A credit card balance is $1,000 with a 24% annual interest rate. Roughly how much interest accrues in one month if the balance isn't paid off (24% ÷ 12 months × balance)?",
+      "unit": "$", "correctAnswer": 20,
+      "explanation": "24% ÷ 12 = 2% monthly rate. 2% × $1,000 = $20 in interest for that month alone.", "topic": "Credit & Debt"
+    },
+    {
+      "id": "vp-11", "kind": "mcq", "scenarioId": "credit-trap",
+      "prompt": "Someone only pays the minimum payment on that $1,000 balance every month instead of paying it off. What's the biggest risk?",
+      "options": [
+        "None — minimum payments are designed to pay off the balance quickly",
+        "Interest keeps accruing on the remaining balance, so it can take years to pay off and cost far more than the original $1,000",
+        "The credit card company will lower the interest rate automatically"
+      ],
+      "correctIndex": 1,
+      "explanation": "Minimum payments are often barely more than the interest charged — the payoff can drag on for years and cost multiples of the original balance.", "topic": "Credit & Debt"
+    },
+    {
+      "id": "vp-12", "kind": "mcq", "scenarioId": "credit-trap",
+      "prompt": "Which of these is an example of \"good debt\" vs. \"bad debt\" thinking?",
+      "options": [
+        "All debt is equally bad and should never be used",
+        "Debt used to build long-term value (like a reasonable student loan for a needed degree) is viewed differently than high-interest debt for things that lose value fast",
+        "Debt is only bad if the interest rate is above 50%"
+      ],
+      "correctIndex": 1,
+      "explanation": "The good-debt/bad-debt framework isn't about avoiding all debt — it's about weighing what the debt is funding against its cost.", "topic": "Credit & Debt"
+    },
+    {
+      "id": "vp-13", "kind": "fillnumber", "scenarioId": "bank-fees",
+      "prompt": "A checking account charges a $12 monthly maintenance fee unless a $500 minimum balance is kept. Over a full year of paying that fee, how much is lost to fees alone?",
+      "unit": "$", "correctAnswer": 144,
+      "explanation": "$12 × 12 months = $144 a year — often avoidable entirely by choosing a no-fee account or maintaining the minimum balance.", "topic": "Banking"
+    },
+    {
+      "id": "vp-14", "kind": "mcq", "scenarioId": "bank-fees",
+      "prompt": "Someone overdrafts their account twice in one month at $35 per overdraft, on top of the $12 monthly fee. What's the total in fees that month?",
+      "options": ["$47", "$82", "$35"],
+      "correctIndex": 1,
+      "explanation": "$35 + $35 + $12 = $82 in fees in a single month — a strong argument for low-balance alerts and declining overdraft coverage.", "topic": "Banking"
+    },
+    {
+      "id": "vp-15", "kind": "mcq", "scenarioId": "bank-fees",
+      "prompt": "What's the most direct way to avoid both overdraft fees and out-of-network ATM fees?",
+      "options": [
+        "Turn on low-balance alerts, opt out of overdraft coverage, and use only in-network ATMs",
+        "Keep as little detail as possible about your balance so you're not stressed",
+        "These fees are unavoidable no matter what you do"
+      ],
+      "correctIndex": 0,
+      "explanation": "Both fee types are almost entirely avoidable with a couple of account settings and paying attention to which ATM you use.", "topic": "Banking"
+    },
+    {
+      "id": "vp-16", "kind": "mcq", "scenarioId": "insurance",
+      "prompt": "What's the basic idea behind how insurance works?",
+      "options": [
+        "Everyone gets their exact money back if nothing bad happens",
+        "A large pool of people pay smaller regular amounts (premiums) so that when a few of them have a big unexpected loss, the pool covers it",
+        "Insurance companies only exist to make claims difficult"
+      ],
+      "correctIndex": 1,
+      "explanation": "Insurance spreads risk across a large group — most people pay in and never need a big payout, but that's what makes it affordable for the ones who do.", "topic": "Insurance"
+    },
+    {
+      "id": "vp-17", "kind": "mcq", "scenarioId": "insurance",
+      "prompt": "A car insurance policy has a $500 deductible. After an accident causing $2,000 in damage, how much does the insurance typically cover?",
+      "options": ["The full $2,000, deductible doesn't apply here", "$1,500 — the $2,000 damage minus the $500 deductible you pay first", "$500 total, that's the deductible"],
+      "correctIndex": 1,
+      "explanation": "A deductible is the amount you pay out of pocket before insurance covers the rest: $2,000 − $500 = $1,500 covered by insurance.", "topic": "Insurance"
+    },
+    {
+      "id": "vp-18", "kind": "mcq", "scenarioId": "insurance",
+      "prompt": "Why do insurance premiums tend to be higher for new teen drivers than experienced adult drivers?",
+      "options": [
+        "Insurance companies just prefer charging teens more for no reason",
+        "Statistically, less experienced drivers are involved in more accidents, so insurers price the higher risk into the premium",
+        "Teen premiums are actually always lower, not higher"
+      ],
+      "correctIndex": 1,
+      "explanation": "Premiums are priced based on risk. Less driving experience statistically means higher accident risk, which raises the price of coverage.", "topic": "Insurance"
+    },
+    {
+      "id": "vp-19", "kind": "mcq", "scenarioId": "scam",
+      "prompt": "You get a text saying you won a free gift card, but you need to click a link and enter your bank info to \"claim\" it. What is this?",
+      "options": ["A legitimate reward program", "A phishing scam designed to steal your financial information", "A standard marketing text you should engage with"],
+      "correctIndex": 1,
+      "explanation": "Unsolicited messages asking for financial info in exchange for a \"prize\" are a classic phishing pattern — real rewards don't require your bank login.", "topic": "Scams & Fraud"
+    },
+    {
+      "id": "vp-20", "kind": "mcq", "scenarioId": "scam",
+      "prompt": "Someone on social media offers to \"flip\" your money — send them $100 and get back $500 in a week, guaranteed. What should you do?",
+      "options": [
+        "Send the money, guaranteed returns like this are common and safe",
+        "Recognize this as a scam — no legitimate investment guarantees fast, huge, risk-free returns",
+        "Send a smaller test amount first to check if it's real"
+      ],
+      "correctIndex": 1,
+      "explanation": "Guaranteed high returns with no risk is one of the clearest scam signals that exists. Real investing always carries risk, and legitimate returns take time.", "topic": "Scams & Fraud"
+    },
+    {
+      "id": "vp-21", "kind": "mcq", "scenarioId": "scam",
+      "prompt": "A buyer for something you're reselling online sends you a check for MORE than the price and asks you to refund the difference via gift card. What's happening?",
+      "options": [
+        "A generous but slightly confused buyer",
+        "A classic overpayment scam — the check will bounce after you've already sent real gift cards",
+        "A normal way people pay online"
+      ],
+      "correctIndex": 1,
+      "explanation": "The fake check clears temporarily, you send real value back, then the check bounces days later and you're out the money — a very common scam pattern.", "topic": "Scams & Fraud"
+    },
+    {
+      "id": "vp-22", "kind": "fillnumber", "scenarioId": "goal-math",
+      "prompt": "Someone wants to save $900 for a laptop in 15 weeks. How much do they need to save per week?",
+      "unit": "$", "correctAnswer": 60,
+      "explanation": "$900 ÷ 15 = $60/week.", "topic": "Goal Setting"
+    },
+    {
+      "id": "vp-23", "kind": "mcq", "scenarioId": "goal-math",
+      "prompt": "Three weeks in, they've only managed to save $40/week instead of $60. What are their realistic options?",
+      "options": [
+        "Give up on the goal entirely",
+        "Extend the deadline, increase the weekly amount for the remaining weeks, or reduce the goal amount — any of these keeps the goal realistic",
+        "Ignore the shortfall and hope it works out"
+      ],
+      "correctIndex": 1,
+      "explanation": "A goal that's off-track needs one of its three variables adjusted: amount, timeline, or savings rate. Ignoring the gap just guarantees missing the goal.", "topic": "Goal Setting"
+    },
+    {
+      "id": "vp-24", "kind": "fillnumber", "scenarioId": "goal-math",
+      "prompt": "They decide to keep the $900 goal but extend the deadline to 22 weeks total. Roughly how much do they need to save per week now, rounded to the nearest dollar?",
+      "unit": "$", "correctAnswer": 41,
+      "explanation": "$900 ÷ 22 ≈ $40.90, which rounds to $41/week — a much more achievable pace.", "topic": "Goal Setting"
+    },
+    {
+      "id": "vp-25", "kind": "mcq", "scenarioId": "opp-cost",
+      "prompt": "A $60 item is on sale for $45 — but you weren't planning to buy it at all before seeing the sale. Are you \"saving\" $15?",
+      "options": [
+        "Yes, that's a straightforward $15 in savings",
+        "No — if you weren't going to spend the money anyway, spending $45 you wouldn't have otherwise spent isn't savings, it's new spending",
+        "It depends on the item's brand"
+      ],
+      "correctIndex": 1,
+      "explanation": "This is a classic sale trap: you can't \"save\" money on a purchase you weren't going to make in the first place. That's $45 in new spending, not $15 in savings.", "topic": "Smart Spending"
+    },
+    {
+      "id": "vp-26", "kind": "fillnumber", "scenarioId": "opp-cost",
+      "prompt": "An item is $50 at one store, or $42 online plus $9 shipping. Which total is cheaper, and by how many dollars?",
+      "unit": "$", "correctAnswer": 1,
+      "explanation": "Online total: $42 + $9 = $51, which is actually $1 MORE than the in-store $50 — shipping erased the apparent discount.", "topic": "Smart Spending"
+    },
+    {
+      "id": "vp-27", "kind": "mcq", "scenarioId": "opp-cost",
+      "prompt": "Why does the 24-hour rule help with impulse purchases specifically?",
+      "options": [
+        "It guarantees a better price after 24 hours",
+        "It creates space between the initial urge and the decision, so you can tell a genuine want from a passing impulse",
+        "Stores are legally required to honor a 24-hour cooling-off period"
+      ],
+      "correctIndex": 1,
+      "explanation": "The rule doesn't change prices — it changes your decision-making by removing the time pressure that drives impulsive buying.", "topic": "Smart Spending"
+    },
+    {
+      "id": "vp-28", "kind": "mcq", "scenarioId": "emergency",
+      "prompt": "Which of these is the best use of an emergency fund?",
+      "options": [
+        "A surprise $200 car repair needed to get to work",
+        "Buying concert tickets before they sell out",
+        "A gaming console you've wanted for months"
+      ],
+      "correctIndex": 0,
+      "explanation": "Emergency funds are for necessary, unplanned costs — not wants dressed up as urgent.", "topic": "Saving & Interest"
+    },
+    {
+      "id": "vp-29", "kind": "fillnumber", "scenarioId": "emergency",
+      "prompt": "Someone has a $300 emergency fund. A surprise repair costs $180. After paying for it from the fund, how much is left in the emergency fund?",
+      "unit": "$", "correctAnswer": 120,
+      "explanation": "$300 − $180 = $120 remaining.", "topic": "Saving & Interest"
+    },
+    {
+      "id": "vp-30", "kind": "mcq", "scenarioId": "emergency",
+      "prompt": "After using part of the emergency fund, what's the smartest next move?",
+      "options": [
+        "Leave it depleted since the emergency is over",
+        "Prioritize rebuilding the fund back toward its original target before ramping up other savings goals",
+        "Close the emergency fund since it clearly \"worked\" and isn't needed anymore"
+      ],
+      "correctIndex": 1,
+      "explanation": "An emergency fund is only useful if it's replenished after use — otherwise the next surprise expense has nothing to draw from.", "topic": "Saving & Interest"
+    }
+  ]
+}

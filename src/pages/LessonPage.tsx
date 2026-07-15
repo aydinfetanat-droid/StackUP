@@ -7,6 +7,9 @@ import { useAuth } from "../context/AuthContext";
 import { supabase } from "../lib/supabase";
 import { logEvent } from "../lib/analytics";
 import { calcLessonXp } from "../lib/levels";
+import { toLaDateString } from "../lib/streak";
+
+const REVIEW_SESSION_INTERVAL = 10;
 
 export function LessonPage() {
   const { lessonId } = useParams<{ lessonId: string }>();
@@ -18,9 +21,10 @@ export function LessonPage() {
   const [cardIndex, setCardIndex] = useState(0);
   const [results, setResults] = useState<boolean[]>([]);
   const [finished, setFinished] = useState(false);
-  const [xpEarned, setXpEarned] = useState(0);
   const [savedScore, setSavedScore] = useState(0);
+  const [triggerReview, setTriggerReview] = useState(false);
   const startedLogged = useRef(false);
+  const finishedRef = useRef(false);
 
   useEffect(() => {
     if (lesson && !startedLogged.current) {
@@ -44,6 +48,15 @@ export function LessonPage() {
     const nextResults = isScored ? [...results, correct] : results;
     if (isScored) setResults(nextResults);
 
+    if (isScored && user) {
+      await supabase.from("missed_card_answers").insert({
+        user_id: user.id,
+        lesson_id: lesson!.id,
+        card_index: cardIndex,
+        correct,
+      });
+    }
+
     const nextIndex = cardIndex + 1;
     if (nextIndex >= lesson!.cards.length) {
       await finishLesson(nextResults);
@@ -53,11 +66,23 @@ export function LessonPage() {
   }
 
   async function finishLesson(finalResults: boolean[]) {
+    if (finishedRef.current) return;
+    finishedRef.current = true;
+
     const correctCount = finalResults.filter(Boolean).length;
     const score = finalResults.length > 0 ? Math.round((correctCount / finalResults.length) * 100) : 100;
 
     let earned = 0;
     if (user) {
+      const { data: priorCompletions } = await supabase
+        .from("lesson_completions")
+        .select("lesson_id, completed_at")
+        .eq("user_id", user.id);
+
+      const alreadyCompletedToday = (priorCompletions ?? []).some(
+        (row) => toLaDateString(new Date(row.completed_at)) === toLaDateString(new Date()),
+      );
+
       const { data: existing } = await supabase
         .from("lesson_completions")
         .select("id, score")
@@ -74,14 +99,22 @@ export function LessonPage() {
           xp_earned: earned,
         });
         await addXp(earned);
+
+        const totalCompleted = (priorCompletions ?? []).length + 1;
+        if (totalCompleted % REVIEW_SESSION_INTERVAL === 0) {
+          setTriggerReview(true);
+        }
       } else if (score > existing.score) {
         await supabase.from("lesson_completions").update({ score }).eq("id", existing.id);
+      }
+
+      if (!alreadyCompletedToday) {
+        await logEvent("streak_day_recorded");
       }
 
       await logEvent("lesson_completed", { lesson_id: lesson!.id, score, xp_earned: earned });
     }
 
-    setXpEarned(earned);
     setSavedScore(score);
     setFinished(true);
   }
@@ -100,25 +133,13 @@ export function LessonPage() {
         <h1 className="mt-6 text-2xl font-extrabold">Lesson complete!</h1>
         <p className="mt-1 text-brand-100">{lesson.title}</p>
 
-        <div className="mt-8 grid w-full max-w-xs grid-cols-2 gap-3">
-          <div className="rounded-2xl bg-white/10 p-4">
-            <p className="text-2xl font-extrabold">{savedScore}%</p>
-            <p className="text-xs text-brand-100">Score</p>
-          </div>
-          <div className="rounded-2xl bg-white/10 p-4">
-            <p className="text-2xl font-extrabold">+{xpEarned}</p>
-            <p className="text-xs text-brand-100">XP earned</p>
-          </div>
+        <div className="mt-8 w-full max-w-xs rounded-2xl bg-white/10 p-4">
+          <p className="text-3xl font-extrabold">{savedScore}%</p>
+          <p className="text-xs text-brand-100">Score</p>
         </div>
 
-        {xpEarned === 0 && (
-          <p className="mt-4 text-xs text-brand-100">
-            You already completed this lesson before, so no extra XP this time — but your best score is saved.
-          </p>
-        )}
-
         <button
-          onClick={() => navigate("/", { replace: true })}
+          onClick={() => navigate(triggerReview ? "/review" : "/", { replace: true })}
           className="mt-10 w-full max-w-xs rounded-xl bg-white py-4 text-base font-bold text-brand-700 shadow-sm transition active:scale-[0.98]"
         >
           Continue
@@ -151,7 +172,7 @@ export function LessonPage() {
         >
           <CardRenderer
             card={currentCard}
-            onComplete={(correct) => handleCardComplete(correct, currentCard.type !== "explain")}
+            onComplete={(correct) => handleCardComplete(correct, currentCard.type !== "explain" && currentCard.type !== "flip")}
           />
         </motion.div>
       </div>

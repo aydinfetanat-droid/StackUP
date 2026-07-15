@@ -1,0 +1,75 @@
+{
+  "id": "unit6-lesson2",
+  "unit": 6,
+  "order": 2,
+  "title": "Reading Your First Pay Stub",
+  "summary": "Why your paycheck is smaller than the math you did in your head.",
+  "lastReviewed": "2026-07-11",
+  "doThisToday": "If you've gotten a paycheck before, find your W-4 or your first pay stub and see if you can identify gross pay, withholdings, and net pay.",
+  "cards": [
+    {
+      "type": "explain",
+      "prompt": "You worked 10 hours at $15/hour. That's $150. But your check says $128. What happened to the other $22?",
+      "explanation": "That's the single most common surprise about first jobs: gross pay (what you earned) and net pay (what actually lands in your account) are two different numbers."
+    },
+    {
+      "type": "explain",
+      "prompt": "Gross pay is everything you earned before anything is taken out. Net pay — sometimes called \"take-home pay\" — is what's left after taxes and other withholdings.",
+      "explanation": "Every pay stub shows both numbers, plus a breakdown of exactly what got subtracted in between."
+    },
+    {
+      "type": "mcq",
+      "prompt": "What's typically taken out between gross and net pay?",
+      "options": [
+        "Federal income tax, and FICA taxes (Social Security and Medicare) — state income tax too, depending on where you live",
+        "Nothing, gross and net pay are always the same",
+        "Just whatever your employer feels like keeping"
+      ],
+      "correctIndex": 0,
+      "explanation": "These aren't arbitrary — they're required withholdings that fund federal programs. FICA (Social Security + Medicare) applies to almost every paycheck, regardless of how much you make."
+    },
+    {
+      "type": "explain",
+      "prompt": "The W-4 is a form you fill out when you're hired, telling your employer how much tax to withhold from each check.",
+      "explanation": "The W-2 is a completely different form — it's the summary your employer sends you after the year ends, showing everything you earned and everything that was withheld, which you use to file your taxes."
+    },
+    {
+      "type": "truefalse",
+      "prompt": "True or false: the W-4 and W-2 are the same form.",
+      "correctAnswer": false,
+      "explanation": "W-4 = filled out once when you start a job, sets up your withholding. W-2 = sent to you once a year, summarizes what actually happened. Different forms, different timing, different purpose."
+    },
+    {
+      "type": "fillnumber",
+      "prompt": "Your gross pay this check is $150. Federal tax, state tax, and FICA together withhold $22. What's your net pay?",
+      "unit": "$",
+      "correctAnswer": 128,
+      "explanation": "$150 − $22 = $128 net pay — this is the number that actually hits your bank account, and the number you should budget from, not the gross figure."
+    },
+    {
+      "type": "sort",
+      "prompt": "Sort each pay stub line item into Gross Pay or Withheld.",
+      "buckets": ["Gross Pay", "Withheld"],
+      "items": [
+        { "id": "hourlyearnings", "label": "Hourly earnings", "bucket": 0 },
+        { "id": "federaltax", "label": "Federal income tax", "bucket": 1 },
+        { "id": "overtime", "label": "Overtime pay", "bucket": 0 },
+        { "id": "fica", "label": "FICA (Social Security + Medicare)", "bucket": 1 },
+        { "id": "statetax", "label": "State income tax", "bucket": 1 }
+      ],
+      "explanation": "Everything you actually earned adds to gross pay. Everything the government requires your employer to hold back reduces it down to your net pay."
+    },
+    {
+      "type": "flip",
+      "prompt": "FICA is actually two separate programs bundled into one deduction.",
+      "frontText": "What two programs does FICA (the tax on nearly every paycheck) actually fund?",
+      "backText": "Social Security and Medicare. FICA has stood for roughly 7.65% of your pay for decades — about 6.2% goes to Social Security (funds retirement and disability benefits) and about 1.45% goes to Medicare (funds health coverage for people 65+). Exact rates can shift, so your real pay stub is the source of truth.",
+      "explanation": "It's not a random fee — it's you paying into the same systems that will eventually support your grandparents, and someday you."
+    },
+    {
+      "type": "explain",
+      "prompt": "Rule to remember: always budget using net pay, never gross pay.",
+      "explanation": "Planning your spending around the bigger gross number is one of the most common first-paycheck mistakes — it guarantees you'll come up short."
+    }
+  ]
+}

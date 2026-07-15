@@ -1,0 +1,15 @@
+{
+  "tickers": [
+    { "symbol": "NOVA", "name": "NovaTech", "volatility": 0.035, "startPrice": 12 },
+    { "symbol": "BRGT", "name": "BrightMart", "volatility": 0.015, "startPrice": 8 },
+    { "symbol": "PULS", "name": "PulseWear", "volatility": 0.04, "startPrice": 5 },
+    { "symbol": "GRFL", "name": "GreenFleet Motors", "volatility": 0.025, "startPrice": 18 },
+    { "symbol": "BYTF", "name": "ByteForge", "volatility": 0.045, "startPrice": 7 },
+    { "symbol": "AERL", "name": "AeroLoop", "volatility": 0.03, "startPrice": 22 },
+    { "symbol": "SOLF", "name": "Solstice Foods", "volatility": 0.012, "startPrice": 15 },
+    { "symbol": "VRTX", "name": "Vertex Games", "volatility": 0.038, "startPrice": 9 },
+    { "symbol": "CRLB", "name": "CoralBank", "volatility": 0.02, "startPrice": 25 },
+    { "symbol": "LUMN", "name": "Lumen Energy", "volatility": 0.028, "startPrice": 14 }
+  ],
+  "index": { "symbol": "STIX", "name": "StackTotal Index" }
+}

@@ -1,0 +1,82 @@
+{
+  "id": "unit5-lesson2",
+  "unit": 5,
+  "order": 2,
+  "title": "Debit Cards, Overdrafts & Fees",
+  "summary": "How banks make money off mistakes — and how to never make them.",
+  "lastReviewed": "2026-07-11",
+  "doThisToday": "Check if your bank account has overdraft \"coverage\" turned on, and if so, ask a parent about turning it off.",
+  "cards": [
+    {
+      "type": "explain",
+      "prompt": "A debit card pulls money directly from your checking account balance. It's not a loan — you're only spending what's already yours.",
+      "explanation": "That's the key difference from a credit card, which you'll cover in a later unit. For now: debit card spending is capped by whatever's actually in your account."
+    },
+    {
+      "type": "truefalse",
+      "prompt": "True or false: a debit card and a credit card work exactly the same way.",
+      "correctAnswer": false,
+      "explanation": "A debit card spends your own money right now. A credit card is borrowed money you pay back later — a completely different tool with completely different risks, which you'll learn about soon."
+    },
+    {
+      "type": "explain",
+      "prompt": "An overdraft happens when you spend more than what's actually in your account.",
+      "explanation": "Some banks will still let the purchase go through — and then charge you a fee for the privilege of letting you go negative. This is a real way banks make money off mistakes."
+    },
+    {
+      "type": "fillnumber",
+      "prompt": "A typical overdraft fee is around $35. If you overdraft twice in one week without noticing, how much do you lose to fees alone?",
+      "unit": "$",
+      "correctAnswer": 70,
+      "explanation": "$35 × 2 = $70 — often more than whatever you were trying to buy in the first place. This is one of the most avoidable ways to lose money."
+    },
+    {
+      "type": "mcq",
+      "prompt": "What's the best way to avoid overdraft fees?",
+      "options": [
+        "Turn on low-balance alerts and opt out of overdraft \"coverage\" so purchases just get declined instead of fee-charged",
+        "Hope you remember your balance correctly every time",
+        "Overdraft fees can't be avoided"
+      ],
+      "correctIndex": 0,
+      "explanation": "Most banks let you decline overdraft coverage — meaning a purchase that would overdraw your account just gets rejected instead of approved-with-a-fee. A declined card is annoying; a $35 fee is worse."
+    },
+    {
+      "type": "mcq",
+      "prompt": "You use an ATM that isn't your bank's, and it charges a $3 fee just to withdraw your own money. What's the smartest move going forward?",
+      "options": [
+        "Keep using whatever ATM is closest, fees are unavoidable",
+        "Find your bank's in-network ATMs (most banking apps show a map) to skip the fee entirely",
+        "Only withdraw large amounts to make the fee \"worth it\""
+      ],
+      "correctIndex": 1,
+      "explanation": "In-network ATMs are free. Out-of-network ones can charge $2-5 per withdrawal — money that adds up fast if you're not paying attention to which machine you're using."
+    },
+    {
+      "type": "sort",
+      "prompt": "Sort each action into Avoids Fees or Triggers Fees.",
+      "buckets": ["Avoids Fees", "Triggers Fees"],
+      "items": [
+        { "id": "alerts", "label": "Turning on low-balance alerts", "bucket": 0 },
+        { "id": "outofnetwork", "label": "Using an out-of-network ATM", "bucket": 1 },
+        { "id": "declineoverdraft", "label": "Declining overdraft coverage", "bucket": 0 },
+        { "id": "ignorebalance", "label": "Not checking your balance before a big purchase", "bucket": 1 },
+        { "id": "innetwork", "label": "Finding your bank's in-network ATM", "bucket": 0 },
+        { "id": "autopaycoverage", "label": "Leaving overdraft coverage turned on", "bucket": 1 }
+      ],
+      "explanation": "Every fee-avoiding habit here is about knowing your balance before you spend. Every fee-triggering one is about finding out after — when it's already too late and costs money."
+    },
+    {
+      "type": "flip",
+      "prompt": "Overdraft fees have gotten enough attention to draw regulators.",
+      "frontText": "What's the name of the US federal agency that has pushed banks to reform overdraft fee practices?",
+      "backText": "The CFPB — Consumer Financial Protection Bureau. It was created after the 2008 financial crisis to protect consumers from exactly this kind of fee, and it's pushed banks to cap or reduce overdraft fees since these fees tend to hit lower-income customers the hardest.",
+      "explanation": "This isn't a fringe complaint — it's a big enough issue that it draws real regulatory attention, which is exactly why avoiding these fees yourself is worth the two minutes it takes to set up."
+    },
+    {
+      "type": "explain",
+      "prompt": "Banks aren't evil for charging fees — but they do profit heavily from people not paying attention.",
+      "explanation": "Low-balance alerts, in-network ATMs, and declining overdraft coverage are three free settings that quietly protect your money from avoidable fees."
+    }
+  ]
+}

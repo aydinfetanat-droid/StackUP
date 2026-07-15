@@ -1,0 +1,81 @@
+{
+  "id": "unit3-lesson3",
+  "unit": 3,
+  "order": 3,
+  "title": "Tracking Spending & Fixing a Blown Budget",
+  "summary": "A budget only works if you check it against reality — and adjust without spiraling.",
+  "lastReviewed": "2026-07-11",
+  "doThisToday": "Open your banking app (or ask a parent to check theirs with you) and add up what you actually spent on wants this week.",
+  "cards": [
+    {
+      "type": "explain",
+      "prompt": "A budget you write once and never check again isn't really a budget.",
+      "explanation": "The plan is only half the job. The other half is tracking what you actually spend and comparing it to what you planned — that's how you catch problems early instead of at the end of the month."
+    },
+    {
+      "type": "mcq",
+      "prompt": "What's the easiest way for most teens to track spending?",
+      "options": [
+        "Memorizing every purchase",
+        "Checking your banking app's transaction history weekly, or using a notes app to log purchases",
+        "Not tracking at all and hoping for the best"
+      ],
+      "correctIndex": 1,
+      "explanation": "Most banking apps already show you every transaction. A weekly 5-minute check-in is usually enough to catch overspending before it snowballs."
+    },
+    {
+      "type": "fillnumber",
+      "prompt": "You budgeted $90 for wants this month. By the 20th, you've already spent $110 on wants. By how much are you over budget so far?",
+      "unit": "$",
+      "correctAnswer": 20,
+      "explanation": "$110 − $90 = $20 over, with days still left in the month. Catching this now means you can adjust — catching it on day 30 means it's already too late to course-correct."
+    },
+    {
+      "type": "truefalse",
+      "prompt": "True or false: blowing your budget one month means you're bad with money.",
+      "correctAnswer": false,
+      "explanation": "Everyone overspends sometimes — the difference between people who are good with money and people who aren't isn't perfection, it's what happens next."
+    },
+    {
+      "type": "mcq",
+      "prompt": "You went $20 over on wants this month. What's the smartest next move?",
+      "options": [
+        "Give up on budgeting since it clearly doesn't work",
+        "Pull $20 less from wants next month, or find $20 less in a non-essential need, to balance it out",
+        "Ignore it — it's only $20"
+      ],
+      "correctIndex": 1,
+      "explanation": "One small adjustment fixes it. Budgeting isn't about never messing up — it's about noticing and correcting course before a small miss becomes a big pattern."
+    },
+    {
+      "type": "mcq",
+      "prompt": "Which habit does the most to prevent a blown budget in the first place?",
+      "options": [
+        "Checking your spending only once a month",
+        "Checking in on your spending weekly, so you can adjust mid-month instead of finding out too late",
+        "Not looking at your account until it's empty"
+      ],
+      "correctIndex": 1,
+      "explanation": "Weekly check-ins turn a month-end surprise into a small, easy mid-course correction. The frequency of checking matters more than the tool you use to do it."
+    },
+    {
+      "type": "sort",
+      "prompt": "Sort each habit into Helps or Hurts your budget.",
+      "buckets": ["Helps", "Hurts"],
+      "items": [
+        { "id": "weeklycheck", "label": "Weekly transaction check-in", "bucket": 0 },
+        { "id": "ignore", "label": "Not looking at your balance until it's empty", "bucket": 1 },
+        { "id": "notes", "label": "Logging purchases in a notes app", "bucket": 0 },
+        { "id": "autopay", "label": "Forgetting about a small recurring subscription", "bucket": 1 },
+        { "id": "alerts", "label": "Turning on low-balance alerts", "bucket": 0 },
+        { "id": "giveup", "label": "Quitting your budget after one bad month", "bucket": 1 }
+      ],
+      "explanation": "Every \"helps\" habit is really just a way of catching problems earlier. Every \"hurts\" habit delays the moment you find out — which only makes the fix harder."
+    },
+    {
+      "type": "explain",
+      "prompt": "Consistent tracking beats a perfect budget every time.",
+      "explanation": "A slightly-off budget you actually check every week will outperform a perfectly calculated budget you never look at again. Progress, not perfection."
+    }
+  ]
+}

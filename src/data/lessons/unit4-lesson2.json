@@ -1,0 +1,67 @@
+{
+  "id": "unit4-lesson2",
+  "unit": 4,
+  "order": 2,
+  "title": "Setting Savings Goals That Actually Happen",
+  "summary": "The difference between \"I should save more\" and actually doing it: a number and a date.",
+  "lastReviewed": "2026-07-11",
+  "doThisToday": "Pick one thing you want to save for and write down the exact price and the date you want it by.",
+  "cards": [
+    {
+      "type": "explain",
+      "prompt": "\"I want to save more money\" almost never works. \"I want $600 saved by December\" usually does.",
+      "explanation": "Vague goals don't tell your brain what to do today. Specific goals — an amount and a deadline — turn saving into a math problem you can actually solve."
+    },
+    {
+      "type": "sort",
+      "prompt": "Sort each goal into Short-Term (weeks-months) or Long-Term (a year or more).",
+      "buckets": ["Short-Term", "Long-Term"],
+      "items": [
+        { "id": "airpods", "label": "New AirPods ($150)", "bucket": 0 },
+        { "id": "car", "label": "A used car ($8,000)", "bucket": 1 },
+        { "id": "concert", "label": "Concert tickets ($90)", "bucket": 0 },
+        { "id": "college", "label": "College tuition", "bucket": 1 },
+        { "id": "shoes", "label": "New shoes ($70)", "bucket": 0 },
+        { "id": "apartment", "label": "First apartment deposit", "bucket": 1 }
+      ],
+      "explanation": "Short-term goals fit in weeks to a few months of saving. Long-term goals need a much bigger number and a longer runway — but the same \"amount ÷ time\" math applies to both."
+    },
+    {
+      "type": "flip",
+      "prompt": "\"Specific and measurable\" isn't just a personal finance idea.",
+      "frontText": "What's the well-known goal-setting framework that stands for Specific, Measurable, Achievable, Relevant, Time-bound?",
+      "backText": "SMART goals. It comes from a 1981 management paper by George T. Doran and has been used everywhere from business to fitness to personal finance ever since — because vague goals just don't get done, in any area of life.",
+      "explanation": "\"$600 saved by December\" is a SMART goal. \"Save more money\" isn't — it's missing the specific and measurable parts entirely."
+    },
+    {
+      "type": "mcq",
+      "prompt": "You want $600 saved for a car down payment in 6 months, and you already have $0. What's your monthly target?",
+      "options": ["$50/month", "$100/month", "$600/month"],
+      "correctIndex": 1,
+      "explanation": "$600 ÷ 6 months = $100/month. Turning a big scary number into a monthly (or weekly) chunk makes it feel doable instead of overwhelming."
+    },
+    {
+      "type": "fillnumber",
+      "prompt": "You want to save $300 for a school trip in 12 weeks. How much do you need to save per week?",
+      "unit": "$",
+      "correctAnswer": 25,
+      "explanation": "$300 ÷ 12 = $25/week. That's the exact number you can check yourself against every week to know if you're on track."
+    },
+    {
+      "type": "explain",
+      "prompt": "If the weekly number feels impossible, you have two honest choices: save less per week over a longer time, or find more income.",
+      "explanation": "Both are valid. What doesn't work is keeping the same deadline and just hoping the money appears — that's how goals quietly die."
+    },
+    {
+      "type": "truefalse",
+      "prompt": "True or false: giving a savings goal a specific dollar amount and deadline makes you significantly more likely to actually hit it.",
+      "correctAnswer": true,
+      "explanation": "Specific, measurable goals consistently outperform vague ones — it's true for savings, fitness, grades, basically anything. A number and a date turn a wish into a plan."
+    },
+    {
+      "type": "explain",
+      "prompt": "One more tip: keep separate savings goals in separate places if your bank allows it.",
+      "explanation": "Many banking apps let you create named \"buckets\" or sub-savings accounts. Seeing \"Car Fund: $340/$600\" separately from your spending money makes progress visible — and visible progress keeps you motivated."
+    }
+  ]
+}

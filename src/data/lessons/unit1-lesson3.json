@@ -2,67 +2,74 @@
   "id": "unit1-lesson3",
   "unit": 1,
   "order": 3,
-  "title": "Building a First Budget",
-  "summary": "Turn income, needs, and wants into an actual plan.",
+  "title": "Cash, Cards & Digital Money",
+  "summary": "What actually happens when you tap, Venmo, or swipe.",
+  "lastReviewed": "2026-07-11",
+  "doThisToday": "Next time you pay for something, notice whether physical cash actually moved, or if it was just numbers updating on a screen.",
   "cards": [
     {
       "type": "explain",
-      "prompt": "You know needs vs. wants and the 50/30/20 split. Time to build a real budget.",
-      "explanation": "It's just three steps: total your income, cover your needs, then split what's left."
-    },
-    {
-      "type": "explain",
-      "prompt": "Step 1: Add up your income.",
-      "explanation": "This is every dollar coming in during the month — paycheck, allowance, birthday money you're not immediately spending."
-    },
-    {
-      "type": "fillnumber",
-      "prompt": "You earn $150/week from your job (4 weeks this month) plus $40 in allowance. What's your total monthly income?",
-      "unit": "$",
-      "correctAnswer": 640,
-      "explanation": "$150 × 4 = $600, plus $40 allowance = $640 total income for the month."
-    },
-    {
-      "type": "explain",
-      "prompt": "Step 2: List your needs and give each one a dollar amount before planning anything else.",
-      "explanation": "Needs come first because they're non-negotiable — you're not choosing whether to pay them, just how much."
+      "prompt": "Most money today isn't physical at all — it's just numbers in a database.",
+      "explanation": "When you check your bank balance, you're not looking at a pile of cash somewhere with your name on it. You're looking at a number your bank keeps track of on your behalf."
     },
     {
       "type": "mcq",
-      "prompt": "Which of these belongs on your 'needs' list?",
-      "options": ["Bus pass to get to school", "New sneakers because yours are 'kind of old'", "A streaming subscription", "Fast food with friends"],
-      "correctIndex": 0,
-      "explanation": "Getting to school reliably is a need. The rest are wants, even if some feel more urgent than others."
-    },
-    {
-      "type": "fillnumber",
-      "prompt": "Your needs this month: $60 phone bill + $45 gas + $25 for your share of a family streaming/utility bill. What's the total?",
-      "unit": "$",
-      "correctAnswer": 130,
-      "explanation": "$60 + $45 + $25 = $130 in needs for the month."
-    },
-    {
-      "type": "explain",
-      "prompt": "Step 3: Subtract needs from income.",
-      "explanation": "What's left is your 'free money' — split it between wants and savings using a ratio like 50/30/20, adjusted to your real needs."
-    },
-    {
-      "type": "fillnumber",
-      "prompt": "Income $640 minus needs $130. How much is left for wants + savings combined?",
-      "unit": "$",
-      "correctAnswer": 510,
-      "explanation": "$640 − $130 = $510 left to split between wants and savings — you decide the exact ratio."
+      "prompt": "You Venmo your friend $15 for pizza. What actually happens?",
+      "options": [
+        "Physical cash moves from your bank to theirs",
+        "A number in your account goes down by 15 and a number in their account goes up by 15 — no cash moves",
+        "Venmo prints new money for the transfer"
+      ],
+      "correctIndex": 1,
+      "explanation": "It's all just numbers updating on servers. This is exactly how debit cards, direct deposit, and most banking work too — cash is only one small slice of how money actually moves."
     },
     {
       "type": "truefalse",
-      "prompt": "True or false: a budget only works if you never spend on wants.",
-      "correctAnswer": false,
-      "explanation": "A budget isn't about cutting out fun — it's about deciding on purpose how much fun you can afford, so you're not surprised when your account hits $12 the week before payday."
+      "prompt": "True or false: money sitting in your bank account as a digital number is just as real and spendable as cash in your wallet.",
+      "correctAnswer": true,
+      "explanation": "Completely real. Banks are required to let you withdraw it as cash whenever you want — the digital number is backed by an actual claim on real money."
+    },
+    {
+      "type": "sort",
+      "prompt": "Sort each payment method into Physical or Digital.",
+      "buckets": ["Physical", "Digital"],
+      "items": [
+        { "id": "cash", "label": "Cash in your wallet", "bucket": 0 },
+        { "id": "coins", "label": "Coins", "bucket": 0 },
+        { "id": "venmo", "label": "Venmo transfer", "bucket": 1 },
+        { "id": "debit", "label": "Debit card tap", "bucket": 1 },
+        { "id": "check", "label": "A paper check", "bucket": 0 },
+        { "id": "directdeposit", "label": "Direct deposit paycheck", "bucket": 1 }
+      ],
+      "explanation": "Physical money is something you can literally hold. Digital money is a number your bank or an app keeps track of — both are equally real and spendable, just moved differently."
+    },
+    {
+      "type": "flip",
+      "prompt": "The dollar wasn't always backed by trust alone.",
+      "frontText": "What year did the US officially stop backing the dollar with gold?",
+      "backText": "1971. Before that, in theory, you could exchange dollars for a fixed amount of gold. Since 1971, the dollar's value comes entirely from trust in the US government and economy — no physical gold backing it.",
+      "explanation": "That single decision is why economists talk about \"fiat currency\" — money that has value because people agree it does, not because it's backed by a physical commodity."
     },
     {
       "type": "explain",
-      "prompt": "That's the whole system: income, then needs, then split what's left.",
-      "explanation": "Do this every time money comes in and you'll always know exactly where you stand."
+      "prompt": "So what makes a dollar actually worth something?",
+      "explanation": "Today, the US dollar has value because people trust the US government and economy, and because everyone agrees to accept it for trade. That trust is the whole foundation."
+    },
+    {
+      "type": "mcq",
+      "prompt": "You've probably heard of Bitcoin or other cryptocurrencies. What's the basic difference from regular digital dollars?",
+      "options": [
+        "There's no real difference at all",
+        "Crypto isn't issued or backed by any government — its value comes purely from what people are willing to pay for it, which makes it swing wildly",
+        "Crypto is illegal to own"
+      ],
+      "correctIndex": 1,
+      "explanation": "No central bank or government stands behind crypto's value, which is a big reason its price can swing so much more than a bank balance. You'll dig into this a lot more in a later unit — for now, just know it's a very different animal from your checking account."
+    },
+    {
+      "type": "explain",
+      "prompt": "Whether it's cash, a card, or an app — it's all just different ways of moving the same thing: value people agree to trust.",
+      "explanation": "Understanding that helps everything else click — your bank account, your first debit card, even prices themselves are all part of the same trust system."
     }
   ]
 }

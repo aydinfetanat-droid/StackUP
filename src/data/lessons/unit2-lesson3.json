@@ -1,0 +1,74 @@
+{
+  "id": "unit2-lesson3",
+  "unit": 2,
+  "order": 3,
+  "title": "Comparison Shopping & Impulse Control",
+  "summary": "Simple habits that quietly save you hundreds of dollars a year.",
+  "lastReviewed": "2026-07-11",
+  "doThisToday": "Pick one subscription or app purchase you've made recently and check if there was a cheaper way to get the same thing.",
+  "cards": [
+    {
+      "type": "explain",
+      "prompt": "The same item is almost never the same price everywhere.",
+      "explanation": "Checking two or three places before buying something over $20 is one of the highest-value habits you can build — a few minutes of comparing can easily save 10-30%."
+    },
+    {
+      "type": "mcq",
+      "prompt": "The same sneakers are $80 at one store and $65 at another, but the $65 store charges $12 shipping and has a no-returns policy. Which is the better deal?",
+      "options": [
+        "Always the lower listed price, no exceptions",
+        "It depends — once you add shipping and factor in the return policy, the $80 option might actually be cheaper or safer overall",
+        "Shipping and return policy never matter"
+      ],
+      "correctIndex": 1,
+      "explanation": "The listed price is never the whole story. Shipping, taxes, and return policies can flip which option is actually cheaper — or worth the extra few dollars for the safety net."
+    },
+    {
+      "type": "truefalse",
+      "prompt": "True or false: the cheapest price you can find is always the smartest choice.",
+      "correctAnswer": false,
+      "explanation": "Sometimes the cheapest option comes with worse quality, no returns, or hidden fees. \"Cheapest\" and \"best deal\" aren't always the same thing."
+    },
+    {
+      "type": "explain",
+      "prompt": "Now for impulse control — because comparison shopping doesn't help if you buy before you even compare.",
+      "explanation": "One simple trick: the 24-hour rule. For any non-essential purchase over some amount you set (say $30), wait 24 hours before buying. If you still want it tomorrow, it's probably a real want, not just a scroll-triggered urge."
+    },
+    {
+      "type": "mcq",
+      "prompt": "You see a $70 jacket on Instagram at 11pm and almost buy it immediately. Using the 24-hour rule, what should you do?",
+      "options": [
+        "Buy it now before the price changes",
+        "Add it to your cart or save the link, then decide tomorrow with a clear head",
+        "Never buy anything you see on social media, ever"
+      ],
+      "correctIndex": 1,
+      "explanation": "The rule isn't \"never buy things you see online\" — it's giving your brain time to separate a real want from a late-night impulse. If it still feels worth it tomorrow, go for it."
+    },
+    {
+      "type": "fillnumber",
+      "prompt": "A shirt costs $24. Shipping is $6. Your state sales tax is 8% on the $24 item price. What's the total cost, rounded to the nearest dollar?",
+      "unit": "$",
+      "correctAnswer": 32,
+      "explanation": "$24 × 1.08 = $25.92 for the item with tax, plus $6 shipping = $31.92, which rounds to $32. That's 33% more than the sticker price — exactly why checking the real total matters."
+    },
+    {
+      "type": "sequence",
+      "prompt": "Put the smart-shopping checklist in the right order, from first step to last.",
+      "steps": [
+        { "id": "compare", "label": "Compare the price at 2-3 places" },
+        { "id": "total", "label": "Add up shipping and tax for the real total" },
+        { "id": "reviews", "label": "Check reviews and the return policy" },
+        { "id": "wait", "label": "Wait 24 hours if it's not essential" },
+        { "id": "buy", "label": "Buy it" }
+      ],
+      "correctOrder": ["compare", "total", "reviews", "wait", "buy"],
+      "explanation": "Each step catches something the one before it misses — comparing catches a bad price, the real total catches hidden fees, reviews catch quality issues, and the wait catches pure impulse."
+    },
+    {
+      "type": "explain",
+      "prompt": "Two habits, huge payoff: compare before you buy, and give yourself 24 hours on anything that isn't essential.",
+      "explanation": "Neither one requires willpower in the moment — they're just small systems that do the hard work for you."
+    }
+  ]
+}

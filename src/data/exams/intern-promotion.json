@@ -1,0 +1,189 @@
+{
+  "rankId": 1,
+  "questions": [
+    {
+      "id": "intern-1",
+      "prompt": "Why does money work better than direct bartering?",
+      "options": [
+        "It's heavier and harder to lose",
+        "It lets you trade with anyone, not just someone who happens to want exactly what you have",
+        "It's required by law in every country"
+      ],
+      "correctIndex": 1,
+      "explanation": "Money is a flexible tool for trading value — you don't need to find someone who wants your exact item to get what you need.",
+      "topic": "What Money Actually Is"
+    },
+    {
+      "id": "intern-2",
+      "prompt": "A limited sneaker release sells out in minutes and resells for triple the price online. What's driving that price?",
+      "options": ["High demand and low supply", "The shoes got more expensive to manufacture", "Resellers are breaking the law"],
+      "correctIndex": 0,
+      "explanation": "When lots of people want something and there isn't much of it, price rises — classic supply and demand.",
+      "topic": "What Money Actually Is"
+    },
+    {
+      "id": "intern-3",
+      "prompt": "What does inflation mean for money that just sits still in cash for years?",
+      "options": ["It quietly buys less over time", "It automatically grows in value", "Nothing changes at all"],
+      "correctIndex": 0,
+      "explanation": "Prices tend to rise over time, so unchanging cash buys less and less as years pass.",
+      "topic": "What Money Actually Is"
+    },
+    {
+      "id": "intern-4",
+      "prompt": "You already own a working laptop. A newer model just released. Buying it would be a...",
+      "options": ["Need", "Want", "Neither — it doesn't count as spending"],
+      "correctIndex": 1,
+      "explanation": "You already have a working version, so the newer model is an upgrade — a want, not a need.",
+      "topic": "Needs, Wants & Smart Spending"
+    },
+    {
+      "id": "intern-5",
+      "prompt": "You spend $80 on concert tickets instead of putting it toward a $600 laptop goal. What's the real cost of that decision?",
+      "options": [
+        "Just the $80",
+        "The $80 plus being $80 further from your laptop goal",
+        "There's no cost since it's your own money"
+      ],
+      "correctIndex": 1,
+      "explanation": "That's opportunity cost — every dollar spent one way is a dollar that can't go toward something else.",
+      "topic": "Needs, Wants & Smart Spending"
+    },
+    {
+      "id": "intern-6",
+      "prompt": "A website flashes \"Only 2 left! Offer ends in 5 minutes!\" What's this tactic designed to do?",
+      "options": ["Give you accurate inventory data", "Create urgency so you skip comparing prices or thinking it over", "Help you save money"],
+      "correctIndex": 1,
+      "explanation": "Urgency tactics are built to short-circuit careful decision-making, whether or not the scarcity claim is even true.",
+      "topic": "Needs, Wants & Smart Spending"
+    },
+    {
+      "id": "intern-7",
+      "prompt": "Using the 50/30/20 rule, how much of a $400 paycheck should go toward wants?",
+      "options": ["$80", "$120", "$200"],
+      "correctIndex": 1,
+      "explanation": "30% of $400 is $120 — the wants slice of the split.",
+      "topic": "Your First Budget"
+    },
+    {
+      "id": "intern-8",
+      "prompt": "Your monthly income is $500 and your needs cost $220. How much is left for wants and savings combined?",
+      "options": ["$220", "$280", "$500"],
+      "correctIndex": 1,
+      "explanation": "$500 − $220 = $280 left over once needs are covered.",
+      "topic": "Your First Budget"
+    },
+    {
+      "id": "intern-9",
+      "prompt": "You budgeted $60 for wants this month but you're already at $75 with a week left. What's the smartest move?",
+      "options": [
+        "Quit budgeting since it isn't working",
+        "Notice it now and cut back for the rest of the month, then adjust next month's plan",
+        "Ignore it, $15 doesn't matter"
+      ],
+      "correctIndex": 1,
+      "explanation": "Catching an overspend mid-month lets you course-correct instead of discovering it too late to fix.",
+      "topic": "Your First Budget"
+    },
+    {
+      "id": "intern-10",
+      "prompt": "What does it mean to \"pay yourself first\"?",
+      "options": [
+        "Save whatever happens to be left at the end of the month",
+        "Move money to savings the moment you're paid, before spending anything else",
+        "Only save money on your birthday"
+      ],
+      "correctIndex": 1,
+      "explanation": "Paying yourself first treats savings like a required bill, taken out before any spending happens.",
+      "topic": "Saving Fundamentals"
+    },
+    {
+      "id": "intern-11",
+      "prompt": "Which savings goal is written the SMART way — specific and measurable?",
+      "options": ["\"I should probably save more\"", "\"Save $400 for a laptop by June\"", "\"Try to be better with money\""],
+      "correctIndex": 1,
+      "explanation": "A specific amount and deadline turn a vague wish into an actual plan you can track.",
+      "topic": "Saving Fundamentals"
+    },
+    {
+      "id": "intern-12",
+      "prompt": "Which of these is what an emergency fund is actually for?",
+      "options": ["A concert ticket sale you don't want to miss", "An unexpected $150 phone repair", "A planned vacation"],
+      "correctIndex": 1,
+      "explanation": "Emergency funds cover unplanned, necessary costs — not wants, even exciting or time-sensitive ones.",
+      "topic": "Saving Fundamentals"
+    },
+    {
+      "id": "intern-13",
+      "prompt": "Where should money you're actively spending week-to-week live?",
+      "options": ["Checking account", "Savings account", "It doesn't matter"],
+      "correctIndex": 0,
+      "explanation": "Checking accounts are built for frequent transactions like debit card purchases and transfers.",
+      "topic": "Banking Basics"
+    },
+    {
+      "id": "intern-14",
+      "prompt": "What happens when you spend more than what's in your checking account and overdraft coverage is turned on?",
+      "options": [
+        "The purchase is simply declined, no cost",
+        "The purchase usually goes through, but you get charged a fee, often around $35",
+        "Your bank account is automatically closed"
+      ],
+      "correctIndex": 1,
+      "explanation": "Overdraft coverage lets purchases go through even without enough funds — for a fee that's often much bigger than the purchase itself.",
+      "topic": "Banking Basics"
+    },
+    {
+      "id": "intern-15",
+      "prompt": "What's the difference between a debit card and a credit card?",
+      "options": [
+        "There's no real difference",
+        "A debit card spends your own money now; a credit card is borrowed money you pay back later",
+        "Debit cards can only be used online"
+      ],
+      "correctIndex": 1,
+      "explanation": "Debit pulls directly from what you already have. Credit is a loan you're expected to repay — a very different risk profile.",
+      "topic": "Banking Basics"
+    },
+    {
+      "id": "intern-16",
+      "prompt": "Do you need to be 18 to open any bank account?",
+      "options": ["Yes, always", "No — teen or custodial accounts exist, usually with a parent as co-owner", "Only for savings accounts"],
+      "correctIndex": 1,
+      "explanation": "Many banks offer accounts for minors, typically supervised or co-owned by a parent until 18.",
+      "topic": "Banking Basics"
+    },
+    {
+      "id": "intern-17",
+      "prompt": "You worked 12 hours at $15/hour. What's your gross pay?",
+      "options": ["$120", "$180", "$150"],
+      "correctIndex": 1,
+      "explanation": "12 × $15 = $180 gross — the full amount before any taxes come out.",
+      "topic": "Earning Money"
+    },
+    {
+      "id": "intern-18",
+      "prompt": "Your gross pay is $180 and $25 gets withheld for taxes. What's your net pay, and which number should you budget from?",
+      "options": ["$180 gross — always budget from gross", "$155 net — always budget from net", "It doesn't matter which one you use"],
+      "correctIndex": 1,
+      "explanation": "$180 − $25 = $155. Net pay is what actually lands in your account, so it's the number your budget should be built around.",
+      "topic": "Earning Money"
+    },
+    {
+      "id": "intern-19",
+      "prompt": "A side hustle earns $40 profit but takes 5 hours including prep and cleanup. What's the effective hourly rate?",
+      "options": ["$40/hour", "$8/hour", "$5/hour"],
+      "correctIndex": 1,
+      "explanation": "$40 ÷ 5 hours = $8/hour — always divide by total time spent, not just the fun parts.",
+      "topic": "Earning Money"
+    },
+    {
+      "id": "intern-20",
+      "prompt": "State minimum wage is higher than federal minimum wage where you live. Which one legally applies to you?",
+      "options": ["Federal, always", "Whichever is higher — state, in this case", "Employer's choice"],
+      "correctIndex": 1,
+      "explanation": "Employers must pay at least the highest minimum wage that applies — federal, state, or city, whichever is greatest.",
+      "topic": "What Money Actually Is"
+    }
+  ]
+}
