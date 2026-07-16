@@ -197,16 +197,17 @@ export function SimulatorPage() {
 
   return (
     <div className="min-h-screen bg-ink-100">
-      <header className="bg-brand-600 px-6 pb-6 pt-8 text-white">
-        <h1 className="text-2xl font-extrabold">StackMarket</h1>
-        <p className="mt-0.5 text-sm text-brand-100">Trade with your stacks, risk-free.</p>
+      <header className="relative overflow-hidden bg-gradient-to-br from-sky-400 via-sky-600 to-sky-800 px-6 pb-6 pt-8 text-white">
+        <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white/10 blur-2xl" />
+        <h1 className="relative text-2xl font-extrabold">📈 StackMarket</h1>
+        <p className="relative mt-0.5 text-sm font-semibold text-white/80">Trade with your stacks, risk-free.</p>
 
-        <div className="mt-5 rounded-2xl bg-white/10 p-4">
-          <p className="text-xs text-brand-100">Portfolio value</p>
+        <div className="relative mt-5 rounded-2xl bg-white/10 p-4 backdrop-blur-sm">
+          <p className="text-xs font-semibold text-white/80">Portfolio value</p>
           <p className="text-3xl font-extrabold">{fmt(portfolioValue)} stacks</p>
-          <div className="mt-2 flex gap-4 text-sm">
-            <span className="text-brand-100">Cash: {fmt(cash)} stacks</span>
-            <span className={totalGainLoss >= 0 ? "text-brand-200" : "text-accent-300"}>
+          <div className="mt-2 flex gap-4 text-sm font-semibold">
+            <span className="text-white/80">Cash: {fmt(cash)} stacks</span>
+            <span className={totalGainLoss >= 0 ? "text-gold-200" : "text-coral-200"}>
               {totalGainLoss >= 0 ? "+" : ""}
               {fmt(totalGainLoss)} stacks gain/loss
             </span>
@@ -214,7 +215,7 @@ export function SimulatorPage() {
         </div>
 
         {justGranted > 0 && (
-          <div className="mt-3 rounded-2xl bg-accent-500/90 px-4 py-3 text-sm font-semibold">
+          <div className="relative mt-3 rounded-2xl bg-gold-400 px-4 py-3 text-sm font-bold text-ink-900 shadow-md">
             🔥 Streak bonus! +{justGranted} stacks added to your cash.
           </div>
         )}
@@ -235,9 +236,9 @@ export function SimulatorPage() {
             const isExpanded = expandedSymbol === inst.symbol;
 
             return (
-              <div key={inst.symbol} className="rounded-2xl border border-ink-300 bg-white p-4">
+              <div key={inst.symbol} className="rounded-2xl border-2 border-ink-100 bg-white p-4 shadow-sm">
                 <button
-                  className="flex w-full items-center justify-between text-left"
+                  className="flex w-full items-center gap-3 text-left"
                   onClick={() => {
                     setExpandedSymbol(isExpanded ? null : inst.symbol);
                     setTradeSide("buy");
@@ -245,16 +246,27 @@ export function SimulatorPage() {
                     setTradeError(null);
                   }}
                 >
-                  <div>
-                    <p className="font-bold text-ink-900">
+                  <div
+                    className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl text-xs font-extrabold text-white shadow-sm ${
+                      inst.isIndex
+                        ? "bg-gradient-to-br from-gold-400 to-gold-600"
+                        : change >= 0
+                          ? "bg-gradient-to-br from-brand-400 to-brand-600"
+                          : "bg-gradient-to-br from-coral-400 to-coral-600"
+                    }`}
+                  >
+                    {inst.symbol.slice(0, 4)}
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="font-extrabold text-ink-900">
                       {inst.symbol} {inst.isIndex && <span className="text-xs font-normal text-ink-500">Index Fund</span>}
                     </p>
-                    <p className="text-sm text-ink-500">{inst.name}</p>
-                    {held && <p className="mt-0.5 text-xs text-brand-600">{fmt(held.shares)} shares held</p>}
+                    <p className="truncate text-sm text-ink-500">{inst.name}</p>
+                    {held && <p className="mt-0.5 text-xs font-semibold text-brand-600">{fmt(held.shares)} shares held</p>}
                   </div>
-                  <div className="text-right">
-                    <p className="font-bold text-ink-900">{fmt(inst.price)} stacks</p>
-                    <p className={`text-sm font-semibold ${change >= 0 ? "text-brand-600" : "text-accent-600"}`}>
+                  <div className="shrink-0 text-right">
+                    <p className="font-extrabold text-ink-900">{fmt(inst.price)} stacks</p>
+                    <p className={`text-sm font-bold ${change >= 0 ? "text-brand-600" : "text-coral-600"}`}>
                       {change >= 0 ? "+" : ""}
                       {fmt(change)}%
                     </p>
@@ -266,8 +278,8 @@ export function SimulatorPage() {
                     <div className="flex gap-2">
                       <button
                         onClick={() => setTradeSide("buy")}
-                        className={`flex-1 rounded-lg py-2 text-sm font-bold ${
-                          tradeSide === "buy" ? "bg-brand-600 text-white" : "bg-ink-100 text-ink-700"
+                        className={`flex-1 rounded-xl py-2.5 text-sm font-extrabold transition ${
+                          tradeSide === "buy" ? "bg-brand-500 text-white shadow-sm" : "bg-ink-100 text-ink-700"
                         }`}
                       >
                         Buy
@@ -275,8 +287,8 @@ export function SimulatorPage() {
                       <button
                         onClick={() => setTradeSide("sell")}
                         disabled={!held}
-                        className={`flex-1 rounded-lg py-2 text-sm font-bold disabled:opacity-40 ${
-                          tradeSide === "sell" ? "bg-accent-500 text-white" : "bg-ink-100 text-ink-700"
+                        className={`flex-1 rounded-xl py-2.5 text-sm font-extrabold transition disabled:opacity-40 ${
+                          tradeSide === "sell" ? "bg-coral-500 text-white shadow-sm" : "bg-ink-100 text-ink-700"
                         }`}
                       >
                         Sell
@@ -290,16 +302,16 @@ export function SimulatorPage() {
                         value={amountInput}
                         onChange={(e) => setAmountInput(e.target.value)}
                         placeholder="Amount in stacks"
-                        className="flex-1 rounded-lg border border-ink-300 px-3 py-2 text-base outline-none focus:border-brand-500"
+                        className="flex-1 rounded-xl border-2 border-ink-100 bg-ink-100 px-3 py-2.5 text-base outline-none focus:border-brand-400 focus:bg-white"
                       />
                       <button
                         onClick={() => executeTrade(inst.symbol)}
-                        className="rounded-lg bg-ink-900 px-4 py-2 text-sm font-bold text-white active:scale-[0.98]"
+                        className="rounded-xl bg-ink-900 px-5 py-2.5 text-sm font-extrabold text-white shadow-sm transition active:scale-[0.96]"
                       >
                         {tradeSide === "buy" ? "Buy" : "Sell"}
                       </button>
                     </div>
-                    {tradeError && <p className="mt-2 text-xs font-semibold text-accent-600">{tradeError}</p>}
+                    {tradeError && <p className="mt-2 text-xs font-semibold text-coral-600">{tradeError}</p>}
                   </div>
                 )}
               </div>

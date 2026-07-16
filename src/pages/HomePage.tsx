@@ -7,6 +7,7 @@ import { lessonsById } from "../data/lessons";
 import { getRank, getNextRank } from "../data/ranks";
 import { getUnitsForRank, getRankProgress, getCurrentRankId, isPromotionExamAvailable } from "../lib/ranks";
 import { computeStreak } from "../lib/streak";
+import { getRankColors } from "../lib/rankColors";
 
 export function HomePage() {
   const { user, profile } = useAuth();
@@ -50,6 +51,7 @@ export function HomePage() {
   const rankProgress = getRankProgress(currentRankId, completedLessonIds);
   const examAvailable = isPromotionExamAvailable(currentRankId, completedLessonIds) && !passedExamRankIds.has(currentRankId);
   const rankUnits = getUnitsForRank(currentRankId);
+  const colors = getRankColors(currentRankId);
 
   const internProgress = getRankProgress(1, completedLessonIds);
   const internDone = internProgress.contentComplete && passedExamRankIds.has(1);
@@ -69,41 +71,53 @@ export function HomePage() {
 
   return (
     <div className="min-h-screen bg-ink-100">
-      <header className="bg-brand-600 px-6 pb-8 pt-8 text-white">
-        <div>
-          <p className="text-sm text-brand-100">Welcome back</p>
-          <h1 className="text-2xl font-extrabold">{profile?.display_name ?? "…"}</h1>
+      <header
+        className={`relative overflow-hidden bg-gradient-to-br ${colors.gradientFrom} ${colors.gradientVia} ${colors.gradientTo} px-6 pb-8 pt-8 text-white`}
+      >
+        <div className="pointer-events-none absolute -right-10 -top-14 h-40 w-40 rounded-full bg-white/10 blur-2xl" />
+        <div className="pointer-events-none absolute -left-14 bottom-0 h-32 w-32 rounded-full bg-white/10 blur-2xl" />
+
+        <div className="relative flex items-center justify-between">
+          <div>
+            <p className="text-sm font-semibold text-white/80">Welcome back</p>
+            <h1 className="text-2xl font-extrabold">{profile?.display_name ?? "…"}</h1>
+          </div>
+          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/15 text-2xl">
+            {colors.emoji}
+          </div>
         </div>
 
-        <div className="mt-6 rounded-2xl bg-white/10 p-4">
-          <div className="flex items-center justify-between text-sm font-semibold">
+        <div className="relative mt-6 rounded-2xl bg-white/10 p-4 backdrop-blur-sm">
+          <div className="flex items-center justify-between text-sm font-bold">
             <span>{currentRank.title}</span>
             <span>
               Unit {Math.min(completedUnitsCount + 1, rankUnits.length)} of {rankUnits.length}
             </span>
           </div>
-          <div className="mt-2 h-2.5 w-full overflow-hidden rounded-full bg-white/20">
+          <div className="mt-2 h-3 w-full overflow-hidden rounded-full bg-white/20">
             <div
-              className="h-full rounded-full bg-accent-400 transition-all"
+              className="h-full rounded-full bg-gradient-to-r from-gold-300 to-gold-500 transition-all duration-500"
               style={{ width: `${rankProgress.percent}%` }}
             />
           </div>
-          <p className="mt-1.5 text-xs text-brand-100">{rankProgress.percent}% of {currentRank.title} complete</p>
+          <p className="mt-1.5 text-xs font-semibold text-white/80">{rankProgress.percent}% of {currentRank.title} complete</p>
         </div>
 
-        <div className="mt-3 flex gap-3">
-          <div className="flex flex-1 items-center gap-2 rounded-2xl bg-white/10 px-4 py-3">
-            <span className="text-xl">🔥</span>
+        <div className="relative mt-3 flex gap-3">
+          <div className="flex flex-1 items-center gap-3 rounded-2xl bg-white/10 px-4 py-3 backdrop-blur-sm">
+            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gold-400/30">
+              <span className={`text-xl ${streak.current > 0 ? "flame-pulse" : ""}`}>🔥</span>
+            </div>
             <div>
               <p className="text-lg font-extrabold leading-none">{streak.current}</p>
-              <p className="text-xs text-brand-100">day streak</p>
+              <p className="text-xs font-semibold text-white/80">day streak</p>
             </div>
           </div>
         </div>
 
         {streak.atRisk && (
-          <div className="mt-3 rounded-2xl bg-accent-500/90 px-4 py-3 text-sm font-semibold">
-            Keep your {streak.current}-day streak alive — finish a lesson today!
+          <div className="relative mt-3 rounded-2xl bg-gold-400 px-4 py-3 text-sm font-bold text-ink-900 shadow-md">
+            🔥 Keep your {streak.current}-day streak alive — finish a lesson today!
           </div>
         )}
       </header>
@@ -112,25 +126,25 @@ export function HomePage() {
         {postAssessmentDue && (
           <button
             onClick={() => navigate("/assessment/post")}
-            className="mb-6 w-full rounded-2xl bg-accent-500 px-5 py-4 text-left text-white shadow-sm transition active:scale-[0.98]"
+            className="btn-chunky btn-chunky--sky mb-6 w-full text-left"
           >
             <p className="text-xs font-semibold text-white/80">Quick check-in</p>
-            <p className="mt-0.5 font-bold">Take your progress quiz →</p>
+            <p className="mt-0.5 font-extrabold">Take your progress quiz →</p>
           </button>
         )}
 
         {examAvailable && (
           <button
             onClick={() => navigate("/promotion-exam")}
-            className="mb-6 w-full rounded-2xl bg-ink-900 px-5 py-4 text-left text-white shadow-sm transition active:scale-[0.98]"
+            className="btn-chunky btn-chunky--gold mb-6 w-full text-left"
           >
-            <p className="text-xs font-semibold text-brand-300">All lessons complete</p>
-            <p className="mt-0.5 font-bold">Take your {currentRank.title} promotion exam →</p>
+            <p className="text-xs font-bold text-ink-700">🎉 All lessons complete</p>
+            <p className="mt-0.5 font-extrabold">Take your {currentRank.title} promotion exam →</p>
           </button>
         )}
 
         {rankUnits.length === 0 && (
-          <div className="mb-6 rounded-2xl border border-dashed border-ink-300 bg-white/60 p-4 text-center">
+          <div className="mb-6 rounded-2xl border-2 border-dashed border-ink-300 bg-white/60 p-4 text-center">
             <p className="font-semibold text-ink-700">You're placed at {currentRank.title}.</p>
             <p className="mt-1 text-sm text-ink-500">Content for this rank isn't published yet — check back soon.</p>
           </div>
@@ -138,9 +152,12 @@ export function HomePage() {
 
         {rankUnits.map((unit) => (
           <section key={unit.id} className="mb-8">
-            <h2 className="text-lg font-bold text-ink-900">
-              Unit {unit.id}: {unit.title}
-            </h2>
+            <div className="flex items-center gap-2">
+              <span className={`rounded-full ${colors.badgeBg} ${colors.badgeText} px-2.5 py-1 text-xs font-extrabold`}>
+                UNIT {unit.id}
+              </span>
+            </div>
+            <h2 className="mt-2 text-lg font-extrabold text-ink-900">{unit.title}</h2>
             <p className="mt-0.5 text-sm text-ink-500">{unit.description}</p>
 
             <div className="mt-4 flex flex-col gap-3">
@@ -155,25 +172,27 @@ export function HomePage() {
                     key={lessonId}
                     disabled={!unlocked}
                     onClick={() => navigate(`/lesson/${lessonId}`)}
-                    className={`flex items-center gap-4 rounded-2xl border p-4 text-left transition active:scale-[0.98] ${
+                    className={`flex items-center gap-4 rounded-2xl border-2 p-4 text-left transition active:scale-[0.98] ${
                       unlocked
-                        ? "border-ink-300 bg-white shadow-sm"
-                        : "border-ink-300 bg-ink-100 opacity-60"
+                        ? completed
+                          ? "border-brand-200 bg-brand-50 shadow-sm"
+                          : "border-ink-100 bg-white shadow-sm"
+                        : "border-ink-100 bg-ink-100/60 opacity-60"
                     }`}
                   >
                     <div
-                      className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-xl font-bold ${
+                      className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-xl font-extrabold ${
                         completed
-                          ? "bg-brand-500 text-white"
+                          ? "bg-gradient-to-br from-brand-400 to-brand-600 text-white shadow-md"
                           : unlocked
-                            ? "bg-brand-100 text-brand-700"
-                            : "bg-ink-300 text-ink-500"
+                            ? `${colors.badgeBg} ${colors.badgeText}`
+                            : "bg-ink-200 text-ink-400"
                       }`}
                     >
                       {completed ? "✓" : unlocked ? lesson.order : "🔒"}
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="font-semibold text-ink-900">{lesson.title}</p>
+                      <p className="font-bold text-ink-900">{lesson.title}</p>
                       <p className="truncate text-sm text-ink-500">{lesson.summary}</p>
                     </div>
                   </button>
@@ -187,23 +206,23 @@ export function HomePage() {
           <section className="mb-8">
             <button
               onClick={() => navigate("/placement-test")}
-              className="w-full rounded-2xl border border-ink-300 bg-white p-4 text-left shadow-sm transition active:scale-[0.98]"
+              className="w-full rounded-2xl border-2 border-grape-200 bg-grape-100/60 p-4 text-left shadow-sm transition active:scale-[0.98]"
             >
-              <p className="font-semibold text-ink-900">Already know the basics?</p>
+              <p className="font-bold text-ink-900">🚀 Already know the basics?</p>
               <p className="mt-0.5 text-sm text-ink-500">Test out and skip ahead to Vice President →</p>
             </button>
           </section>
         )}
 
         <section className="mb-8">
-          <h2 className="text-lg font-bold text-ink-900">Coming soon</h2>
+          <h2 className="text-lg font-extrabold text-ink-900">Coming soon</h2>
           <div className="mt-4 flex flex-col gap-3">
-            <div className="flex items-center gap-4 rounded-2xl border border-dashed border-ink-300 bg-white/60 p-4 opacity-70">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-ink-300 text-xl">
+            <div className="flex items-center gap-4 rounded-2xl border-2 border-dashed border-ink-300 bg-white/60 p-4 opacity-70">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-ink-300 text-xl">
                 🔒
               </div>
               <div className="min-w-0 flex-1">
-                <p className="font-semibold text-ink-700">Advanced Lessons</p>
+                <p className="font-bold text-ink-700">Advanced Lessons</p>
                 <p className="text-sm text-ink-500">Premium — coming soon</p>
               </div>
             </div>

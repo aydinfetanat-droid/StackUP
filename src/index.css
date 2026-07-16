@@ -16,6 +16,37 @@
   --color-accent-500: #f97316;
   --color-accent-600: #ea580c;
 
+  /* Gold — streaks, achievements, celebration moments */
+  --color-gold-100: #fef3c7;
+  --color-gold-300: #fcd34d;
+  --color-gold-400: #fbbf24;
+  --color-gold-500: #f59e0b;
+  --color-gold-600: #d97706;
+  --color-gold-700: #b45309;
+
+  /* Sky — StackMarket, informational moments, Associate rank */
+  --color-sky-100: #e0f2fe;
+  --color-sky-300: #7dd3fc;
+  --color-sky-400: #38bdf8;
+  --color-sky-500: #0ea5e9;
+  --color-sky-600: #0284c7;
+  --color-sky-700: #0369a1;
+
+  /* Grape — premium, Vice President rank */
+  --color-grape-100: #f3e8ff;
+  --color-grape-300: #d8b4fe;
+  --color-grape-400: #c084fc;
+  --color-grape-500: #a855f7;
+  --color-grape-600: #9333ea;
+  --color-grape-700: #7e22ce;
+
+  /* Coral — Managing Director rank */
+  --color-coral-100: #ffe4e6;
+  --color-coral-400: #fb7185;
+  --color-coral-500: #f43f5e;
+  --color-coral-600: #e11d48;
+  --color-coral-700: #be123c;
+
   --color-ink-900: #0f172a;
   --color-ink-700: #334155;
   --color-ink-500: #64748b;
@@ -45,4 +76,83 @@ body {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Duolingo-style "chunky" 3D buttons: a solid drop shadow that compresses on
+   press, giving buttons real physical weight instead of a flat rectangle. */
+@layer components {
+  .btn-chunky {
+    @apply relative select-none rounded-2xl px-5 py-4 text-base font-extrabold transition-all duration-100 active:translate-y-[3px];
+  }
+  .btn-chunky:disabled {
+    @apply pointer-events-none opacity-40;
+  }
+
+  .btn-chunky--brand {
+    @apply bg-brand-500 text-white;
+    box-shadow: 0 4px 0 0 var(--color-brand-700);
+  }
+  .btn-chunky--brand:active {
+    box-shadow: 0 1px 0 0 var(--color-brand-700);
+  }
+
+  .btn-chunky--dark {
+    @apply bg-ink-900 text-white;
+    box-shadow: 0 4px 0 0 #000000;
+  }
+  .btn-chunky--dark:active {
+    box-shadow: 0 1px 0 0 #000000;
+  }
+
+  .btn-chunky--white {
+    @apply bg-white text-brand-700;
+    box-shadow: 0 4px 0 0 var(--color-ink-300);
+  }
+  .btn-chunky--white:active {
+    box-shadow: 0 1px 0 0 var(--color-ink-300);
+  }
+
+  .btn-chunky--gold {
+    @apply bg-gold-400 text-ink-900;
+    box-shadow: 0 4px 0 0 var(--color-gold-600);
+  }
+  .btn-chunky--gold:active {
+    box-shadow: 0 1px 0 0 var(--color-gold-600);
+  }
+
+  .btn-chunky--sky {
+    @apply bg-sky-500 text-white;
+    box-shadow: 0 4px 0 0 var(--color-sky-700);
+  }
+  .btn-chunky--sky:active {
+    box-shadow: 0 1px 0 0 var(--color-sky-700);
+  }
+}
+
+@keyframes flame-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0px var(--color-gold-400));
+  }
+  50% {
+    transform: scale(1.12);
+    filter: drop-shadow(0 0 6px var(--color-gold-400));
+  }
+}
+.flame-pulse {
+  animation: flame-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+.shimmer-bg {
+  background-size: 200% 100%;
+  animation: shimmer 2.5s linear infinite;
 }

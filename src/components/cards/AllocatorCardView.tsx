@@ -8,7 +8,7 @@ interface Props {
   showMascot?: boolean;
 }
 
-const COLORS = ["bg-brand-500", "bg-accent-500", "bg-blue-500", "bg-purple-500", "bg-pink-500"];
+const COLORS = ["bg-brand-500", "bg-accent-500", "bg-sky-500", "bg-grape-500", "bg-gold-500"];
 
 export function AllocatorCardView({ card, onComplete, showMascot }: Props) {
   const [values, setValues] = useState<Record<string, number>>(
@@ -71,11 +71,7 @@ export function AllocatorCardView({ card, onComplete, showMascot }: Props) {
       </div>
 
       {!checked && (
-        <button
-          onClick={() => setChecked(true)}
-          disabled={!isValidTotal}
-          className="mt-6 w-full rounded-xl bg-ink-900 py-4 text-base font-bold text-white shadow-sm transition active:scale-[0.98] disabled:opacity-40"
-        >
+        <button onClick={() => setChecked(true)} disabled={!isValidTotal} className="btn-chunky btn-chunky--dark mt-6 w-full">
           {isValidTotal ? "Check my split" : `Adjust to 100% (currently ${total}%)`}
         </button>
       )}

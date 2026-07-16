@@ -62,7 +62,7 @@ export function SequenceCardView({ card, onComplete, showMascot }: Props) {
                   : "border-dashed border-ink-300 bg-ink-100/50"
               }`}
             >
-              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-ink-900 text-xs font-bold text-white">
+              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-sky-400 to-sky-600 text-xs font-extrabold text-white">
                 {i + 1}
               </span>
               <span className="font-semibold text-ink-900">{id ? labelFor(id) : "Tap a step below"}</span>
@@ -86,11 +86,7 @@ export function SequenceCardView({ card, onComplete, showMascot }: Props) {
       )}
 
       {!checked && (
-        <button
-          onClick={() => setChecked(true)}
-          disabled={!allPlaced}
-          className="mt-6 w-full rounded-xl bg-ink-900 py-4 text-base font-bold text-white shadow-sm transition active:scale-[0.98] disabled:opacity-40"
-        >
+        <button onClick={() => setChecked(true)} disabled={!allPlaced} className="btn-chunky btn-chunky--dark mt-6 w-full">
           Check order
         </button>
       )}

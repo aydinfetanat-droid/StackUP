@@ -15,10 +15,10 @@ export function TrueFalseCardView({ card, onComplete, showMascot }: Props) {
   const correct = selected === card.correctAnswer;
 
   function styleFor(value: boolean) {
-    if (!answered) return "border-ink-300 bg-white";
+    if (!answered) return value ? "border-brand-200 bg-brand-50" : "border-coral-200 bg-rose-50";
     if (value === card.correctAnswer) return "border-brand-500 bg-brand-50";
     if (value === selected) return "border-accent-500 bg-orange-50";
-    return "border-ink-300 bg-white opacity-60";
+    return "border-ink-200 bg-white opacity-50";
   }
 
   return (
@@ -29,16 +29,16 @@ export function TrueFalseCardView({ card, onComplete, showMascot }: Props) {
         <button
           disabled={answered}
           onClick={() => setSelected(true)}
-          className={`rounded-xl border-2 py-6 text-lg font-bold text-ink-900 transition active:scale-[0.98] ${styleFor(true)}`}
+          className={`rounded-2xl border-2 py-6 text-lg font-extrabold text-ink-900 shadow-sm transition active:scale-[0.98] ${styleFor(true)}`}
         >
-          True
+          ✅ True
         </button>
         <button
           disabled={answered}
           onClick={() => setSelected(false)}
-          className={`rounded-xl border-2 py-6 text-lg font-bold text-ink-900 transition active:scale-[0.98] ${styleFor(false)}`}
+          className={`rounded-2xl border-2 py-6 text-lg font-extrabold text-ink-900 shadow-sm transition active:scale-[0.98] ${styleFor(false)}`}
         >
-          False
+          ❌ False
         </button>
       </div>
 

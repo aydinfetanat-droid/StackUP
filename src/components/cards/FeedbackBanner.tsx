@@ -21,8 +21,8 @@ export function FeedbackBanner({ correct, explanation, onContinue, showMascot = 
 
   return (
     <div
-      className={`fixed inset-x-0 bottom-0 border-t px-5 pb-8 pt-4 ${
-        correct ? "border-brand-200 bg-brand-50" : "border-accent-400/30 bg-orange-50"
+      className={`fixed inset-x-0 bottom-0 border-t-2 px-5 pb-8 pt-4 shadow-[0_-6px_20px_rgba(0,0,0,0.06)] ${
+        correct ? "border-brand-300 bg-gradient-to-b from-brand-100 to-white" : "border-accent-400/40 bg-gradient-to-b from-orange-100 to-white"
       }`}
     >
       {showMascot ? (
@@ -35,9 +35,7 @@ export function FeedbackBanner({ correct, explanation, onContinue, showMascot = 
       <p className="mt-1.5 text-sm text-ink-700">{explanation}</p>
       <button
         onClick={onContinue}
-        className={`mt-4 w-full rounded-xl py-4 text-base font-bold text-white shadow-sm transition active:scale-[0.98] ${
-          correct ? "bg-brand-600" : "bg-ink-900"
-        }`}
+        className={`btn-chunky mt-4 w-full ${correct ? "btn-chunky--brand" : "btn-chunky--dark"}`}
       >
         Continue
       </button>

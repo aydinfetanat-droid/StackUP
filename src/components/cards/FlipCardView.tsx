@@ -28,13 +28,13 @@ export function FlipCardView({ card, onContinue }: Props) {
             className="relative min-h-[220px] w-full"
           >
             <div
-              className="absolute inset-0 flex items-center justify-center rounded-2xl border-2 border-brand-200 bg-brand-50 p-6"
+              className="absolute inset-0 flex items-center justify-center rounded-2xl border-2 border-gold-300 bg-gradient-to-br from-gold-100 to-gold-200 p-6 shadow-md"
               style={{ backfaceVisibility: "hidden" }}
             >
               <p className="text-center text-xl font-extrabold leading-snug text-ink-900">{card.frontText}</p>
             </div>
             <div
-              className="absolute inset-0 flex items-center justify-center rounded-2xl border-2 border-brand-500 bg-brand-600 p-6"
+              className="absolute inset-0 flex items-center justify-center rounded-2xl border-2 border-grape-400 bg-gradient-to-br from-grape-500 to-grape-700 p-6 shadow-md"
               style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
             >
               <p className="text-center text-lg font-semibold leading-snug text-white">{card.backText}</p>
@@ -47,17 +47,11 @@ export function FlipCardView({ card, onContinue }: Props) {
       </div>
       <div className="pb-8">
         {flipped ? (
-          <button
-            onClick={onContinue}
-            className="w-full rounded-xl bg-brand-600 py-4 text-base font-bold text-white shadow-sm transition active:scale-[0.98]"
-          >
+          <button onClick={onContinue} className="btn-chunky btn-chunky--brand w-full">
             Continue
           </button>
         ) : (
-          <button
-            onClick={() => setFlipped(true)}
-            className="w-full rounded-xl bg-ink-900 py-4 text-base font-bold text-white shadow-sm transition active:scale-[0.98]"
-          >
+          <button onClick={() => setFlipped(true)} className="btn-chunky btn-chunky--dark w-full">
             Reveal
           </button>
         )}
