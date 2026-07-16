@@ -9,7 +9,7 @@ import { getUnitsForRank, getRankProgress, getCurrentRankId, isPromotionExamAvai
 import { computeStreak } from "../lib/streak";
 
 export function HomePage() {
-  const { user, profile, signOut } = useAuth();
+  const { user, profile } = useAuth();
   const navigate = useNavigate();
   const [completedLessonIds, setCompletedLessonIds] = useState<Set<string>>(new Set());
   const [completedAt, setCompletedAt] = useState<string[]>([]);
@@ -68,19 +68,11 @@ export function HomePage() {
   const completedUnitsCount = rankUnits.filter((u) => u.lessonIds.every((id) => completedLessonIds.has(id))).length;
 
   return (
-    <div className="min-h-screen bg-ink-100 pb-16">
+    <div className="min-h-screen bg-ink-100">
       <header className="bg-brand-600 px-6 pb-8 pt-8 text-white">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-sm text-brand-100">Welcome back</p>
-            <h1 className="text-2xl font-extrabold">{profile?.display_name ?? "…"}</h1>
-          </div>
-          <button
-            onClick={() => signOut()}
-            className="rounded-full bg-brand-700/60 px-3 py-1.5 text-xs font-semibold"
-          >
-            Log out
-          </button>
+        <div>
+          <p className="text-sm text-brand-100">Welcome back</p>
+          <h1 className="text-2xl font-extrabold">{profile?.display_name ?? "…"}</h1>
         </div>
 
         <div className="mt-6 rounded-2xl bg-white/10 p-4">
@@ -206,30 +198,17 @@ export function HomePage() {
         <section className="mb-8">
           <h2 className="text-lg font-bold text-ink-900">Coming soon</h2>
           <div className="mt-4 flex flex-col gap-3">
-            {["Certification", "Advanced Lessons"].map((name) => (
-              <div
-                key={name}
-                className="flex items-center gap-4 rounded-2xl border border-dashed border-ink-300 bg-white/60 p-4 opacity-70"
-              >
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-ink-300 text-xl">
-                  🔒
-                </div>
-                <div className="min-w-0 flex-1">
-                  <p className="font-semibold text-ink-700">{name}</p>
-                  <p className="text-sm text-ink-500">Premium — coming soon</p>
-                </div>
+            <div className="flex items-center gap-4 rounded-2xl border border-dashed border-ink-300 bg-white/60 p-4 opacity-70">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-ink-300 text-xl">
+                🔒
               </div>
-            ))}
+              <div className="min-w-0 flex-1">
+                <p className="font-semibold text-ink-700">Advanced Lessons</p>
+                <p className="text-sm text-ink-500">Premium — coming soon</p>
+              </div>
+            </div>
           </div>
         </section>
-
-        <button
-          onClick={() => navigate("/simulator")}
-          className="mb-3 w-full rounded-2xl border border-ink-300 bg-white p-4 text-left shadow-sm transition active:scale-[0.98]"
-        >
-          <p className="font-semibold text-ink-900">📈 Investing Simulator</p>
-          <p className="mt-0.5 text-sm text-ink-500">Trade with your stacks, risk-free</p>
-        </button>
 
         {nextRank && rankProgress.contentComplete && passedExamRankIds.has(currentRankId) && (
           <p className="text-center text-sm text-ink-500">You've been promoted to {nextRank.title}!</p>

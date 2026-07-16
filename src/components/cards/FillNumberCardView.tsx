@@ -5,9 +5,10 @@ import { FeedbackBanner } from "./FeedbackBanner";
 interface Props {
   card: FillNumberCard;
   onComplete: (correct: boolean) => void;
+  showMascot?: boolean;
 }
 
-export function FillNumberCardView({ card, onComplete }: Props) {
+export function FillNumberCardView({ card, onComplete, showMascot }: Props) {
   const [input, setInput] = useState("");
   const [checked, setChecked] = useState(false);
 
@@ -48,7 +49,7 @@ export function FillNumberCardView({ card, onComplete }: Props) {
       )}
 
       {checked && (
-        <FeedbackBanner correct={correct} explanation={card.explanation} onContinue={() => onComplete(correct)} />
+        <FeedbackBanner correct={correct} explanation={card.explanation} onContinue={() => onComplete(correct)} showMascot={showMascot} />
       )}
     </div>
   );

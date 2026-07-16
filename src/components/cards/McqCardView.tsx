@@ -5,9 +5,10 @@ import { FeedbackBanner } from "./FeedbackBanner";
 interface Props {
   card: McqCard;
   onComplete: (correct: boolean) => void;
+  showMascot?: boolean;
 }
 
-export function McqCardView({ card, onComplete }: Props) {
+export function McqCardView({ card, onComplete, showMascot }: Props) {
   const [selected, setSelected] = useState<number | null>(null);
 
   const answered = selected !== null;
@@ -39,7 +40,7 @@ export function McqCardView({ card, onComplete }: Props) {
       </div>
 
       {answered && (
-        <FeedbackBanner correct={correct} explanation={card.explanation} onContinue={() => onComplete(correct)} />
+        <FeedbackBanner correct={correct} explanation={card.explanation} onContinue={() => onComplete(correct)} showMascot={showMascot} />
       )}
     </div>
   );

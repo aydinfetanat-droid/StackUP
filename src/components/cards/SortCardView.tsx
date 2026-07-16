@@ -5,9 +5,10 @@ import { FeedbackBanner } from "./FeedbackBanner";
 interface Props {
   card: SortCard;
   onComplete: (correct: boolean) => void;
+  showMascot?: boolean;
 }
 
-export function SortCardView({ card, onComplete }: Props) {
+export function SortCardView({ card, onComplete, showMascot }: Props) {
   const [placements, setPlacements] = useState<Record<string, 0 | 1 | null>>(
     Object.fromEntries(card.items.map((i) => [i.id, null])),
   );
@@ -111,6 +112,7 @@ export function SortCardView({ card, onComplete }: Props) {
               : `${correctCount}/${card.items.length} correct. ${card.explanation}`
           }
           onContinue={() => onComplete(allCorrect)}
+          showMascot={showMascot}
         />
       )}
     </div>

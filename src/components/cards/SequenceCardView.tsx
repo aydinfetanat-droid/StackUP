@@ -5,6 +5,7 @@ import { FeedbackBanner } from "./FeedbackBanner";
 interface Props {
   card: SequenceCard;
   onComplete: (correct: boolean) => void;
+  showMascot?: boolean;
 }
 
 function shuffle<T>(arr: T[]): T[] {
@@ -16,7 +17,7 @@ function shuffle<T>(arr: T[]): T[] {
   return copy;
 }
 
-export function SequenceCardView({ card, onComplete }: Props) {
+export function SequenceCardView({ card, onComplete, showMascot }: Props) {
   const shuffledSteps = useMemo(() => shuffle(card.steps), [card]);
   const [placed, setPlaced] = useState<string[]>([]);
   const [checked, setChecked] = useState(false);
@@ -95,7 +96,7 @@ export function SequenceCardView({ card, onComplete }: Props) {
       )}
 
       {checked && (
-        <FeedbackBanner correct={allCorrect} explanation={card.explanation} onContinue={() => onComplete(allCorrect)} />
+        <FeedbackBanner correct={allCorrect} explanation={card.explanation} onContinue={() => onComplete(allCorrect)} showMascot={showMascot} />
       )}
     </div>
   );

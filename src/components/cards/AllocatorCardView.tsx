@@ -5,11 +5,12 @@ import { FeedbackBanner } from "./FeedbackBanner";
 interface Props {
   card: AllocatorCard;
   onComplete: (correct: boolean) => void;
+  showMascot?: boolean;
 }
 
 const COLORS = ["bg-brand-500", "bg-accent-500", "bg-blue-500", "bg-purple-500", "bg-pink-500"];
 
-export function AllocatorCardView({ card, onComplete }: Props) {
+export function AllocatorCardView({ card, onComplete, showMascot }: Props) {
   const [values, setValues] = useState<Record<string, number>>(
     Object.fromEntries(card.categories.map((c) => [c.id, 0])),
   );
@@ -80,7 +81,7 @@ export function AllocatorCardView({ card, onComplete }: Props) {
       )}
 
       {checked && (
-        <FeedbackBanner correct={allCorrect} explanation={card.explanation} onContinue={() => onComplete(allCorrect)} />
+        <FeedbackBanner correct={allCorrect} explanation={card.explanation} onContinue={() => onComplete(allCorrect)} showMascot={showMascot} />
       )}
     </div>
   );

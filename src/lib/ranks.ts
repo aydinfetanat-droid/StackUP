@@ -49,3 +49,7 @@ export function getCurrentRankId(
 export function isPromotionExamAvailable(rankId: number, completedLessonIds: Set<string>): boolean {
   return getRankProgress(rankId, completedLessonIds).contentComplete;
 }
+
+export function getRankIdForUnit(unitId: number): number | undefined {
+  return units.find((u) => u.id === unitId)?.rankId;
+}

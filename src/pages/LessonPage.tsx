@@ -8,6 +8,8 @@ import { supabase } from "../lib/supabase";
 import { logEvent } from "../lib/analytics";
 import { calcLessonXp } from "../lib/levels";
 import { toLaDateString } from "../lib/streak";
+import { getRankIdForUnit } from "../lib/ranks";
+import { LessonCompleteScreen } from "../components/LessonCompleteScreen";
 
 const REVIEW_SESSION_INTERVAL = 10;
 
@@ -17,6 +19,7 @@ export function LessonPage() {
   const { user, addXp } = useAuth();
 
   const lesson = lessonId ? getLesson(lessonId) : undefined;
+  const showMascot = lesson ? getRankIdForUnit(lesson.unit) === 1 : false;
 
   const [cardIndex, setCardIndex] = useState(0);
   const [results, setResults] = useState<boolean[]>([]);
@@ -120,32 +123,7 @@ export function LessonPage() {
   }
 
   if (finished) {
-    return (
-      <div className="flex min-h-screen flex-col items-center justify-center bg-brand-600 px-6 text-center text-white">
-        <motion.div
-          initial={{ scale: 0.6, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ type: "spring", stiffness: 260, damping: 18 }}
-          className="flex h-24 w-24 items-center justify-center rounded-full bg-white/15 text-5xl"
-        >
-          {savedScore === 100 ? "🏆" : "🎉"}
-        </motion.div>
-        <h1 className="mt-6 text-2xl font-extrabold">Lesson complete!</h1>
-        <p className="mt-1 text-brand-100">{lesson.title}</p>
-
-        <div className="mt-8 w-full max-w-xs rounded-2xl bg-white/10 p-4">
-          <p className="text-3xl font-extrabold">{savedScore}%</p>
-          <p className="text-xs text-brand-100">Score</p>
-        </div>
-
-        <button
-          onClick={() => navigate(triggerReview ? "/review" : "/", { replace: true })}
-          className="mt-10 w-full max-w-xs rounded-xl bg-white py-4 text-base font-bold text-brand-700 shadow-sm transition active:scale-[0.98]"
-        >
-          Continue
-        </button>
-      </div>
-    );
+    return <LessonCompleteScreen lesson={lesson} savedScore={savedScore} showMascot={showMascot} triggerReview={triggerReview} navigate={navigate} />;
   }
 
   const progress = (cardIndex / lesson.cards.length) * 100;
@@ -173,6 +151,7 @@ export function LessonPage() {
           <CardRenderer
             card={currentCard}
             onComplete={(correct) => handleCardComplete(correct, currentCard.type !== "explain" && currentCard.type !== "flip")}
+            showMascot={showMascot}
           />
         </motion.div>
       </div>

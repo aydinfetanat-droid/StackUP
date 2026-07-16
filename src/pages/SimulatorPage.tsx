@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { supabase } from "../lib/supabase";
 import { TICKERS, INDEX_SYMBOL, INDEX_NAME, currentPriceForTicker, currentIndexPrice, priceOnDate, getTicker } from "../lib/market";
@@ -24,7 +23,6 @@ function fmt(n: number): string {
 
 export function SimulatorPage() {
   const { user } = useAuth();
-  const navigate = useNavigate();
 
   const [cash, setCash] = useState<number | null>(null);
   const [holdings, setHoldings] = useState<Holding[]>([]);
@@ -198,14 +196,10 @@ export function SimulatorPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-ink-100 pb-16">
+    <div className="min-h-screen bg-ink-100">
       <header className="bg-brand-600 px-6 pb-6 pt-8 text-white">
-        <div className="flex items-center gap-3">
-          <button onClick={() => navigate("/")} className="text-2xl leading-none" aria-label="Back">
-            ×
-          </button>
-          <h1 className="text-xl font-extrabold">Investing Simulator</h1>
-        </div>
+        <h1 className="text-2xl font-extrabold">StackMarket</h1>
+        <p className="mt-0.5 text-sm text-brand-100">Trade with your stacks, risk-free.</p>
 
         <div className="mt-5 rounded-2xl bg-white/10 p-4">
           <p className="text-xs text-brand-100">Portfolio value</p>

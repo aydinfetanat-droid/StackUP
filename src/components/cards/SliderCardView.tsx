@@ -5,9 +5,10 @@ import { FeedbackBanner } from "./FeedbackBanner";
 interface Props {
   card: SliderCard;
   onComplete: (correct: boolean) => void;
+  showMascot?: boolean;
 }
 
-export function SliderCardView({ card, onComplete }: Props) {
+export function SliderCardView({ card, onComplete, showMascot }: Props) {
   const [value, setValue] = useState(Math.round((card.min + card.max) / 2));
   const [checked, setChecked] = useState(false);
 
@@ -54,7 +55,7 @@ export function SliderCardView({ card, onComplete }: Props) {
       )}
 
       {checked && (
-        <FeedbackBanner correct={correct} explanation={card.explanation} onContinue={() => onComplete(correct)} />
+        <FeedbackBanner correct={correct} explanation={card.explanation} onContinue={() => onComplete(correct)} showMascot={showMascot} />
       )}
     </div>
   );
