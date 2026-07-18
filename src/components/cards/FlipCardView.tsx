@@ -23,7 +23,7 @@ export function FlipCardView({ card, onContinue }: Props) {
         >
           <motion.div
             animate={{ rotateY: flipped ? 180 : 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.3 }}
             style={{ transformStyle: "preserve-3d" }}
             className="relative min-h-[220px] w-full"
           >

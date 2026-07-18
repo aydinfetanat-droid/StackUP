@@ -64,7 +64,7 @@ body {
   margin: 0;
   background-color: var(--color-ink-100);
   color: var(--color-ink-900);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   -webkit-tap-highlight-color: transparent;
   overscroll-behavior-y: none;
   -webkit-font-smoothing: antialiased;
@@ -76,6 +76,16 @@ body {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Two-font system: Inter for readable body copy (the default above), Space
+   Grotesk for anything bold — headings, buttons, big numbers, prompts. This
+   rides on every existing font-bold/font-extrabold usage across the app
+   without needing to touch each component individually. */
+.font-bold,
+.font-extrabold,
+button {
+  font-family: "Space Grotesk", "Inter", system-ui, sans-serif;
 }
 
 /* Duolingo-style "chunky" 3D buttons: a solid drop shadow that compresses on
