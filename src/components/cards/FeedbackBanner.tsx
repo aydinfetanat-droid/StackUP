@@ -20,23 +20,16 @@ export function FeedbackBanner({ correct, explanation, onContinue, showMascot = 
   }, []);
 
   return (
-    <div
-      className={`fixed inset-x-0 bottom-0 border-t-2 px-5 pb-8 pt-4 shadow-[0_-6px_20px_rgba(0,0,0,0.06)] ${
-        correct ? "border-brand-300 bg-gradient-to-b from-brand-100 to-white" : "border-accent-400/40 bg-gradient-to-b from-orange-100 to-white"
-      }`}
-    >
+    <div className={`fixed inset-x-0 bottom-0 border-t bg-white px-5 pb-8 pt-4 ${correct ? "border-forest-200" : "border-rust-200"}`}>
       {showMascot ? (
-        <Mascot quip={quip} />
+        <Mascot quip={quip} tone={correct ? "positive" : "negative"} />
       ) : (
-        <p className={`text-sm font-bold ${correct ? "text-brand-700" : "text-accent-600"}`}>
-          {correct ? "Nice — that's right!" : "Not quite"}
+        <p className={`text-sm font-semibold ${correct ? "text-forest-700" : "text-rust-700"}`}>
+          {correct ? "Correct" : "Not quite"}
         </p>
       )}
-      <p className="mt-1.5 text-sm text-ink-700">{explanation}</p>
-      <button
-        onClick={onContinue}
-        className={`btn-chunky mt-4 w-full ${correct ? "btn-chunky--brand" : "btn-chunky--dark"}`}
-      >
+      <p className="mt-1.5 text-sm text-ink-600">{explanation}</p>
+      <button onClick={onContinue} className={`btn mt-4 w-full ${correct ? "btn-accent" : "btn-primary"}`}>
         Continue
       </button>
     </div>

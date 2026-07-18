@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { Lock } from "lucide-react";
 import { supabase } from "../lib/supabase";
 import { lessonsById } from "../data/lessons";
 import { units } from "../data/units";
@@ -288,18 +289,19 @@ export function AdminPage() {
 
   if (!unlocked) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-ink-900 px-6 text-center">
-        <p className="text-white/60">🔒 Admin</p>
+      <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-ink-950 px-6 text-center">
+        <Lock size={24} className="text-white/50" />
+        <p className="text-white/70">Admin</p>
         <input
           type="password"
           value={passcodeInput}
           onChange={(e) => setPasscodeInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && tryUnlock()}
           placeholder="Passcode"
-          className="w-full max-w-xs rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-center text-white outline-none"
+          className="w-full max-w-xs rounded-md border border-white/20 bg-white/10 px-4 py-3 text-center text-white outline-none"
         />
-        {error && <p className="text-sm text-accent-400">{error}</p>}
-        <button onClick={tryUnlock} className="rounded-xl bg-brand-600 px-6 py-3 text-sm font-bold text-white">
+        {error && <p className="text-sm text-rust-400">{error}</p>}
+        <button onClick={tryUnlock} className="btn btn-invert">
           Unlock
         </button>
       </div>
@@ -307,15 +309,15 @@ export function AdminPage() {
   }
 
   if (!computed) {
-    return <div className="min-h-screen bg-ink-100" />;
+    return <div className="min-h-screen bg-ink-50" />;
   }
 
   return (
-    <div className="min-h-screen bg-ink-100 px-5 py-8">
+    <div className="min-h-screen bg-ink-50 px-5 py-8">
       <div className="mx-auto max-w-3xl">
         <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-extrabold text-ink-900">StackUp Admin</h1>
-          <button onClick={copyAsText} className="rounded-xl bg-ink-900 px-4 py-2 text-sm font-bold text-white">
+          <h1 className="font-display text-2xl text-ink-900">StackUp Admin</h1>
+          <button onClick={copyAsText} className="btn btn-primary">
             {copyLabel}
           </button>
         </div>
@@ -381,7 +383,7 @@ export function AdminPage() {
 
 function StatCard({ label, value }: { label: string; value: string | number }) {
   return (
-    <div className="rounded-2xl border border-ink-300 bg-white p-4">
+    <div className="card p-4">
       <p className="text-2xl font-extrabold text-ink-900">{value}</p>
       <p className="mt-0.5 text-xs text-ink-500">{label}</p>
     </div>
@@ -390,7 +392,7 @@ function StatCard({ label, value }: { label: string; value: string | number }) {
 
 function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <div className="mt-6 rounded-2xl border border-ink-300 bg-white p-4">
+    <div className="mt-6 card p-4">
       <h2 className="text-sm font-bold text-ink-900">{title}</h2>
       <div className="mt-3">{children}</div>
     </div>
@@ -404,7 +406,7 @@ function MiniBarChart({ data }: { data: { day: string; count: number }[] }) {
       {data.map((d) => (
         <div key={d.day} className="flex flex-1 flex-col items-center gap-1">
           <div
-            className="w-full rounded-t bg-brand-500"
+            className="w-full rounded-t bg-ink-700"
             style={{ height: `${(d.count / max) * 100}%`, minHeight: d.count > 0 ? "4px" : "1px" }}
             title={`${d.day}: ${d.count}`}
           />

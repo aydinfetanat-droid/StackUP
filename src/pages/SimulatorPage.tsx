@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { Flame } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { supabase } from "../lib/supabase";
 import { TICKERS, INDEX_SYMBOL, INDEX_NAME, currentPriceForTicker, currentIndexPrice, priceOnDate, getTicker } from "../lib/market";
@@ -187,7 +188,7 @@ export function SimulatorPage() {
   }
 
   if (loading || cash === null) {
-    return <div className="min-h-screen bg-ink-100" />;
+    return <div className="min-h-screen bg-ink-50" />;
   }
 
   const allInstruments = [
@@ -196,47 +197,47 @@ export function SimulatorPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-ink-100">
-      <header className="relative overflow-hidden bg-gradient-to-br from-sky-400 via-sky-600 to-sky-800 px-6 pb-6 pt-8 text-white">
-        <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white/10 blur-2xl" />
-        <h1 className="relative text-2xl font-extrabold">📈 StackMarket</h1>
-        <p className="relative mt-0.5 text-sm font-semibold text-white/80">Trade with your stacks, risk-free.</p>
+    <div className="min-h-screen bg-ink-50">
+      <header className="bg-ink-950 px-6 pb-6 pt-8 text-white">
+        <p className="label-caps text-white/50">StackMarket</p>
+        <h1 className="mt-1 font-display text-2xl text-white">Trade with your stacks</h1>
 
-        <div className="relative mt-5 rounded-2xl bg-white/10 p-4 backdrop-blur-sm">
-          <p className="text-xs font-semibold text-white/80">Portfolio value</p>
-          <p className="text-3xl font-extrabold">{fmt(portfolioValue)} stacks</p>
-          <div className="mt-2 flex gap-4 text-sm font-semibold">
-            <span className="text-white/80">Cash: {fmt(cash)} stacks</span>
-            <span className={totalGainLoss >= 0 ? "text-gold-200" : "text-coral-200"}>
+        <div className="mt-5 rounded-md border border-white/15 p-4">
+          <p className="text-xs text-white/50">Portfolio value</p>
+          <p className="mt-0.5 font-display text-3xl tabular-nums text-white">{fmt(portfolioValue)} stacks</p>
+          <div className="mt-2 flex gap-4 text-sm tabular-nums">
+            <span className="text-white/50">Cash: {fmt(cash)} stacks</span>
+            <span className={totalGainLoss >= 0 ? "text-forest-400" : "text-rust-400"}>
               {totalGainLoss >= 0 ? "+" : ""}
-              {fmt(totalGainLoss)} stacks gain/loss
+              {fmt(totalGainLoss)} gain/loss
             </span>
           </div>
         </div>
 
         {justGranted > 0 && (
-          <div className="relative mt-3 rounded-2xl bg-gold-400 px-4 py-3 text-sm font-bold text-ink-900 shadow-md">
-            🔥 Streak bonus! +{justGranted} stacks added to your cash.
+          <div className="mt-3 flex items-center gap-2 rounded-md border border-ochre-400/40 bg-ochre-400/10 px-4 py-3 text-sm text-ochre-100">
+            <Flame size={15} className="shrink-0 text-ochre-400" />
+            Streak bonus — +{justGranted} stacks added to your cash.
           </div>
         )}
       </header>
 
       <main className="px-5 pt-6">
-        <div className="mb-4 rounded-2xl border border-ink-300 bg-white p-4">
-          <p className="text-sm text-ink-700">
+        <div className="card mb-4 p-4">
+          <p className="text-sm text-ink-600">
             {INDEX_NAME} moved {fmt(Math.abs(dayChangePercent(INDEX_SYMBOL)))}% today, while {mostVolatileToday.name}{" "}
             moved {fmt(Math.abs(dayChangePercent(mostVolatileToday.symbol)))}% — that's diversification in action.
           </p>
         </div>
 
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-2">
           {allInstruments.map((inst) => {
             const change = dayChangePercent(inst.symbol);
             const held = holdings.find((h) => h.ticker === inst.symbol);
             const isExpanded = expandedSymbol === inst.symbol;
 
             return (
-              <div key={inst.symbol} className="rounded-2xl border-2 border-ink-100 bg-white p-4 shadow-sm">
+              <div key={inst.symbol} className="card p-4">
                 <button
                   className="flex w-full items-center gap-3 text-left"
                   onClick={() => {
@@ -246,27 +247,16 @@ export function SimulatorPage() {
                     setTradeError(null);
                   }}
                 >
-                  <div
-                    className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl text-xs font-extrabold text-white shadow-sm ${
-                      inst.isIndex
-                        ? "bg-gradient-to-br from-gold-400 to-gold-600"
-                        : change >= 0
-                          ? "bg-gradient-to-br from-brand-400 to-brand-600"
-                          : "bg-gradient-to-br from-coral-400 to-coral-600"
-                    }`}
-                  >
-                    {inst.symbol.slice(0, 4)}
-                  </div>
                   <div className="min-w-0 flex-1">
-                    <p className="font-extrabold text-ink-900">
-                      {inst.symbol} {inst.isIndex && <span className="text-xs font-normal text-ink-500">Index Fund</span>}
+                    <p className="font-semibold text-ink-900">
+                      {inst.symbol} {inst.isIndex && <span className="ml-1.5 text-xs font-normal text-ink-500">Index Fund</span>}
                     </p>
                     <p className="truncate text-sm text-ink-500">{inst.name}</p>
-                    {held && <p className="mt-0.5 text-xs font-semibold text-brand-600">{fmt(held.shares)} shares held</p>}
+                    {held && <p className="mt-0.5 text-xs font-medium text-ink-500 tabular-nums">{fmt(held.shares)} shares held</p>}
                   </div>
-                  <div className="shrink-0 text-right">
-                    <p className="font-extrabold text-ink-900">{fmt(inst.price)} stacks</p>
-                    <p className={`text-sm font-bold ${change >= 0 ? "text-brand-600" : "text-coral-600"}`}>
+                  <div className="shrink-0 text-right tabular-nums">
+                    <p className="font-semibold text-ink-900">{fmt(inst.price)} stacks</p>
+                    <p className={`text-sm font-medium ${change >= 0 ? "text-forest-600" : "text-rust-600"}`}>
                       {change >= 0 ? "+" : ""}
                       {fmt(change)}%
                     </p>
@@ -278,8 +268,8 @@ export function SimulatorPage() {
                     <div className="flex gap-2">
                       <button
                         onClick={() => setTradeSide("buy")}
-                        className={`flex-1 rounded-xl py-2.5 text-sm font-extrabold transition ${
-                          tradeSide === "buy" ? "bg-brand-500 text-white shadow-sm" : "bg-ink-100 text-ink-700"
+                        className={`flex-1 rounded-md py-2.5 text-sm font-semibold transition-colors duration-150 ${
+                          tradeSide === "buy" ? "bg-ink-900 text-white" : "bg-ink-100 text-ink-700"
                         }`}
                       >
                         Buy
@@ -287,8 +277,8 @@ export function SimulatorPage() {
                       <button
                         onClick={() => setTradeSide("sell")}
                         disabled={!held}
-                        className={`flex-1 rounded-xl py-2.5 text-sm font-extrabold transition disabled:opacity-40 ${
-                          tradeSide === "sell" ? "bg-coral-500 text-white shadow-sm" : "bg-ink-100 text-ink-700"
+                        className={`flex-1 rounded-md py-2.5 text-sm font-semibold transition-colors duration-150 disabled:opacity-40 ${
+                          tradeSide === "sell" ? "bg-ink-900 text-white" : "bg-ink-100 text-ink-700"
                         }`}
                       >
                         Sell
@@ -302,16 +292,13 @@ export function SimulatorPage() {
                         value={amountInput}
                         onChange={(e) => setAmountInput(e.target.value)}
                         placeholder="Amount in stacks"
-                        className="flex-1 rounded-xl border-2 border-ink-100 bg-ink-100 px-3 py-2.5 text-base outline-none focus:border-brand-400 focus:bg-white"
+                        className="flex-1 rounded-md border border-ink-300 bg-white px-3 py-2.5 text-base outline-none focus:border-ink-900"
                       />
-                      <button
-                        onClick={() => executeTrade(inst.symbol)}
-                        className="rounded-xl bg-ink-900 px-5 py-2.5 text-sm font-extrabold text-white shadow-sm transition active:scale-[0.96]"
-                      >
+                      <button onClick={() => executeTrade(inst.symbol)} className="btn btn-primary">
                         {tradeSide === "buy" ? "Buy" : "Sell"}
                       </button>
                     </div>
-                    {tradeError && <p className="mt-2 text-xs font-semibold text-coral-600">{tradeError}</p>}
+                    {tradeError && <p className="mt-2 text-xs font-medium text-rust-600">{tradeError}</p>}
                   </div>
                 )}
               </div>

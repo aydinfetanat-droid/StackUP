@@ -8,7 +8,7 @@ interface Props {
   showMascot?: boolean;
 }
 
-const COLORS = ["bg-brand-500", "bg-accent-500", "bg-sky-500", "bg-grape-500", "bg-gold-500"];
+const COLORS = ["bg-ink-900", "bg-forest-600", "bg-ink-500", "bg-forest-300", "bg-ink-300"];
 
 export function AllocatorCardView({ card, onComplete, showMascot }: Props) {
   const [values, setValues] = useState<Record<string, number>>(
@@ -30,28 +30,28 @@ export function AllocatorCardView({ card, onComplete, showMascot }: Props) {
 
   return (
     <div className="flex h-full flex-col px-6 pb-48">
-      <p className="pt-6 text-xl font-extrabold leading-snug text-ink-900">{card.prompt}</p>
+      <p className="pt-6 font-display text-xl leading-snug text-ink-900">{card.prompt}</p>
 
-      <div className="mt-5 flex h-6 w-full overflow-hidden rounded-full bg-ink-100">
+      <div className="mt-5 flex h-2 w-full overflow-hidden rounded-full bg-ink-100">
         {card.categories.map((c, i) =>
           values[c.id] > 0 ? (
             <div key={c.id} className={COLORS[i % COLORS.length]} style={{ width: `${values[c.id]}%` }} />
           ) : null,
         )}
       </div>
-      <p className={`mt-2 text-right text-sm font-bold ${isValidTotal ? "text-brand-600" : "text-ink-500"}`}>
+      <p className={`mt-2 text-right text-sm font-semibold tabular-nums ${isValidTotal ? "text-forest-700" : "text-ink-500"}`}>
         {total}% allocated
       </p>
 
       <div className="mt-4 flex flex-col gap-5">
         {card.categories.map((c, i) => (
           <div key={c.id}>
-            <div className="flex items-center justify-between text-sm font-semibold text-ink-700">
+            <div className="flex items-center justify-between text-sm font-medium text-ink-700">
               <span className="flex items-center gap-2">
-                <span className={`h-2.5 w-2.5 rounded-full ${COLORS[i % COLORS.length]}`} />
+                <span className={`h-2 w-2 rounded-full ${COLORS[i % COLORS.length]}`} />
                 {c.label}
               </span>
-              <span>
+              <span className="tabular-nums">
                 {values[c.id]}% {card.unit ?? ""}
                 {Math.round((values[c.id] / 100) * card.totalAmount)}
               </span>
@@ -64,14 +64,14 @@ export function AllocatorCardView({ card, onComplete, showMascot }: Props) {
               value={values[c.id]}
               disabled={checked}
               onChange={(e) => setValue(c.id, Number(e.target.value))}
-              className="mt-1.5 w-full accent-emerald-600"
+              className="mt-1.5 w-full accent-forest-600"
             />
           </div>
         ))}
       </div>
 
       {!checked && (
-        <button onClick={() => setChecked(true)} disabled={!isValidTotal} className="btn-chunky btn-chunky--dark mt-6 w-full">
+        <button onClick={() => setChecked(true)} disabled={!isValidTotal} className="btn btn-primary mt-6 w-full">
           {isValidTotal ? "Check my split" : `Adjust to 100% (currently ${total}%)`}
         </button>
       )}

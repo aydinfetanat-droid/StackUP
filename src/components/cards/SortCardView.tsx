@@ -40,12 +40,12 @@ export function SortCardView({ card, onComplete, showMascot }: Props) {
   function itemStyle(itemId: string, bucket: 0 | 1) {
     if (!checked) return "border-ink-300 bg-white";
     const item = card.items.find((i) => i.id === itemId)!;
-    return item.bucket === bucket ? "border-brand-500 bg-brand-50" : "border-accent-500 bg-orange-50";
+    return item.bucket === bucket ? "border-forest-500 bg-forest-50" : "border-rust-500 bg-rust-50";
   }
 
   return (
     <div className="flex h-full flex-col px-6 pb-48">
-      <p className="pt-6 text-xl font-extrabold leading-snug text-ink-900">{card.prompt}</p>
+      <p className="pt-6 font-display text-xl leading-snug text-ink-900">{card.prompt}</p>
 
       {pool.length > 0 && (
         <div className="mt-5 flex flex-wrap gap-2">
@@ -53,8 +53,8 @@ export function SortCardView({ card, onComplete, showMascot }: Props) {
             <button
               key={item.id}
               onClick={() => selectItem(item.id)}
-              className={`rounded-full border-2 px-4 py-2 text-sm font-semibold transition active:scale-[0.97] ${
-                selectedId === item.id ? "border-ink-900 bg-ink-900 text-white" : "border-ink-300 bg-white text-ink-900"
+              className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors duration-150 ${
+                selectedId === item.id ? "border-ink-900 bg-ink-900 text-white" : "border-ink-300 bg-white text-ink-900 hover:border-ink-400"
               }`}
             >
               {item.label}
@@ -68,15 +68,11 @@ export function SortCardView({ card, onComplete, showMascot }: Props) {
           <button
             key={bucketLabel}
             onClick={() => placeInBucket(bucketIndex as 0 | 1)}
-            className={`min-h-[140px] rounded-2xl border-2 border-dashed p-3 text-left transition ${
-              selectedId
-                ? "border-ink-900 bg-ink-100"
-                : bucketIndex === 0
-                  ? "border-sky-300 bg-sky-50"
-                  : "border-grape-300 bg-grape-50"
+            className={`min-h-[140px] rounded-md border border-dashed p-3 text-left transition-colors duration-150 ${
+              selectedId ? "border-ink-900 bg-ink-100" : "border-ink-300 bg-ink-50"
             }`}
           >
-            <p className="mb-2 text-sm font-extrabold text-ink-700">{bucketLabel}</p>
+            <p className="label-caps mb-2">{bucketLabel}</p>
             <div className="flex flex-wrap gap-1.5">
               {card.items
                 .filter((i) => placements[i.id] === bucketIndex)
@@ -87,7 +83,7 @@ export function SortCardView({ card, onComplete, showMascot }: Props) {
                       e.stopPropagation();
                       returnToPool(item.id);
                     }}
-                    className={`rounded-full border px-3 py-1.5 text-xs font-semibold ${itemStyle(item.id, bucketIndex as 0 | 1)}`}
+                    className={`rounded-full border px-3 py-1.5 text-xs font-medium ${itemStyle(item.id, bucketIndex as 0 | 1)}`}
                   >
                     {item.label}
                   </span>
@@ -98,7 +94,7 @@ export function SortCardView({ card, onComplete, showMascot }: Props) {
       </div>
 
       {!checked && (
-        <button onClick={() => setChecked(true)} disabled={!allPlaced} className="btn-chunky btn-chunky--dark mt-6 w-full">
+        <button onClick={() => setChecked(true)} disabled={!allPlaced} className="btn btn-primary mt-6 w-full">
           Check answers
         </button>
       )}

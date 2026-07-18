@@ -1,28 +1,26 @@
 export const CORRECT_QUIPS = [
-  "Cha-ching! You got it!",
-  "Nailed it! My piggy bank is proud.",
-  "Boom! That's the money move.",
-  "Yes! You're stacking up the smarts.",
-  "Correct! You're on fire!",
-  "That's it! Big brain energy.",
+  "Correct — solid read on that one.",
+  "Right. You're building good instincts here.",
+  "That's it. Keep this logic in mind for later units.",
+  "Correct. This concept comes up again soon.",
+  "Right answer — you're tracking well.",
 ];
 
 export const INCORRECT_QUIPS = [
-  "Ooh, close! Let's see why.",
-  "Not quite — but that's how we learn!",
-  "Nice try! Check this out.",
-  "Almost! Here's the trick.",
-  "No worries, let's break it down.",
+  "Not quite — here's the reasoning.",
+  "Close, but not the full picture. Let's break it down.",
+  "Not this time. Worth a second look below.",
+  "Off on this one — here's why.",
 ];
 
 export const PERFECT_LESSON_QUIPS = [
-  "PERFECT SCORE! You're basically a money genius now.",
-  "100%! Penny is doing a happy dance.",
-  "Flawless! You crushed every single question.",
+  "Perfect score. You've got this material down cold.",
+  "100% — every question landed.",
+  "Clean sweep. This unit is solid for you now.",
 ];
 
 export const GOOD_LESSON_QUIPS = [
-  "Nice work! Your money brain is leveling up.",
-  "Lesson complete! Every bit of this sticks with you.",
-  "Great job! Penny's proud of you.",
+  "Solid work. This will stick.",
+  "Lesson complete — good grasp of the material.",
+  "Nice progress. On to the next one.",
 ];

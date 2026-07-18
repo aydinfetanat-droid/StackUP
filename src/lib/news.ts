@@ -6,14 +6,18 @@ export interface NewsItem {
   headline: string;
   body: string;
   verdict?: string;
+  tone?: Tone;
   symbol?: string;
   kind: "market" | "tip";
 }
+
+export type Tone = "positive" | "neutral" | "negative";
 
 interface Bucket {
   headlines: ((name: string) => string)[];
   bodies: ((name: string, abs: string) => string)[];
   verdict: string;
+  tone: Tone;
 }
 
 const BIG_GAIN: Bucket = {
@@ -25,7 +29,8 @@ const BIG_GAIN: Bucket = {
     (name, abs) =>
       `${name} jumped ${abs}% today — the kind of move that grabs headlines. Big single-day gains like this are usually driven by a sudden rush of buying interest all at once, sometimes on real news, sometimes just momentum feeding on itself. Practice take: it's tempting to chase a stock right after a big jump, but the price you'd pay today already has today's excitement baked into it. Before adding ${name} to your simulator portfolio because of one green day, ask whether you'd still want it at this price if the excitement fades tomorrow.`,
   ],
-  verdict: "🟢 Building interest",
+  verdict: "Building interest",
+  tone: "positive",
 };
 
 const SMALL_GAIN: Bucket = {
@@ -37,7 +42,8 @@ const SMALL_GAIN: Bucket = {
     (name, abs) =>
       `${name} nudged up ${abs}% — a quiet, unremarkable day by most measures. Practice take: small, steady gains like this are exactly what you want from a long-term holding. It's not exciting, and that's fine — "not exciting" is often a feature, not a bug, when you're investing for years instead of days. The stocks that compound the most are rarely the ones making headlines every week.`,
   ],
-  verdict: "🟡 Steady as it goes",
+  verdict: "Steady as it goes",
+  tone: "positive",
 };
 
 const FLAT: Bucket = {
@@ -49,7 +55,8 @@ const FLAT: Bucket = {
     (name, abs) =>
       `${name} moved just ${abs}% today, essentially flat. Practice take: flat days are the majority of days for most stocks — the drama you see in financial headlines is the exception, not the norm. If ${name} is sitting in your simulator portfolio, a quiet day like this is nothing to react to. Reacting to every tiny wiggle is a fast way to trade yourself into worse decisions than just holding still.`,
   ],
-  verdict: "⚪ No action needed",
+  verdict: "No action needed",
+  tone: "neutral",
 };
 
 const SMALL_LOSS: Bucket = {
@@ -61,7 +68,8 @@ const SMALL_LOSS: Bucket = {
     (name, abs) =>
       `${name} moved down ${abs}% today — a small, routine dip. Practice take: the most common mistake new investors make is treating every red day as a signal to sell. A stock's underlying value doesn't usually change because of one slightly-off afternoon. Dips like this happen to good companies constantly; the question worth asking isn't "is it down?" but "did anything real actually change?"`,
   ],
-  verdict: "🟡 Worth watching",
+  verdict: "Worth watching",
+  tone: "negative",
 };
 
 const BIG_LOSS: Bucket = {
@@ -73,7 +81,8 @@ const BIG_LOSS: Bucket = {
     (name, abs) =>
       `${name} dropped ${abs}% today — a sharp move that would definitely get investors' attention. Practice take: big drops trigger panic, and panic is expensive. Selling into a big loss locks it in permanently, while holding at least leaves the door open for a recovery if the underlying reason to own it hasn't changed. Before reacting to a move like this, ask whether anything about the actual business changed today, or if this is just the market's mood swinging harder than usual.`,
   ],
-  verdict: "🔴 Stay calm, don't panic-sell",
+  verdict: "Stay calm, don't panic-sell",
+  tone: "negative",
 };
 
 function pick<T>(arr: T[], seed: string): T {
@@ -144,6 +153,7 @@ export function generateDailyNews(): NewsItem[] {
       headline: headlineFn(inst.name),
       body: bodyFn(inst.name, abs),
       verdict: bucket.verdict,
+      tone: bucket.tone,
       symbol: inst.symbol,
       kind: "market",
     });

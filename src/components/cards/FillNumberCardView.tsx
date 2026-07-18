@@ -23,10 +23,10 @@ export function FillNumberCardView({ card, onComplete, showMascot }: Props) {
 
   return (
     <div className="flex h-full flex-col px-6 pb-40">
-      <p className="pt-6 text-xl font-extrabold leading-snug text-ink-900">{card.prompt}</p>
+      <p className="pt-6 font-display text-xl leading-snug text-ink-900">{card.prompt}</p>
 
       <div className="mt-10 flex items-center justify-center gap-2">
-        {card.unit && <span className="text-3xl font-extrabold text-brand-600">{card.unit}</span>}
+        {card.unit && <span className="font-display text-3xl text-ink-500">{card.unit}</span>}
         <input
           type="number"
           inputMode="decimal"
@@ -34,12 +34,12 @@ export function FillNumberCardView({ card, onComplete, showMascot }: Props) {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="0"
-          className="w-32 rounded-2xl border-2 border-ink-200 bg-white px-4 py-3 text-center text-3xl font-extrabold text-ink-900 shadow-sm outline-none focus:border-brand-500"
+          className="w-32 rounded-md border border-ink-300 bg-white px-4 py-3 text-center font-display text-3xl tabular-nums text-ink-900 outline-none focus:border-ink-900"
         />
       </div>
 
       {!checked && (
-        <button onClick={handleCheck} disabled={input === ""} className="btn-chunky btn-chunky--dark mt-10 w-full">
+        <button onClick={handleCheck} disabled={input === ""} className="btn btn-primary mt-10 w-full">
           Check answer
         </button>
       )}

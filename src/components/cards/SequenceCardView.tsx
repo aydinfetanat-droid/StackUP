@@ -42,7 +42,7 @@ export function SequenceCardView({ card, onComplete, showMascot }: Props) {
 
   return (
     <div className="flex h-full flex-col px-6 pb-48">
-      <p className="pt-6 text-xl font-extrabold leading-snug text-ink-900">{card.prompt}</p>
+      <p className="pt-6 font-display text-xl leading-snug text-ink-900">{card.prompt}</p>
 
       <div className="mt-5 flex flex-col gap-2">
         {card.correctOrder.map((_, i) => {
@@ -52,20 +52,20 @@ export function SequenceCardView({ card, onComplete, showMascot }: Props) {
             <button
               key={i}
               onClick={() => id && removeStep(id)}
-              className={`flex min-h-[52px] items-center gap-3 rounded-xl border-2 px-4 py-3 text-left ${
+              className={`flex min-h-[52px] items-center gap-3 rounded-md border px-4 py-3 text-left transition-colors duration-150 ${
                 id
                   ? checked
                     ? isCorrect
-                      ? "border-brand-500 bg-brand-50"
-                      : "border-accent-500 bg-orange-50"
+                      ? "border-forest-500 bg-forest-50"
+                      : "border-rust-500 bg-rust-50"
                     : "border-ink-300 bg-white"
-                  : "border-dashed border-ink-300 bg-ink-100/50"
+                  : "border-dashed border-ink-300 bg-ink-50"
               }`}
             >
-              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-sky-400 to-sky-600 text-xs font-extrabold text-white">
+              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-ink-900 text-xs font-semibold tabular-nums text-white">
                 {i + 1}
               </span>
-              <span className="font-semibold text-ink-900">{id ? labelFor(id) : "Tap a step below"}</span>
+              <span className="font-medium text-ink-900">{id ? labelFor(id) : "Tap a step below"}</span>
             </button>
           );
         })}
@@ -77,7 +77,7 @@ export function SequenceCardView({ card, onComplete, showMascot }: Props) {
             <button
               key={step.id}
               onClick={() => appendStep(step.id)}
-              className="rounded-full border-2 border-ink-300 bg-white px-4 py-2 text-sm font-semibold text-ink-900 transition active:scale-[0.97]"
+              className="rounded-full border border-ink-300 bg-white px-4 py-2 text-sm font-medium text-ink-900 transition-colors duration-150 hover:border-ink-400"
             >
               {step.label}
             </button>
@@ -86,7 +86,7 @@ export function SequenceCardView({ card, onComplete, showMascot }: Props) {
       )}
 
       {!checked && (
-        <button onClick={() => setChecked(true)} disabled={!allPlaced} className="btn-chunky btn-chunky--dark mt-6 w-full">
+        <button onClick={() => setChecked(true)} disabled={!allPlaced} className="btn btn-primary mt-6 w-full">
           Check order
         </button>
       )}

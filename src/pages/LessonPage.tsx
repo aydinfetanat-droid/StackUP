@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
+import { RotateCcw } from "lucide-react";
 import { getLesson } from "../data/lessons";
 import { CardRenderer } from "../components/cards/CardRenderer";
 import { useAuth } from "../context/AuthContext";
@@ -43,9 +44,9 @@ export function LessonPage() {
 
   if (!lesson) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-ink-100 px-6 text-center">
-        <p className="text-lg font-bold text-ink-900">Lesson not found</p>
-        <button onClick={() => navigate("/")} className="font-semibold text-brand-600">
+      <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-ink-50 px-6 text-center">
+        <p className="text-lg font-semibold text-ink-900">Lesson not found</p>
+        <button onClick={() => navigate("/")} className="font-semibold text-ink-700 underline underline-offset-2">
           Back home
         </button>
       </div>
@@ -147,13 +148,13 @@ export function LessonPage() {
 
   if (stage === "recap-retry") {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center bg-ink-900 px-6 text-center text-white">
-        <span className="text-5xl">🔄</span>
-        <h1 className="mt-4 text-2xl font-extrabold">Not quite there yet</h1>
-        <p className="mt-2 max-w-xs text-sm text-white/70">
-          A couple of these didn't stick. Let's run through a fresh recap — you've got this.
+      <div className="flex min-h-screen flex-col items-center justify-center bg-ink-950 px-6 text-center text-white">
+        <RotateCcw size={28} className="text-white/60" />
+        <h1 className="mt-4 font-display text-2xl text-white">Not quite there yet</h1>
+        <p className="mt-2 max-w-xs text-sm text-white/60">
+          A couple of these didn't stick. Run through a fresh recap.
         </p>
-        <button onClick={beginRecap} className="btn-chunky btn-chunky--gold mt-8 w-full max-w-xs">
+        <button onClick={beginRecap} className="btn btn-invert mt-8 w-full max-w-xs">
           Try the recap again
         </button>
       </div>
@@ -180,8 +181,8 @@ export function LessonPage() {
         <button onClick={() => navigate("/")} className="text-2xl leading-none text-ink-500" aria-label="Exit lesson">
           ×
         </button>
-        <div className="h-2.5 flex-1 overflow-hidden rounded-full bg-ink-100">
-          <div className="h-full rounded-full bg-brand-500 transition-all duration-300" style={{ width: `${progress}%` }} />
+        <div className="h-1 flex-1 overflow-hidden rounded-full bg-ink-100">
+          <div className="h-full rounded-full bg-ink-900 transition-all duration-300" style={{ width: `${progress}%` }} />
         </div>
       </div>
 

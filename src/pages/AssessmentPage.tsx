@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { motion } from "framer-motion";
+import { CheckCircle2 } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { supabase } from "../lib/supabase";
 import assessmentData from "../data/assessments/financial-literacy-10q.json";
@@ -54,28 +54,20 @@ export function AssessmentPage() {
 
   if (finished) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-brand-600 px-6 text-center text-white">
-        <motion.div
-          initial={{ scale: 0.6, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ type: "spring", stiffness: 260, damping: 18 }}
-          className="flex h-20 w-20 items-center justify-center rounded-full bg-white/15 text-4xl"
-        >
-          ✅
-        </motion.div>
-        <p className="text-lg font-bold">
+      <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-ink-950 px-6 text-center text-white">
+        <div className="flex h-16 w-16 items-center justify-center rounded-full border border-white/15">
+          <CheckCircle2 size={26} className="text-forest-400" />
+        </div>
+        <p className="font-display text-lg text-white">
           {validPhase === "pre" ? "Baseline check complete" : "Progress check complete"}
         </p>
-        <p className="text-sm text-brand-100">Score: {score}%</p>
-        <p className="max-w-xs text-sm text-brand-100">
+        <p className="text-sm text-white/60">Score: {score}%</p>
+        <p className="max-w-xs text-sm text-white/60">
           {validPhase === "pre"
             ? "This is just a starting point — no pressure. Let's go learn."
             : "Nice work. Compare this to where you started once you check /admin."}
         </p>
-        <button
-          onClick={() => navigate("/", { replace: true })}
-          className="mt-4 w-full max-w-xs rounded-xl bg-white py-4 text-base font-bold text-brand-700 shadow-sm transition active:scale-[0.98]"
-        >
+        <button onClick={() => navigate("/", { replace: true })} className="btn btn-invert mt-4 w-full max-w-xs">
           Continue
         </button>
       </div>
@@ -87,12 +79,10 @@ export function AssessmentPage() {
   return (
     <div className="flex min-h-screen flex-col bg-white px-6 pb-10 pt-6">
       <div>
-        <p className="text-xs font-bold uppercase tracking-wide text-brand-600">
-          {validPhase === "pre" ? "Quick baseline check" : "Progress check"}
-        </p>
-        <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-ink-100">
+        <p className="label-caps">{validPhase === "pre" ? "Quick baseline check" : "Progress check"}</p>
+        <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-ink-100">
           <div
-            className="h-full rounded-full bg-brand-500 transition-all"
+            className="h-full rounded-full bg-ink-900 transition-all"
             style={{ width: `${(index / questions.length) * 100}%` }}
           />
         </div>
@@ -101,15 +91,15 @@ export function AssessmentPage() {
         </p>
       </div>
 
-      <p className="mt-8 text-xl font-extrabold leading-snug text-ink-900">{q.prompt}</p>
+      <p className="mt-8 font-display text-xl leading-snug text-ink-900">{q.prompt}</p>
 
-      <div className="mt-6 flex flex-col gap-3">
+      <div className="mt-6 flex flex-col gap-2.5">
         {q.options.map((option, i) => (
           <button
             key={i}
             onClick={() => selectAnswer(i)}
-            className={`rounded-xl border-2 px-4 py-4 text-left text-base font-semibold text-ink-900 transition active:scale-[0.98] ${
-              answers[index] === i ? "border-brand-500 bg-brand-50" : "border-ink-300 bg-white"
+            className={`rounded-md border px-4 py-3.5 text-left text-base font-medium text-ink-900 transition-colors duration-150 ${
+              answers[index] === i ? "border-ink-900 bg-ink-100" : "border-ink-300 bg-white hover:border-ink-400"
             }`}
           >
             {option}
@@ -117,11 +107,7 @@ export function AssessmentPage() {
         ))}
       </div>
 
-      <button
-        onClick={goNext}
-        disabled={answers[index] === null}
-        className="mt-auto w-full rounded-xl bg-ink-900 py-4 text-base font-bold text-white shadow-sm transition active:scale-[0.98] disabled:opacity-40"
-      >
+      <button onClick={goNext} disabled={answers[index] === null} className="btn btn-primary mt-auto w-full">
         {index + 1 >= questions.length ? "Finish" : "Next"}
       </button>
     </div>

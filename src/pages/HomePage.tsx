@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Check, Lock, Flame, ArrowRight, Compass } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { supabase } from "../lib/supabase";
 import { units } from "../data/units";
@@ -7,7 +8,6 @@ import { lessonsById } from "../data/lessons";
 import { getRank, getNextRank } from "../data/ranks";
 import { getUnitsForRank, getRankProgress, getCurrentRankId, isPromotionExamAvailable } from "../lib/ranks";
 import { computeStreak } from "../lib/streak";
-import { getRankColors } from "../lib/rankColors";
 
 export function HomePage() {
   const { user, profile } = useAuth();
@@ -51,7 +51,6 @@ export function HomePage() {
   const rankProgress = getRankProgress(currentRankId, completedLessonIds);
   const examAvailable = isPromotionExamAvailable(currentRankId, completedLessonIds) && !passedExamRankIds.has(currentRankId);
   const rankUnits = getUnitsForRank(currentRankId);
-  const colors = getRankColors(currentRankId);
 
   const internProgress = getRankProgress(1, completedLessonIds);
   const internDone = internProgress.contentComplete && passedExamRankIds.has(1);
@@ -70,81 +69,65 @@ export function HomePage() {
   const completedUnitsCount = rankUnits.filter((u) => u.lessonIds.every((id) => completedLessonIds.has(id))).length;
 
   return (
-    <div className="min-h-screen bg-ink-100">
-      <header
-        className={`relative overflow-hidden bg-gradient-to-br ${colors.gradientFrom} ${colors.gradientVia} ${colors.gradientTo} px-6 pb-8 pt-8 text-white`}
-      >
-        <div className="pointer-events-none absolute -right-10 -top-14 h-40 w-40 rounded-full bg-white/10 blur-2xl" />
-        <div className="pointer-events-none absolute -left-14 bottom-0 h-32 w-32 rounded-full bg-white/10 blur-2xl" />
-
-        <div className="relative flex items-center justify-between">
+    <div className="min-h-screen bg-ink-50">
+      <header className="bg-ink-950 px-6 pb-7 pt-8 text-white">
+        <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm font-semibold text-white/80">Welcome back</p>
-            <h1 className="text-2xl font-extrabold">{profile?.display_name ?? "…"}</h1>
+            <p className="text-xs font-medium uppercase tracking-[0.08em] text-white/50">Welcome back</p>
+            <h1 className="mt-1 font-display text-2xl text-white">{profile?.display_name ?? "…"}</h1>
           </div>
-          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/15 text-2xl">
-            {colors.emoji}
-          </div>
+          {streak.current > 0 && (
+            <div className="flex items-center gap-1.5 rounded-md border border-white/15 px-3 py-2 tabular-nums">
+              <Flame size={16} className="text-ochre-400" />
+              <span className="text-sm font-semibold">{streak.current}</span>
+            </div>
+          )}
         </div>
 
-        <div className="relative mt-6 rounded-2xl bg-white/10 p-4 backdrop-blur-sm">
-          <div className="flex items-center justify-between text-sm font-bold">
-            <span>{currentRank.title}</span>
-            <span>
+        <div className="mt-6">
+          <div className="flex items-baseline justify-between text-sm">
+            <span className="font-display text-base text-white">{currentRank.title}</span>
+            <span className="text-white/50">
               Unit {Math.min(completedUnitsCount + 1, rankUnits.length)} of {rankUnits.length}
             </span>
           </div>
-          <div className="mt-2 h-3 w-full overflow-hidden rounded-full bg-white/20">
-            <div
-              className="h-full rounded-full bg-gradient-to-r from-gold-300 to-gold-500 transition-all duration-500"
-              style={{ width: `${rankProgress.percent}%` }}
-            />
+          <div className="mt-3 h-1 w-full overflow-hidden rounded-full bg-white/15">
+            <div className="h-full rounded-full bg-forest-400 transition-all duration-500" style={{ width: `${rankProgress.percent}%` }} />
           </div>
-          <p className="mt-1.5 text-xs font-semibold text-white/80">{rankProgress.percent}% of {currentRank.title} complete</p>
-        </div>
-
-        <div className="relative mt-3 flex gap-3">
-          <div className="flex flex-1 items-center gap-3 rounded-2xl bg-white/10 px-4 py-3 backdrop-blur-sm">
-            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gold-400/30">
-              <span className={`text-xl ${streak.current > 0 ? "flame-pulse" : ""}`}>🔥</span>
-            </div>
-            <div>
-              <p className="text-lg font-extrabold leading-none">{streak.current}</p>
-              <p className="text-xs font-semibold text-white/80">day streak</p>
-            </div>
-          </div>
+          <p className="mt-1.5 text-xs text-white/50">{rankProgress.percent}% of {currentRank.title} complete</p>
         </div>
 
         {streak.atRisk && (
-          <div className="relative mt-3 rounded-2xl bg-gold-400 px-4 py-3 text-sm font-bold text-ink-900 shadow-md">
-            🔥 Keep your {streak.current}-day streak alive — finish a lesson today!
+          <div className="mt-5 flex items-center gap-2 rounded-md border border-ochre-400/40 bg-ochre-400/10 px-4 py-3 text-sm text-ochre-100">
+            <Flame size={15} className="shrink-0 text-ochre-400" />
+            Keep your {streak.current}-day streak alive — finish a lesson today.
           </div>
         )}
       </header>
 
       <main className="px-5 pt-6">
         {postAssessmentDue && (
-          <button
-            onClick={() => navigate("/assessment/post")}
-            className="btn-chunky btn-chunky--sky mb-6 w-full text-left"
-          >
-            <p className="text-xs font-semibold text-white/80">Quick check-in</p>
-            <p className="mt-0.5 font-extrabold">Take your progress quiz →</p>
+          <button onClick={() => navigate("/assessment/post")} className="btn btn-outline mb-6 w-full justify-between text-left">
+            <span>
+              <span className="block text-xs text-ink-500">Quick check-in</span>
+              <span className="mt-0.5 block font-semibold text-ink-900">Take your progress quiz</span>
+            </span>
+            <ArrowRight size={16} className="text-ink-400" />
           </button>
         )}
 
         {examAvailable && (
-          <button
-            onClick={() => navigate("/promotion-exam")}
-            className="btn-chunky btn-chunky--gold mb-6 w-full text-left"
-          >
-            <p className="text-xs font-bold text-ink-700">🎉 All lessons complete</p>
-            <p className="mt-0.5 font-extrabold">Take your {currentRank.title} promotion exam →</p>
+          <button onClick={() => navigate("/promotion-exam")} className="btn btn-ochre mb-6 w-full justify-between text-left">
+            <span>
+              <span className="block text-xs">All lessons complete</span>
+              <span className="mt-0.5 block font-semibold">Take your {currentRank.title} promotion exam</span>
+            </span>
+            <ArrowRight size={16} />
           </button>
         )}
 
         {rankUnits.length === 0 && (
-          <div className="mb-6 rounded-2xl border-2 border-dashed border-ink-300 bg-white/60 p-4 text-center">
+          <div className="mb-6 rounded-lg border border-dashed border-ink-300 bg-white p-4 text-center">
             <p className="font-semibold text-ink-700">You're placed at {currentRank.title}.</p>
             <p className="mt-1 text-sm text-ink-500">Content for this rank isn't published yet — check back soon.</p>
           </div>
@@ -152,15 +135,11 @@ export function HomePage() {
 
         {rankUnits.map((unit) => (
           <section key={unit.id} className="mb-8">
-            <div className="flex items-center gap-2">
-              <span className={`rounded-full ${colors.badgeBg} ${colors.badgeText} px-2.5 py-1 text-xs font-extrabold`}>
-                UNIT {unit.id}
-              </span>
-            </div>
-            <h2 className="mt-2 text-lg font-extrabold text-ink-900">{unit.title}</h2>
+            <p className="label-caps">Unit {String(unit.id).padStart(2, "0")}</p>
+            <h2 className="mt-1 font-display text-lg text-ink-900">{unit.title}</h2>
             <p className="mt-0.5 text-sm text-ink-500">{unit.description}</p>
 
-            <div className="mt-4 flex flex-col gap-3">
+            <div className="mt-4 flex flex-col gap-2.5">
               {unit.lessonIds.map((lessonId) => {
                 const lesson = lessonsById[lessonId];
                 if (!lesson) return null;
@@ -172,27 +151,19 @@ export function HomePage() {
                     key={lessonId}
                     disabled={!unlocked}
                     onClick={() => navigate(`/lesson/${lessonId}`)}
-                    className={`flex items-center gap-4 rounded-2xl border-2 p-4 text-left transition active:scale-[0.98] ${
-                      unlocked
-                        ? completed
-                          ? "border-brand-200 bg-brand-50 shadow-sm"
-                          : "border-ink-100 bg-white shadow-sm"
-                        : "border-ink-100 bg-ink-100/60 opacity-60"
+                    className={`card flex items-center gap-4 p-4 text-left transition-colors duration-150 ${
+                      unlocked ? "hover:border-ink-400" : "opacity-50"
                     }`}
                   >
                     <div
-                      className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-xl font-extrabold ${
-                        completed
-                          ? "bg-gradient-to-br from-brand-400 to-brand-600 text-white shadow-md"
-                          : unlocked
-                            ? `${colors.badgeBg} ${colors.badgeText}`
-                            : "bg-ink-200 text-ink-400"
+                      className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-md text-sm font-semibold tabular-nums ${
+                        completed ? "bg-forest-600 text-white" : unlocked ? "bg-ink-100 text-ink-700" : "bg-ink-100 text-ink-400"
                       }`}
                     >
-                      {completed ? "✓" : unlocked ? lesson.order : "🔒"}
+                      {completed ? <Check size={17} /> : unlocked ? lesson.order : <Lock size={15} />}
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="font-bold text-ink-900">{lesson.title}</p>
+                      <p className="font-semibold text-ink-900">{lesson.title}</p>
                       <p className="truncate text-sm text-ink-500">{lesson.summary}</p>
                     </div>
                   </button>
@@ -204,25 +175,28 @@ export function HomePage() {
 
         {(currentRankId === 1 || currentRankId === 2) && (
           <section className="mb-8">
-            <button
-              onClick={() => navigate("/placement-test")}
-              className="w-full rounded-2xl border-2 border-grape-200 bg-grape-100/60 p-4 text-left shadow-sm transition active:scale-[0.98]"
-            >
-              <p className="font-bold text-ink-900">🚀 Already know the basics?</p>
-              <p className="mt-0.5 text-sm text-ink-500">Test out and skip ahead to Vice President →</p>
+            <button onClick={() => navigate("/placement-test")} className="card flex w-full items-center gap-4 p-4 text-left transition-colors duration-150 hover:border-ink-400">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-ink-100 text-ink-700">
+                <Compass size={18} />
+              </div>
+              <div className="min-w-0 flex-1">
+                <p className="font-semibold text-ink-900">Already know the basics?</p>
+                <p className="mt-0.5 text-sm text-ink-500">Test out and skip ahead to Vice President</p>
+              </div>
+              <ArrowRight size={16} className="shrink-0 text-ink-400" />
             </button>
           </section>
         )}
 
         <section className="mb-8">
-          <h2 className="text-lg font-extrabold text-ink-900">Coming soon</h2>
-          <div className="mt-4 flex flex-col gap-3">
-            <div className="flex items-center gap-4 rounded-2xl border-2 border-dashed border-ink-300 bg-white/60 p-4 opacity-70">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-ink-300 text-xl">
-                🔒
+          <p className="label-caps">Coming soon</p>
+          <div className="mt-4 flex flex-col gap-2.5">
+            <div className="flex items-center gap-4 rounded-lg border border-dashed border-ink-300 p-4 opacity-60">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-ink-100 text-ink-400">
+                <Lock size={15} />
               </div>
               <div className="min-w-0 flex-1">
-                <p className="font-bold text-ink-700">Advanced Lessons</p>
+                <p className="font-semibold text-ink-700">Advanced Lessons</p>
                 <p className="text-sm text-ink-500">Premium — coming soon</p>
               </div>
             </div>
@@ -230,7 +204,7 @@ export function HomePage() {
         </section>
 
         {nextRank && rankProgress.contentComplete && passedExamRankIds.has(currentRankId) && (
-          <p className="text-center text-sm text-ink-500">You've been promoted to {nextRank.title}!</p>
+          <p className="text-center text-sm text-ink-500">You've been promoted to {nextRank.title}.</p>
         )}
       </main>
     </div>

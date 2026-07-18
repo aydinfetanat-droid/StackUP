@@ -1,57 +1,50 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-50: #ecfdf5;
-  --color-brand-100: #d1fae5;
-  --color-brand-200: #a7f3d0;
-  --color-brand-300: #6ee7b7;
-  --color-brand-400: #34d399;
-  --color-brand-500: #10b981;
-  --color-brand-600: #059669;
-  --color-brand-700: #047857;
-  --color-brand-800: #065f46;
-  --color-brand-900: #064e3b;
-
-  --color-accent-400: #fb923c;
-  --color-accent-500: #f97316;
-  --color-accent-600: #ea580c;
-
-  /* Gold — streaks, achievements, celebration moments */
-  --color-gold-100: #fef3c7;
-  --color-gold-300: #fcd34d;
-  --color-gold-400: #fbbf24;
-  --color-gold-500: #f59e0b;
-  --color-gold-600: #d97706;
-  --color-gold-700: #b45309;
-
-  /* Sky — StackMarket, informational moments, Associate rank */
-  --color-sky-100: #e0f2fe;
-  --color-sky-300: #7dd3fc;
-  --color-sky-400: #38bdf8;
-  --color-sky-500: #0ea5e9;
-  --color-sky-600: #0284c7;
-  --color-sky-700: #0369a1;
-
-  /* Grape — premium, Vice President rank */
-  --color-grape-100: #f3e8ff;
-  --color-grape-300: #d8b4fe;
-  --color-grape-400: #c084fc;
-  --color-grape-500: #a855f7;
-  --color-grape-600: #9333ea;
-  --color-grape-700: #7e22ce;
-
-  /* Coral — Managing Director rank */
-  --color-coral-100: #ffe4e6;
-  --color-coral-400: #fb7185;
-  --color-coral-500: #f43f5e;
-  --color-coral-600: #e11d48;
-  --color-coral-700: #be123c;
-
-  --color-ink-900: #0f172a;
-  --color-ink-700: #334155;
+  /* Neutral ramp — does most of the work. Primary chrome, text, borders. */
+  --color-ink-50: #f7f8fa;
+  --color-ink-100: #eef1f4;
+  --color-ink-200: #e2e6eb;
+  --color-ink-300: #cbd3dc;
+  --color-ink-400: #98a2b3;
   --color-ink-500: #64748b;
-  --color-ink-300: #cbd5e1;
-  --color-ink-100: #f1f5f9;
+  --color-ink-600: #475467;
+  --color-ink-700: #334155;
+  --color-ink-800: #1e2937;
+  --color-ink-900: #0f172a;
+  --color-ink-950: #05070d;
+
+  /* Forest — the single primary accent. Buttons, links, active states,
+     positive/gain values. Deliberately desaturated: a financial green,
+     not a candy one. */
+  --color-forest-50: #eef3f0;
+  --color-forest-100: #d7e4dc;
+  --color-forest-200: #b0c9bb;
+  --color-forest-300: #85ab95;
+  --color-forest-400: #4f8168;
+  --color-forest-500: #2f6b52;
+  --color-forest-600: #245943;
+  --color-forest-700: #1b4433;
+  --color-forest-800: #143327;
+
+  /* Rust — the only other semantic color. Losses, errors, incorrect
+     answers. A muted brick, not a bright red. */
+  --color-rust-50: #fbeeec;
+  --color-rust-100: #f3d8d3;
+  --color-rust-300: #d69485;
+  --color-rust-500: #ad4632;
+  --color-rust-600: #8f3626;
+  --color-rust-700: #742a1d;
+
+  /* Ochre — used sparingly for a single "premium" or highlight signal.
+     Never as a background gradient. */
+  --color-ochre-50: #f8f2e4;
+  --color-ochre-100: #efe0bd;
+  --color-ochre-400: #b98f2f;
+  --color-ochre-600: #8f6a1e;
+
+  --font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
 html,
@@ -62,9 +55,10 @@ body,
 
 body {
   margin: 0;
-  background-color: var(--color-ink-100);
+  background-color: var(--color-ink-50);
   color: var(--color-ink-900);
-  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-sans);
+  font-feature-settings: "tnum" 1, "cv11" 1;
   -webkit-tap-highlight-color: transparent;
   overscroll-behavior-y: none;
   -webkit-font-smoothing: antialiased;
@@ -78,91 +72,88 @@ body {
   scrollbar-width: none;
 }
 
-/* Two-font system: Inter for readable body copy (the default above), Space
-   Grotesk for anything bold — headings, buttons, big numbers, prompts. This
-   rides on every existing font-bold/font-extrabold usage across the app
-   without needing to touch each component individually. */
-.font-bold,
-.font-extrabold,
-button {
-  font-family: "Space Grotesk", "Inter", system-ui, sans-serif;
+/* Editorial type system: Source Serif 4 carries headings and anything
+   that needs authority (h1–h6, lesson prompts, big numbers). Inter stays
+   on everything dense or interactive — body copy, labels, buttons,
+   tabular data — matching how a serious finance/editorial product splits
+   the two registers. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-display {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
-/* Duolingo-style "chunky" 3D buttons: a solid drop shadow that compresses on
-   press, giving buttons real physical weight instead of a flat rectangle. */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Flat, restrained buttons — no 3D compression, no bounce. A quick
+   150ms transition on background/border is the only motion. */
 @layer components {
-  .btn-chunky {
-    @apply relative select-none rounded-2xl px-5 py-4 text-base font-extrabold transition-all duration-100 active:translate-y-[3px];
+  .btn {
+    @apply inline-flex select-none items-center justify-center gap-2 rounded-md px-5 py-3 text-sm font-semibold transition-colors duration-150;
   }
-  .btn-chunky:disabled {
+  .btn:disabled {
     @apply pointer-events-none opacity-40;
   }
 
-  .btn-chunky--brand {
-    @apply bg-brand-500 text-white;
-    box-shadow: 0 4px 0 0 var(--color-brand-700);
-  }
-  .btn-chunky--brand:active {
-    box-shadow: 0 1px 0 0 var(--color-brand-700);
-  }
-
-  .btn-chunky--dark {
+  .btn-primary {
     @apply bg-ink-900 text-white;
-    box-shadow: 0 4px 0 0 #000000;
   }
-  .btn-chunky--dark:active {
-    box-shadow: 0 1px 0 0 #000000;
-  }
-
-  .btn-chunky--white {
-    @apply bg-white text-brand-700;
-    box-shadow: 0 4px 0 0 var(--color-ink-300);
-  }
-  .btn-chunky--white:active {
-    box-shadow: 0 1px 0 0 var(--color-ink-300);
+  .btn-primary:hover {
+    @apply bg-ink-950;
   }
 
-  .btn-chunky--gold {
-    @apply bg-gold-400 text-ink-900;
-    box-shadow: 0 4px 0 0 var(--color-gold-600);
+  .btn-accent {
+    @apply bg-forest-600 text-white;
   }
-  .btn-chunky--gold:active {
-    box-shadow: 0 1px 0 0 var(--color-gold-600);
+  .btn-accent:hover {
+    @apply bg-forest-700;
   }
 
-  .btn-chunky--sky {
-    @apply bg-sky-500 text-white;
-    box-shadow: 0 4px 0 0 var(--color-sky-700);
+  .btn-outline {
+    @apply border border-ink-300 bg-white text-ink-900;
   }
-  .btn-chunky--sky:active {
-    box-shadow: 0 1px 0 0 var(--color-sky-700);
+  .btn-outline:hover {
+    @apply border-ink-400 bg-ink-50;
   }
-}
 
-@keyframes flame-pulse {
-  0%,
-  100% {
-    transform: scale(1);
-    filter: drop-shadow(0 0 0px var(--color-gold-400));
+  .btn-ghost {
+    @apply text-ink-700;
   }
-  50% {
-    transform: scale(1.12);
-    filter: drop-shadow(0 0 6px var(--color-gold-400));
+  .btn-ghost:hover {
+    @apply bg-ink-100;
   }
-}
-.flame-pulse {
-  animation: flame-pulse 1.6s ease-in-out infinite;
-}
 
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
+  .btn-invert {
+    @apply bg-white text-ink-900;
   }
-  100% {
-    background-position: 200% 0;
+  .btn-invert:hover {
+    @apply bg-ink-100;
   }
-}
-.shimmer-bg {
-  background-size: 200% 100%;
-  animation: shimmer 2.5s linear infinite;
+
+  .btn-ochre {
+    @apply border border-ochre-400 bg-ochre-50 text-ochre-600;
+  }
+  .btn-ochre:hover {
+    @apply bg-ochre-100;
+  }
+
+  .card {
+    @apply rounded-lg border border-ink-200 bg-white;
+  }
+
+  .label-caps {
+    @apply text-[11px] font-semibold uppercase tracking-[0.08em] text-ink-500;
+  }
+
+  .divider {
+    @apply border-t border-ink-200;
+  }
 }

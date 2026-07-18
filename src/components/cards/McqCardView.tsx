@@ -18,19 +18,19 @@ export function McqCardView({ card, onComplete, showMascot }: Props) {
 
   return (
     <div className="flex h-full flex-col px-6 pb-40">
-      <p className="pt-6 text-xl font-extrabold leading-snug text-ink-900">{card.prompt}</p>
+      <p className="pt-6 font-display text-xl leading-snug text-ink-900">{card.prompt}</p>
 
-      <div className="mt-6 flex flex-col gap-3">
+      <div className="mt-6 flex flex-col gap-2.5">
         {card.options.map((option, i) => {
           let style = "border-ink-200 bg-white";
           let badgeStyle = "bg-ink-100 text-ink-500";
           if (answered) {
             if (i === card.correctIndex) {
-              style = "border-brand-500 bg-brand-50";
-              badgeStyle = "bg-brand-500 text-white";
+              style = "border-forest-500 bg-forest-50";
+              badgeStyle = "bg-forest-600 text-white";
             } else if (i === selected) {
-              style = "border-accent-500 bg-orange-50";
-              badgeStyle = "bg-accent-500 text-white";
+              style = "border-rust-500 bg-rust-50";
+              badgeStyle = "bg-rust-600 text-white";
             } else {
               style = "border-ink-200 bg-white opacity-50";
             }
@@ -40,9 +40,11 @@ export function McqCardView({ card, onComplete, showMascot }: Props) {
               key={i}
               disabled={answered}
               onClick={() => setSelected(i)}
-              className={`flex items-center gap-3 rounded-2xl border-2 px-4 py-4 text-left text-base font-semibold text-ink-900 shadow-sm transition active:scale-[0.98] ${style}`}
+              className={`flex items-center gap-3 rounded-md border px-4 py-3.5 text-left text-base font-medium text-ink-900 transition-colors duration-150 ${
+                !answered && "hover:border-ink-400"
+              } ${style}`}
             >
-              <span className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-extrabold ${badgeStyle}`}>
+              <span className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-semibold transition-colors duration-150 ${badgeStyle}`}>
                 {LETTERS[i]}
               </span>
               {option}

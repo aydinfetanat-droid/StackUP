@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { BrainCircuit } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { supabase } from "../lib/supabase";
 import { getLesson } from "../data/lessons";
@@ -54,30 +55,22 @@ export function ReviewPage() {
   }, [user]);
 
   if (items === null) {
-    return <div className="min-h-screen bg-ink-100" />;
+    return <div className="min-h-screen bg-ink-50" />;
   }
 
   if (items.length === 0 || done) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-brand-600 px-6 text-center text-white">
-        <motion.div
-          initial={{ scale: 0.6, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ type: "spring", stiffness: 260, damping: 18 }}
-          className="flex h-20 w-20 items-center justify-center rounded-full bg-white/15 text-4xl"
-        >
-          🧠
-        </motion.div>
-        <p className="text-lg font-bold">{items.length === 0 ? "Nothing to review right now" : "Review complete!"}</p>
-        <p className="max-w-xs text-sm text-brand-100">
+      <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-ink-950 px-6 text-center text-white">
+        <div className="flex h-16 w-16 items-center justify-center rounded-full border border-white/15">
+          <BrainCircuit size={26} className="text-forest-400" />
+        </div>
+        <p className="font-display text-lg text-white">{items.length === 0 ? "Nothing to review right now" : "Review complete"}</p>
+        <p className="max-w-xs text-sm text-white/60">
           {items.length === 0
-            ? "You're all caught up on past mistakes. Keep going!"
-            : "Great refresh — those should stick better now."}
+            ? "You're all caught up on past mistakes. Keep going."
+            : "Good refresh — those should stick better now."}
         </p>
-        <button
-          onClick={() => navigate("/", { replace: true })}
-          className="mt-4 w-full max-w-xs rounded-xl bg-white py-4 text-base font-bold text-brand-700 shadow-sm transition active:scale-[0.98]"
-        >
+        <button onClick={() => navigate("/", { replace: true })} className="btn btn-invert mt-4 w-full max-w-xs">
           Back home
         </button>
       </div>
@@ -90,18 +83,18 @@ export function ReviewPage() {
   return (
     <div className="flex min-h-screen flex-col bg-white">
       <div className="flex items-center gap-3 px-5 pt-6">
-        <span className="text-xs font-bold uppercase tracking-wide text-brand-600">Quick Review</span>
-        <div className="h-2.5 flex-1 overflow-hidden rounded-full bg-ink-100">
-          <div className="h-full rounded-full bg-brand-500 transition-all duration-300" style={{ width: `${progress}%` }} />
+        <span className="label-caps">Quick review</span>
+        <div className="h-1 flex-1 overflow-hidden rounded-full bg-ink-100">
+          <div className="h-full rounded-full bg-ink-900 transition-all duration-300" style={{ width: `${progress}%` }} />
         </div>
       </div>
 
       <div className="flex-1">
         <motion.div
           key={index}
-          initial={{ opacity: 0, x: 16 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.18 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.12 }}
           className="h-full"
         >
           <CardRenderer

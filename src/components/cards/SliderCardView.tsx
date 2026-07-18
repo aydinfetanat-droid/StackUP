@@ -16,10 +16,10 @@ export function SliderCardView({ card, onComplete, showMascot }: Props) {
 
   return (
     <div className="flex h-full flex-col px-6 pb-40">
-      <p className="pt-6 text-xl font-extrabold leading-snug text-ink-900">{card.prompt}</p>
+      <p className="pt-6 font-display text-xl leading-snug text-ink-900">{card.prompt}</p>
 
       <div className="mt-10 flex flex-col items-center">
-        <p className="rounded-2xl bg-gradient-to-br from-brand-500 to-brand-700 px-6 py-3 text-4xl font-extrabold text-white shadow-md">
+        <p className="font-display text-4xl tabular-nums text-ink-900">
           {card.unit ?? ""}
           {value}
         </p>
@@ -31,9 +31,9 @@ export function SliderCardView({ card, onComplete, showMascot }: Props) {
           value={value}
           disabled={checked}
           onChange={(e) => setValue(Number(e.target.value))}
-          className="mt-6 w-full accent-emerald-600"
+          className="mt-6 w-full accent-forest-600"
         />
-        <div className="mt-1 flex w-full justify-between text-xs text-ink-500">
+        <div className="mt-1 flex w-full justify-between text-xs tabular-nums text-ink-500">
           <span>
             {card.unit ?? ""}
             {card.min}
@@ -46,7 +46,7 @@ export function SliderCardView({ card, onComplete, showMascot }: Props) {
       </div>
 
       {!checked && (
-        <button onClick={() => setChecked(true)} className="btn-chunky btn-chunky--dark mt-10 w-full">
+        <button onClick={() => setChecked(true)} className="btn btn-primary mt-10 w-full">
           Check answer
         </button>
       )}

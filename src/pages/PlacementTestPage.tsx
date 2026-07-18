@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+import { Award, Lock, Clock, Compass, BookOpen } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { supabase } from "../lib/supabase";
 import { drawPlacementQuestions } from "../data/exams";
@@ -148,14 +148,14 @@ export function PlacementTestPage() {
     return `${m}:${s.toString().padStart(2, "0")}`;
   }, [secondsLeft]);
 
-  if (stage === "loading") return <div className="min-h-screen bg-ink-100" />;
+  if (stage === "loading") return <div className="min-h-screen bg-ink-50" />;
 
   if (stage === "already-passed") {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-ink-100 px-6 text-center">
-        <p className="text-4xl">🏅</p>
-        <p className="text-lg font-bold text-ink-900">You've already placed into Vice President</p>
-        <button onClick={() => navigate("/")} className="mt-2 font-semibold text-brand-600">
+      <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-ink-50 px-6 text-center">
+        <Award size={32} className="text-ink-400" />
+        <p className="font-display text-lg text-ink-900">You've already placed into Vice President</p>
+        <button onClick={() => navigate("/")} className="mt-2 font-semibold text-ink-700 underline underline-offset-2">
           Back home
         </button>
       </div>
@@ -164,13 +164,13 @@ export function PlacementTestPage() {
 
   if (stage === "blocked") {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-ink-100 px-6 text-center">
-        <p className="text-4xl">🔒</p>
-        <p className="text-lg font-bold text-ink-900">No more attempts available</p>
+      <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-ink-50 px-6 text-center">
+        <Lock size={32} className="text-ink-400" />
+        <p className="font-display text-lg text-ink-900">No more attempts available</p>
         <p className="max-w-xs text-sm text-ink-500">
           You've used all {MAX_ATTEMPTS} lifetime attempts at the placement test. Keep going through the normal lesson path instead.
         </p>
-        <button onClick={() => navigate("/")} className="mt-2 font-semibold text-brand-600">
+        <button onClick={() => navigate("/")} className="mt-2 font-semibold text-ink-700 underline underline-offset-2">
           Back home
         </button>
       </div>
@@ -180,13 +180,13 @@ export function PlacementTestPage() {
   if (stage === "cooldown" && cooldownUntil) {
     const daysLeft = Math.max(1, Math.ceil((cooldownUntil.getTime() - Date.now()) / (24 * 60 * 60 * 1000)));
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-ink-100 px-6 text-center">
-        <p className="text-4xl">⏳</p>
-        <p className="text-lg font-bold text-ink-900">Not yet</p>
+      <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-ink-50 px-6 text-center">
+        <Clock size={32} className="text-ink-400" />
+        <p className="font-display text-lg text-ink-900">Not yet</p>
         <p className="max-w-xs text-sm text-ink-500">
           You can retake the placement test in about {daysLeft} day{daysLeft === 1 ? "" : "s"}.
         </p>
-        <button onClick={() => navigate("/")} className="mt-2 font-semibold text-brand-600">
+        <button onClick={() => navigate("/")} className="mt-2 font-semibold text-ink-700 underline underline-offset-2">
           Back home
         </button>
       </div>
@@ -195,23 +195,20 @@ export function PlacementTestPage() {
 
   if (stage === "intro") {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-ink-100 px-6 text-center">
-        <p className="text-4xl">🧭</p>
-        <p className="text-lg font-bold text-ink-900">Skip to Vice President</p>
+      <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-ink-50 px-6 text-center">
+        <Compass size={32} className="text-ink-400" />
+        <p className="font-display text-lg text-ink-900">Skip to Vice President</p>
         <p className="max-w-sm text-sm text-ink-500">
           {QUESTION_COUNT} hard questions, most with their own timer (60-75 seconds each), no going back once you
           answer. You need {Math.round(PASS_THRESHOLD * 100)}% ({Math.round(PASS_THRESHOLD * QUESTION_COUNT)}/{QUESTION_COUNT})
           to pass.
         </p>
-        <p className="max-w-sm text-sm font-semibold text-ink-700">
+        <p className="max-w-sm text-sm font-medium text-ink-700">
           This test places you where you'll succeed. Testing into content above your level only hurts your
           certification odds later.
         </p>
         <p className="text-xs text-ink-500">Attempt {attemptCount + 1} of {MAX_ATTEMPTS}</p>
-        <button
-          onClick={startExam}
-          className="mt-4 w-full max-w-xs rounded-xl bg-brand-600 py-4 text-base font-bold text-white shadow-sm transition active:scale-[0.98]"
-        >
+        <button onClick={startExam} className="btn btn-primary mt-4 w-full max-w-xs">
           Start test
         </button>
       </div>
@@ -220,30 +217,21 @@ export function PlacementTestPage() {
 
   if (stage === "finished" && result) {
     return (
-      <div
-        className={`flex min-h-screen flex-col items-center justify-center px-6 text-center text-white ${
-          result.passed ? "bg-brand-600" : "bg-ink-700"
-        }`}
-      >
-        <motion.div
-          initial={{ scale: 0.6, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ type: "spring", stiffness: 260, damping: 18 }}
-          className="flex h-24 w-24 items-center justify-center rounded-full bg-white/15 text-5xl"
-        >
-          {result.passed ? "🏅" : "📚"}
-        </motion.div>
-        <h1 className="mt-6 text-2xl font-extrabold">{result.passed ? "You placed into Vice President!" : "Not this time"}</h1>
-        <p className="mt-1 text-white/80">Score: {result.score}%</p>
+      <div className={`flex min-h-screen flex-col items-center justify-center px-6 text-center text-white ${result.passed ? "bg-ink-950" : "bg-ink-800"}`}>
+        <div className="flex h-16 w-16 items-center justify-center rounded-full border border-white/15">
+          {result.passed ? <Award size={26} className="text-ochre-400" /> : <BookOpen size={26} className="text-white/60" />}
+        </div>
+        <h1 className="mt-6 font-display text-2xl text-white">{result.passed ? "You placed into Vice President!" : "Not this time"}</h1>
+        <p className="mt-1 text-white/60">Score: {result.score}%</p>
 
         {!result.passed && (
           <div className="mt-6 w-full max-w-xs text-left">
-            <p className="text-xs font-semibold uppercase text-white/60">By topic</p>
+            <p className="label-caps text-white/40">By topic</p>
             <div className="mt-2 flex flex-col gap-1.5">
               {Object.entries(result.byTopic).map(([topic, stat]) => (
-                <div key={topic} className="flex justify-between text-sm text-white/80">
+                <div key={topic} className="flex justify-between text-sm text-white/70">
                   <span>{topic}</span>
-                  <span>
+                  <span className="tabular-nums">
                     {stat.correct}/{stat.total}
                   </span>
                 </div>
@@ -252,10 +240,7 @@ export function PlacementTestPage() {
           </div>
         )}
 
-        <button
-          onClick={() => navigate("/", { replace: true })}
-          className="mt-10 w-full max-w-xs rounded-xl bg-white py-4 text-base font-bold text-ink-900 shadow-sm transition active:scale-[0.98]"
-        >
+        <button onClick={() => navigate("/", { replace: true })} className="btn btn-invert mt-10 w-full max-w-xs">
           Continue
         </button>
       </div>
@@ -268,29 +253,26 @@ export function PlacementTestPage() {
 
   return (
     <div className="flex min-h-screen select-none flex-col bg-white px-6 pb-10 pt-6">
-      <div className="flex items-center justify-between text-sm font-semibold text-ink-500">
+      <div className="flex items-center justify-between text-sm font-medium text-ink-500">
         <span>
           Question {index + 1} of {questions.length}
         </span>
-        <span className={secondsLeft <= 10 ? "text-accent-600" : ""}>{timeLabel}</span>
+        <span className={`tabular-nums ${secondsLeft <= 10 ? "text-rust-600" : ""}`}>{timeLabel}</span>
       </div>
-      <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-ink-100">
-        <div
-          className="h-full rounded-full bg-brand-500 transition-all"
-          style={{ width: `${(index / questions.length) * 100}%` }}
-        />
+      <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-ink-100">
+        <div className="h-full rounded-full bg-ink-900 transition-all" style={{ width: `${(index / questions.length) * 100}%` }} />
       </div>
 
-      <p className="mt-8 text-xl font-extrabold leading-snug text-ink-900">{q.prompt}</p>
+      <p className="mt-8 font-display text-xl leading-snug text-ink-900">{q.prompt}</p>
 
       {q.kind === "mcq" ? (
-        <div className="mt-6 flex flex-col gap-3">
+        <div className="mt-6 flex flex-col gap-2.5">
           {q.options.map((option, i) => (
             <button
               key={i}
               onClick={() => updateAnswer({ choiceIndex: i })}
-              className={`rounded-xl border-2 px-4 py-4 text-left text-base font-semibold text-ink-900 transition active:scale-[0.98] ${
-                answer.choiceIndex === i ? "border-brand-500 bg-brand-50" : "border-ink-300 bg-white"
+              className={`rounded-md border px-4 py-3.5 text-left text-base font-medium text-ink-900 transition-colors duration-150 ${
+                answer.choiceIndex === i ? "border-ink-900 bg-ink-100" : "border-ink-300 bg-white hover:border-ink-400"
               }`}
             >
               {option}
@@ -299,14 +281,14 @@ export function PlacementTestPage() {
         </div>
       ) : (
         <div className="mt-10 flex items-center justify-center gap-2">
-          {q.unit && <span className="text-3xl font-extrabold text-ink-500">{q.unit}</span>}
+          {q.unit && <span className="font-display text-3xl text-ink-500">{q.unit}</span>}
           <input
             type="number"
             inputMode="decimal"
             value={answer.numericValue}
             onChange={(e) => updateAnswer({ numericValue: e.target.value })}
             placeholder="0"
-            className="w-32 rounded-xl border-2 border-ink-300 bg-white px-4 py-3 text-center text-3xl font-extrabold text-ink-900 outline-none focus:border-brand-500"
+            className="w-32 rounded-md border border-ink-300 bg-white px-4 py-3 text-center font-display text-3xl tabular-nums text-ink-900 outline-none focus:border-ink-900"
           />
         </div>
       )}
@@ -314,7 +296,7 @@ export function PlacementTestPage() {
       <button
         onClick={goNext}
         disabled={q.kind === "mcq" ? answer.choiceIndex === null : answer.numericValue === ""}
-        className="mt-auto w-full rounded-xl bg-ink-900 py-4 text-base font-bold text-white shadow-sm transition active:scale-[0.98] disabled:opacity-40"
+        className="btn btn-primary mt-auto w-full"
       >
         {index + 1 >= questions.length ? "Finish test" : "Next"}
       </button>

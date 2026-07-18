@@ -31,24 +31,17 @@ export function RecapQuiz({ questions, showMascot, onCardAnswered, onDone }: Pro
   return (
     <div className="flex min-h-screen flex-col bg-white">
       <div className="flex items-center gap-3 px-5 pt-6">
-        <span className="text-xl">⚡</span>
-        <div className="h-2.5 flex-1 overflow-hidden rounded-full bg-ink-100">
-          <div className="h-full rounded-full bg-gradient-to-r from-gold-400 to-gold-600 transition-all duration-300" style={{ width: `${progress}%` }} />
+        <div className="h-1 flex-1 overflow-hidden rounded-full bg-ink-100">
+          <div className="h-full rounded-full bg-ink-900 transition-all duration-300" style={{ width: `${progress}%` }} />
         </div>
-        <span className="text-xs font-extrabold text-gold-600">
+        <span className="text-xs font-semibold tabular-nums text-ink-500">
           {index + 1}/{questions.length}
         </span>
       </div>
-      <p className="px-5 pt-2 text-xs font-extrabold uppercase tracking-wide text-gold-600">Quick Recap</p>
+      <p className="label-caps px-5 pt-2">Quick recap</p>
 
       <div className="flex-1">
-        <motion.div
-          key={index}
-          initial={{ opacity: 0, x: 16 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.15 }}
-          className="h-full"
-        >
+        <motion.div key={index} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.12 }} className="h-full">
           <CardRenderer card={current.card} onComplete={handleComplete} showMascot={showMascot} />
         </motion.div>
       </div>
