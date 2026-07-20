@@ -10,7 +10,8 @@
     {
       "type": "explain",
       "prompt": "Before money existed, people traded stuff directly for other stuff.",
-      "explanation": "That's called bartering. Problem: if you have chickens and need shoes, you have to find a shoemaker who happens to want chickens right now. Money fixes that — it's a tool everyone agrees to accept, so you can trade with anyone."
+      "explanation": "That's called bartering. Problem: if you have chickens and need shoes, you have to find a shoemaker who happens to want chickens right now. Money fixes that — it's a tool everyone agrees to accept, so you can trade with anyone.",
+      "digDeeper": "Economists call this the \"double coincidence of wants\" problem — bartering only works when two people each happen to have exactly what the other wants, at the same time. Good money solves it by having three properties: it's a medium of exchange (everyone accepts it), a store of value (it doesn't spoil or vanish), and a unit of account (it lets you compare the price of totally different things, like chickens and shoes, on the same scale)."
     },
     {
       "type": "sequence",
@@ -46,7 +47,8 @@
     {
       "type": "explain",
       "prompt": "So why does a PS5 cost more than a phone case? Supply and demand.",
-      "explanation": "Demand = how many people want something. Supply = how much of it exists. When lots of people want something and there isn't much of it, the price goes up. When there's tons of it and few people want it, the price drops."
+      "explanation": "Demand = how many people want something. Supply = how much of it exists. When lots of people want something and there isn't much of it, the price goes up. When there's tons of it and few people want it, the price drops.",
+      "digDeeper": "This is also why the same item can have wildly different prices depending on timing and location — bottled water costs more at a stadium than a grocery store because supply is fixed (the vendor controls it) and demand is captive (you can't easily leave to find a cheaper one). Companies aren't being sneaky when they do this; they're reading the same supply-and-demand curve you're learning right now."
     },
     {
       "type": "mcq",

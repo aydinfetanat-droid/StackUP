@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Flame } from "lucide-react";
+import { Skeleton } from "../components/ui/Skeleton";
 import { useAuth } from "../context/AuthContext";
 import { supabase } from "../lib/supabase";
 import { TICKERS, INDEX_SYMBOL, INDEX_NAME, currentPriceForTicker, currentIndexPrice, priceOnDate, getTicker } from "../lib/market";
@@ -188,7 +189,20 @@ export function SimulatorPage() {
   }
 
   if (loading || cash === null) {
-    return <div className="min-h-screen bg-ink-50" />;
+    return (
+      <div className="min-h-screen bg-ink-50">
+        <div className="bg-ink-950 px-6 pb-6 pt-8">
+          <div className="h-3 w-24 animate-pulse rounded bg-white/10" />
+          <div className="mt-2 h-7 w-48 animate-pulse rounded bg-white/10" />
+          <div className="mt-5 h-24 w-full animate-pulse rounded-md bg-white/10" />
+        </div>
+        <div className="flex flex-col gap-2 px-5 pt-6">
+          {Array.from({ length: 4 }).map((_, i) => (
+            <Skeleton key={i} className="h-16 w-full" />
+          ))}
+        </div>
+      </div>
+    );
   }
 
   const allInstruments = [

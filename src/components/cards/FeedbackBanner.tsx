@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Mascot, randomFrom } from "../Mascot";
+import { GlossaryText } from "../GlossaryText";
 import { CORRECT_QUIPS, INCORRECT_QUIPS } from "../../data/mascotQuips";
 import { playCorrectSound, playIncorrectSound } from "../../lib/sound";
 
@@ -28,7 +29,9 @@ export function FeedbackBanner({ correct, explanation, onContinue, showMascot = 
           {correct ? "Correct" : "Not quite"}
         </p>
       )}
-      <p className="mt-1.5 text-sm text-ink-600">{explanation}</p>
+      <p className="mt-1.5 text-sm text-ink-600">
+        <GlossaryText text={explanation} />
+      </p>
       <button onClick={onContinue} className={`btn mt-4 w-full ${correct ? "btn-accent" : "btn-primary"}`}>
         Continue
       </button>

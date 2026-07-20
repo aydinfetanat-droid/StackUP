@@ -1,23 +1,49 @@
 import { TICKERS, INDEX_SYMBOL, INDEX_NAME, priceOnDate } from "./market";
 import { toLaDateString } from "./streak";
 
+export type Tone = "positive" | "neutral" | "negative";
+export type Category = "Markets" | "Business" | "Tech" | "Global" | "Everyday Money";
+
+export const CATEGORIES: Category[] = ["Markets", "Business", "Tech", "Global", "Everyday Money"];
+
 export interface NewsItem {
   id: string;
   headline: string;
+  summary: string;
   body: string;
+  reflection: string;
   verdict?: string;
   tone?: Tone;
   symbol?: string;
+  category: Category;
+  relatedLessonId?: string;
   kind: "market" | "tip";
 }
 
-export type Tone = "positive" | "neutral" | "negative";
+// Each ticker gets a fixed category so the magazine sections have something
+// real to group by, independent of that day's price move.
+const TICKER_CATEGORY: Record<string, Category> = {
+  [INDEX_SYMBOL]: "Markets",
+  NOVA: "Tech",
+  BYTF: "Tech",
+  VRTX: "Tech",
+  BRGT: "Business",
+  PULS: "Business",
+  SOLF: "Business",
+  CRLB: "Markets",
+  GRFL: "Global",
+  AERL: "Global",
+  LUMN: "Global",
+};
 
 interface Bucket {
   headlines: ((name: string) => string)[];
+  summaries: ((name: string, abs: string) => string)[];
   bodies: ((name: string, abs: string) => string)[];
+  reflections: ((name: string) => string)[];
   verdict: string;
   tone: Tone;
+  relatedLessonId: string;
 }
 
 const BIG_GAIN: Bucket = {
@@ -25,12 +51,18 @@ const BIG_GAIN: Bucket = {
     (name) => `${name} surges on strong demand`,
     (name) => `${name} jumps as investors pile in`,
   ],
+  summaries: [(name, abs) => `${name} jumped ${abs}% today — a sudden rush of buying interest all at once.`],
   bodies: [
     (name, abs) =>
-      `${name} jumped ${abs}% today — the kind of move that grabs headlines. Big single-day gains like this are usually driven by a sudden rush of buying interest all at once, sometimes on real news, sometimes just momentum feeding on itself. Practice take: it's tempting to chase a stock right after a big jump, but the price you'd pay today already has today's excitement baked into it. Before adding ${name} to your simulator portfolio because of one green day, ask whether you'd still want it at this price if the excitement fades tomorrow.`,
+      `${name} jumped ${abs}% today — the kind of move that grabs headlines. Big single-day gains like this are usually driven by a sudden rush of buying interest all at once, sometimes on real news, sometimes just momentum feeding on itself.`,
+  ],
+  reflections: [
+    (name) =>
+      `It's tempting to chase a stock right after a big jump, but the price you'd pay today already has today's excitement baked in. If you added ${name} to your simulator portfolio right now, would you still want it at this price if the excitement faded tomorrow?`,
   ],
   verdict: "Building interest",
   tone: "positive",
+  relatedLessonId: "unit1-lesson1",
 };
 
 const SMALL_GAIN: Bucket = {
@@ -38,12 +70,18 @@ const SMALL_GAIN: Bucket = {
     (name) => `${name} edges higher in quiet trading`,
     (name) => `${name} ticks up slightly today`,
   ],
+  summaries: [(name, abs) => `${name} nudged up ${abs}% — a quiet, unremarkable day by most measures.`],
   bodies: [
     (name, abs) =>
-      `${name} nudged up ${abs}% — a quiet, unremarkable day by most measures. Practice take: small, steady gains like this are exactly what you want from a long-term holding. It's not exciting, and that's fine — "not exciting" is often a feature, not a bug, when you're investing for years instead of days. The stocks that compound the most are rarely the ones making headlines every week.`,
+      `${name} nudged up ${abs}% — a quiet, unremarkable day by most measures. Small, steady gains like this are exactly what a lot of long-term holdings look like day to day.`,
+  ],
+  reflections: [
+    () =>
+      `"Not exciting" is often a feature, not a bug, when you're holding something for years instead of days. What would it feel like to own something that never makes headlines but slowly compounds anyway?`,
   ],
   verdict: "Steady as it goes",
   tone: "positive",
+  relatedLessonId: "unit4-lesson1",
 };
 
 const FLAT: Bucket = {
@@ -51,12 +89,17 @@ const FLAT: Bucket = {
     (name) => `${name} holds steady`,
     (name) => `${name} barely moves today`,
   ],
+  summaries: [(name, abs) => `${name} moved just ${abs}% today, essentially flat.`],
   bodies: [
     (name, abs) =>
-      `${name} moved just ${abs}% today, essentially flat. Practice take: flat days are the majority of days for most stocks — the drama you see in financial headlines is the exception, not the norm. If ${name} is sitting in your simulator portfolio, a quiet day like this is nothing to react to. Reacting to every tiny wiggle is a fast way to trade yourself into worse decisions than just holding still.`,
+      `${name} moved just ${abs}% today, essentially flat. Flat days are the majority of days for most stocks — the drama in financial headlines is the exception, not the norm.`,
+  ],
+  reflections: [
+    (name) => `If ${name} were sitting in your simulator portfolio, is a quiet day like this something worth reacting to at all?`,
   ],
   verdict: "No action needed",
   tone: "neutral",
+  relatedLessonId: "unit4-lesson1",
 };
 
 const SMALL_LOSS: Bucket = {
@@ -64,12 +107,17 @@ const SMALL_LOSS: Bucket = {
     (name) => `${name} dips slightly amid quiet trading`,
     (name) => `${name} slips a little today`,
   ],
+  summaries: [(name, abs) => `${name} moved down ${abs}% today — a small, routine dip.`],
   bodies: [
     (name, abs) =>
-      `${name} moved down ${abs}% today — a small, routine dip. Practice take: the most common mistake new investors make is treating every red day as a signal to sell. A stock's underlying value doesn't usually change because of one slightly-off afternoon. Dips like this happen to good companies constantly; the question worth asking isn't "is it down?" but "did anything real actually change?"`,
+      `${name} moved down ${abs}% today — a small, routine dip. Dips like this happen to good companies constantly, for all kinds of reasons that have nothing to do with what the business is actually worth.`,
+  ],
+  reflections: [
+    () => `The most common new-investor mistake is treating every red day as a signal to sell. What's the difference between a stock being "down" and something real actually changing about it?`,
   ],
   verdict: "Worth watching",
   tone: "negative",
+  relatedLessonId: "unit4-lesson2",
 };
 
 const BIG_LOSS: Bucket = {
@@ -77,12 +125,17 @@ const BIG_LOSS: Bucket = {
     (name) => `${name} tumbles on heavy selling`,
     (name) => `${name} drops sharply today`,
   ],
+  summaries: [(name, abs) => `${name} dropped ${abs}% today — a sharp move that would get any investor's attention.`],
   bodies: [
     (name, abs) =>
-      `${name} dropped ${abs}% today — a sharp move that would definitely get investors' attention. Practice take: big drops trigger panic, and panic is expensive. Selling into a big loss locks it in permanently, while holding at least leaves the door open for a recovery if the underlying reason to own it hasn't changed. Before reacting to a move like this, ask whether anything about the actual business changed today, or if this is just the market's mood swinging harder than usual.`,
+      `${name} dropped ${abs}% today — a sharp move that would definitely get investors' attention. Big drops tend to trigger panic, and panic is usually the most expensive reaction available.`,
+  ],
+  reflections: [
+    () => `Selling into a big loss locks it in permanently, while holding leaves the door open for a recovery. Before reacting to a move like this, what would you actually want to know first?`,
   ],
   verdict: "Stay calm, don't panic-sell",
   tone: "negative",
+  relatedLessonId: "unit4-lesson2",
 };
 
 function pick<T>(arr: T[], seed: string): T {
@@ -91,30 +144,56 @@ function pick<T>(arr: T[], seed: string): T {
   return arr[h % arr.length];
 }
 
-const TIPS: { headline: string; body: string }[] = [
+interface Tip {
+  headline: string;
+  summary: string;
+  body: string;
+  reflection: string;
+  relatedLessonId: string;
+}
+
+const TIPS: Tip[] = [
   {
     headline: "Reminder: the index fund exists to smooth out days like this",
-    body: "When individual tickers swing hard in either direction, a diversified index fund is designed to move less — that's the entire point of not betting everything on one company. If you're building your simulator portfolio, the index fund (STIX) is a useful baseline to compare every trade against: is this individual pick actually worth the extra risk over just holding the whole market?",
+    summary: "A diversified index fund is designed to move less than any single company inside it.",
+    body: "When individual tickers swing hard in either direction, a diversified index fund is designed to move less — that's the entire point of not betting everything on one company. The index fund (STIX) tracks the average of every ticker in the simulator.",
+    reflection: "Before adding an individual pick to your simulator portfolio, is it actually worth the extra risk over just holding the whole market?",
+    relatedLessonId: "unit4-lesson1",
   },
   {
     headline: "Time in the market usually beats timing the market",
-    body: "Trying to guess the exact best day to buy or sell is genuinely hard, even for professionals who do it full-time with far more information than any headline gives you. A steady, long-term approach — buying consistently and holding through the noise — tends to outperform frantic day-to-day trading over any meaningful stretch of time. The traders chasing every headline usually underperform the ones who barely check their portfolio.",
+    summary: "Guessing the exact best day to buy or sell is hard even for professionals.",
+    body: "Trying to guess the exact best day to buy or sell is genuinely hard, even for people who do it full-time with far more information than any headline gives you. A steady, long-term approach tends to outperform frantic day-to-day trading over any meaningful stretch of time.",
+    reflection: "What would change about your simulator strategy if you assumed you'd never be able to time the market perfectly?",
+    relatedLessonId: "unit4-lesson1",
   },
   {
     headline: "Volatility isn't the same as risk of losing everything",
-    body: "A stock bouncing around day to day is normal, even for solid companies. What matters more for real risk is whether you're diversified across multiple holdings and whether you can stay invested for the long haul without panic-selling during a rough stretch. A stock that swings 5% in a day but trends up over years is a very different animal from a stock that quietly goes to zero.",
+    summary: "A stock bouncing around day to day is normal, even for solid companies.",
+    body: "A stock bouncing around day to day is normal, even for solid companies. What matters more for real risk is whether you're diversified across multiple holdings and whether you can stay invested through a rough stretch without panic-selling.",
+    reflection: "A stock that swings 5% in a day but trends up over years — is that the same kind of risk as a stock that quietly goes to zero?",
+    relatedLessonId: "unit4-lesson2",
   },
   {
     headline: "Fees quietly eat returns over time",
-    body: "A fund charging 1% a year versus 0.05% might not sound like much in the moment, but compounded over decades, that difference can cost you a huge chunk of your final balance — sometimes tens of thousands of dollars on a long-term account. Always check the expense ratio before choosing a real fund, and remember that in the simulator, fees are simplified away specifically so you can focus on the strategy first.",
+    summary: "A 1% fee versus a 0.05% fee sounds small — until it compounds for decades.",
+    body: "A fund charging 1% a year versus 0.05% might not sound like much in the moment, but compounded over decades, that difference can cost a huge chunk of the final balance. In the simulator, fees are simplified away specifically so you can focus on strategy first.",
+    reflection: "If two funds hold roughly the same things, what would justify one of them charging 20x more in fees?",
+    relatedLessonId: "unit4-lesson1",
   },
   {
     headline: "Diversification isn't about owning more stocks — it's about owning different ones",
-    body: "Ten tickers that all move together in the same direction on the same days aren't actually diversified, even though it looks like you own \"a lot\" of stocks. Real diversification means holding things that don't all react the same way to the same news — different sectors, different volatility levels, a mix of steady and higher-risk names. Check your simulator holdings: if they're all green or all red on the same day, that's a clue they're more correlated than they look.",
+    summary: "Ten tickers that all move together aren't actually diversified.",
+    body: "Ten tickers that all move in the same direction on the same days aren't actually diversified, even though it looks like a lot of stocks. Real diversification means holding things that don't all react the same way to the same news.",
+    reflection: "Check your own simulator holdings — if they're all green or all red on the same day, what does that tell you about how correlated they really are?",
+    relatedLessonId: "unit4-lesson2",
   },
   {
     headline: "A falling price alone doesn't tell you if something is \"cheap\"",
-    body: "It's easy to assume a stock that's dropped a lot must now be a bargain, but price alone doesn't tell you value — a stock can fall 50% and still be overpriced, or barely move and still be a great deal. Professional investors look at what a company actually earns and owns relative to its price, not just how far the sticker price has fallen from its high.",
+    summary: "Price alone doesn't tell you value — a stock can fall 50% and still be overpriced.",
+    body: "It's easy to assume a stock that's dropped a lot must now be a bargain, but price alone doesn't tell you value. A stock can fall 50% and still be overpriced, or barely move and still be a great deal.",
+    reflection: "What's actually being measured when someone calls a stock \"cheap\" — the price, or something else?",
+    relatedLessonId: "unit1-lesson1",
   },
 ];
 
@@ -146,15 +225,21 @@ export function generateDailyNews(): NewsItem[] {
     const abs = Math.abs(change).toFixed(2);
     const bucket = bucketFor(change);
     const headlineFn = pick(bucket.headlines, `${inst.symbol}:${today}:h`);
+    const summaryFn = pick(bucket.summaries, `${inst.symbol}:${today}:s`);
     const bodyFn = pick(bucket.bodies, `${inst.symbol}:${today}:b`);
+    const reflectionFn = pick(bucket.reflections, `${inst.symbol}:${today}:r`);
 
     items.push({
       id: `${inst.symbol}-${today}`,
       headline: headlineFn(inst.name),
+      summary: summaryFn(inst.name, abs),
       body: bodyFn(inst.name, abs),
+      reflection: reflectionFn(inst.name),
       verdict: bucket.verdict,
       tone: bucket.tone,
       symbol: inst.symbol,
+      category: TICKER_CATEGORY[inst.symbol] ?? "Markets",
+      relatedLessonId: bucket.relatedLessonId,
       kind: "market",
     });
   }
@@ -165,15 +250,26 @@ export function generateDailyNews(): NewsItem[] {
     return cb - ca;
   });
 
-  // Weave in two tips, spaced through the feed rather than bunched together.
+  // Weave in two tips (Everyday Money category), spaced through the feed.
   const tipA = pick(TIPS, `${today}:tipA`);
   let tipB = pick(TIPS, `${today}:tipB`);
   if (tipB.headline === tipA.headline) {
     tipB = TIPS[(TIPS.indexOf(tipA) + 1) % TIPS.length];
   }
 
-  items.splice(2, 0, { id: `tip-a-${today}`, headline: tipA.headline, body: tipA.body, kind: "tip" });
-  items.splice(7, 0, { id: `tip-b-${today}`, headline: tipB.headline, body: tipB.body, kind: "tip" });
+  const toTipItem = (tip: Tip, id: string): NewsItem => ({
+    id,
+    headline: tip.headline,
+    summary: tip.summary,
+    body: tip.body,
+    reflection: tip.reflection,
+    category: "Everyday Money",
+    relatedLessonId: tip.relatedLessonId,
+    kind: "tip",
+  });
+
+  items.splice(2, 0, toTipItem(tipA, `tip-a-${today}`));
+  items.splice(7, 0, toTipItem(tipB, `tip-b-${today}`));
 
   return items;
 }

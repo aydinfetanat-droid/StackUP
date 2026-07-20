@@ -45,6 +45,13 @@
 
   --font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* Three elevation levels — the only shadow depth in the system. Used to
+     separate resting cards, raised/hovered cards, and floating surfaces
+     (modals, toasts) without ever stacking with color for "pop". */
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 4px 16px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 12px 32px rgba(15, 23, 42, 0.14);
 }
 
 html,
@@ -156,4 +163,69 @@ h6,
   .divider {
     @apply border-t border-ink-200;
   }
+
+  .elevate-sm {
+    box-shadow: var(--shadow-sm);
+  }
+  .elevate-md {
+    box-shadow: var(--shadow-md);
+  }
+  .elevate-lg {
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Standard press feedback for anything tappable that isn't a .btn — cards,
+     list rows, chips. Fast and small; never a bounce. */
+  .tap {
+    @apply transition-transform duration-150 active:scale-[0.98];
+  }
+
+  .chip {
+    @apply inline-flex select-none items-center gap-1.5 rounded-full border border-ink-200 bg-white px-3 py-1.5 text-xs font-medium text-ink-600 transition-colors duration-150;
+  }
+  .chip:hover {
+    @apply border-ink-300;
+  }
+  .chip-active {
+    @apply border-ink-900 bg-ink-900 text-white;
+  }
+
+  .badge {
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.04em];
+  }
+}
+
+@keyframes skeleton-sweep {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+.skeleton {
+  background: linear-gradient(90deg, var(--color-ink-100) 25%, var(--color-ink-200) 50%, var(--color-ink-100) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-sweep 1.4s ease-in-out infinite;
+  border-radius: 6px;
+}
+
+@keyframes ring-fill {
+  from {
+    stroke-dashoffset: var(--ring-circumference);
+  }
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.toast-in {
+  animation: toast-in 0.2s ease-out;
 }

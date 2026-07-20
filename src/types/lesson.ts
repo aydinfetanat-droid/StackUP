@@ -17,6 +17,9 @@ interface BaseCard {
 
 export interface ExplainCard extends BaseCard {
   type: "explain";
+  // Optional deeper-dive content for curious readers — collapsed by default
+  // so the same lesson serves both a first-pass skim and a closer read.
+  digDeeper?: string;
 }
 
 export interface McqCard extends BaseCard {
