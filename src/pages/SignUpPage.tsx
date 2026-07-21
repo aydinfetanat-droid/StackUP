@@ -49,7 +49,7 @@ export function SignUpPage() {
           <div>
             <label className="mb-1.5 block text-sm font-medium text-ink-700">Display name</label>
             <input
-              className="w-full rounded-md border border-ink-300 bg-white px-4 py-3 text-base outline-none focus:border-ink-900"
+              className="w-full rounded-md border border-ink-300 bg-surface px-4 py-3 text-base outline-none focus:border-ink-900"
               value={displayName}
               onChange={(e) => setDisplayName(e.target.value)}
               placeholder="e.g. Jordan"
@@ -60,7 +60,7 @@ export function SignUpPage() {
           <div>
             <label className="mb-1.5 block text-sm font-medium text-ink-700">School</label>
             <select
-              className="w-full rounded-md border border-ink-300 bg-white px-4 py-3 text-base outline-none focus:border-ink-900"
+              className="w-full rounded-md border border-ink-300 bg-surface px-4 py-3 text-base outline-none focus:border-ink-900"
               value={schoolChoice}
               onChange={(e) => setSchoolChoice(e.target.value)}
             >
@@ -72,7 +72,7 @@ export function SignUpPage() {
             </select>
             {schoolChoice === "Other" && (
               <input
-                className="mt-2 w-full rounded-md border border-ink-300 bg-white px-4 py-3 text-base outline-none focus:border-ink-900"
+                className="mt-2 w-full rounded-md border border-ink-300 bg-surface px-4 py-3 text-base outline-none focus:border-ink-900"
                 value={otherSchool}
                 onChange={(e) => setOtherSchool(e.target.value)}
                 placeholder="Your school name"
@@ -84,7 +84,7 @@ export function SignUpPage() {
             <label className="mb-1.5 block text-sm font-medium text-ink-700">Email</label>
             <input
               type="email"
-              className="w-full rounded-md border border-ink-300 bg-white px-4 py-3 text-base outline-none focus:border-ink-900"
+              className="w-full rounded-md border border-ink-300 bg-surface px-4 py-3 text-base outline-none focus:border-ink-900"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@example.com"
@@ -97,7 +97,7 @@ export function SignUpPage() {
             <label className="mb-1.5 block text-sm font-medium text-ink-700">Password</label>
             <input
               type="password"
-              className="w-full rounded-md border border-ink-300 bg-white px-4 py-3 text-base outline-none focus:border-ink-900"
+              className="w-full rounded-md border border-ink-300 bg-surface px-4 py-3 text-base outline-none focus:border-ink-900"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="At least 6 characters"

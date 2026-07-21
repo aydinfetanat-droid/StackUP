@@ -58,7 +58,7 @@ export function CompoundInterestTool() {
   const growth = finalBalance - totalContributed;
 
   return (
-    <div className="min-h-screen bg-white pb-12">
+    <div className="min-h-screen bg-surface pb-12">
       <div className="flex items-center gap-3 px-5 pt-6">
         <button onClick={() => navigate(-1)} className="text-ink-500" aria-label="Close">
           <X size={22} />

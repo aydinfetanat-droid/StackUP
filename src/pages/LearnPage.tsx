@@ -2,7 +2,10 @@ import { useNavigate } from "react-router-dom";
 import { Check, Lock, Flame, Compass, Award } from "lucide-react";
 import { useProgress } from "../hooks/useProgress";
 import { lessonsById } from "../data/lessons";
+import { getRank, RANKS, TOTAL_JOURNEY_HOURS } from "../data/ranks";
 import { Skeleton } from "../components/ui/Skeleton";
+
+const PLACEMENT_TARGET_RANK_ID = 3;
 
 const ZIGZAG = [0, -44, -64, -44, 0, 44, 64, 44];
 
@@ -22,11 +25,12 @@ export function LearnPage() {
   } = useProgress();
 
   let globalIndex = 0;
+  const overallPercent = Math.round(((currentRankId - 1) / RANKS.length) * 100 + rankProgress.percent / RANKS.length);
 
   return (
     <div className="min-h-screen bg-ink-50">
-      <header className="bg-ink-950 px-6 pb-6 pt-8 text-white">
-        <p className="label-caps text-white/50">Learning path</p>
+      <header className="bg-onyx-deep px-6 pb-6 pt-8 text-white">
+        <p className="label-caps text-white/50">The journey · ~{TOTAL_JOURNEY_HOURS} hrs to Master Investor</p>
         <h1 className="mt-1 font-display text-2xl text-white">{currentRank.title}</h1>
         <div className="mt-4 flex items-center gap-4">
           <div className="h-1 flex-1 overflow-hidden rounded-full bg-white/15">
@@ -37,6 +41,7 @@ export function LearnPage() {
             {streak.current}
           </span>
         </div>
+        <p className="mt-2 text-xs text-white/50">{overallPercent}% of the way to Master Investor</p>
       </header>
 
       <main className="px-5 py-8">
@@ -49,7 +54,7 @@ export function LearnPage() {
         )}
 
         {!loading && rankUnits.length === 0 && (
-          <div className="rounded-lg border border-dashed border-ink-300 bg-white p-4 text-center">
+          <div className="rounded-lg border border-dashed border-ink-300 bg-surface p-4 text-center">
             <p className="font-semibold text-ink-700">You're placed at {currentRank.title}.</p>
             <p className="mt-1 text-sm text-ink-500">Content for this rank isn't published yet — check back soon.</p>
           </div>
@@ -58,7 +63,7 @@ export function LearnPage() {
         {!loading &&
           rankUnits.map((unit) => (
             <div key={unit.id} className="mb-10">
-              <div className="mb-6 rounded-lg border border-ink-200 bg-white px-4 py-3 text-center elevate-sm">
+              <div className="mb-6 rounded-lg border border-ink-200 bg-surface px-4 py-3 text-center elevate-sm">
                 <p className="label-caps">Unit {String(unit.id).padStart(2, "0")}</p>
                 <h2 className="mt-1 font-display text-lg text-ink-900">{unit.title}</h2>
                 <p className="mt-0.5 text-sm text-ink-500">{unit.description}</p>
@@ -83,7 +88,7 @@ export function LearnPage() {
                           completed
                             ? "border-forest-100 bg-forest-600 text-white"
                             : unlocked
-                              ? "border-ink-100 bg-ink-900 text-white elevate-md"
+                              ? "border-ink-100 bg-onyx text-white elevate-md"
                               : "border-ink-100 bg-ink-200 text-ink-400"
                         }`}
                       >
@@ -119,7 +124,7 @@ export function LearnPage() {
             </div>
             <div className="min-w-0 flex-1">
               <p className="font-semibold text-ink-900">Already know the basics?</p>
-              <p className="mt-0.5 text-sm text-ink-500">Test out and skip ahead to Vice President</p>
+              <p className="mt-0.5 text-sm text-ink-500">Test out and skip ahead to {getRank(PLACEMENT_TARGET_RANK_ID).title}</p>
             </div>
           </button>
         )}

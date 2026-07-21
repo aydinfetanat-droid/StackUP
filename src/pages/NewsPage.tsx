@@ -1,6 +1,6 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { LineChart, Briefcase, Cpu, Globe2, Wallet, Bookmark, ArrowUpRight, ArrowDownRight, Minus, Lightbulb } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { generateDailyNews, CATEGORIES } from "../lib/news";
 import type { NewsItem, Category, Tone } from "../lib/news";
 import { Chip } from "../components/ui/Chip";
@@ -34,7 +34,7 @@ function Monogram({ item, size = "lg" }: { item: NewsItem; size?: "lg" | "sm" })
   const mark = item.symbol ? item.symbol.slice(0, 2) : item.category.slice(0, 2).toUpperCase();
   const dims = size === "lg" ? "h-full min-h-[128px]" : "h-14 w-14 shrink-0";
   return (
-    <div className={`relative flex items-center justify-center overflow-hidden rounded-md bg-ink-950 ${dims}`}>
+    <div className={`relative flex items-center justify-center overflow-hidden rounded-md bg-onyx-deep ${dims}`}>
       <span className={`font-display text-white/90 ${size === "lg" ? "text-4xl" : "text-lg"}`}>{mark}</span>
       <Icon size={size === "lg" ? 16 : 12} className="absolute right-2 top-2 text-white/40" />
     </div>
@@ -50,10 +50,33 @@ function BookmarkButton({ id, isBookmarked, onToggle }: { id: string; isBookmark
       }}
       aria-label={isBookmarked ? "Remove bookmark" : "Save story"}
       className={`tap flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors duration-150 ${
-        isBookmarked ? "bg-ink-900 text-white" : "bg-ink-100 text-ink-500 hover:bg-ink-200"
+        isBookmarked ? "bg-onyx text-white" : "bg-ink-100 text-ink-500 hover:bg-ink-200"
       }`}
     >
       <Bookmark size={14} fill={isBookmarked ? "currentColor" : "none"} />
+    </button>
+  );
+}
+
+function MarketImpactLine({ item }: { item: NewsItem }) {
+  const navigate = useNavigate();
+  if (item.changePercent === undefined || !item.symbol) return null;
+  const up = item.changePercent >= 0;
+  return (
+    <button
+      onClick={() => navigate("/market")}
+      className="tap flex w-full items-center gap-2 rounded-md border border-ink-200 bg-ink-50 p-3 text-left transition-colors duration-150 hover:border-ink-300"
+    >
+      {up ? <ArrowUpRight size={15} className="shrink-0 text-forest-600" /> : <ArrowDownRight size={15} className="shrink-0 text-rust-600" />}
+      <span className="min-w-0 flex-1 text-sm text-ink-700">
+        This moved <span className="font-semibold text-ink-900">{item.assetName ?? item.symbol}</span>{" "}
+        <span className={up ? "font-semibold text-forest-600" : "font-semibold text-rust-600"}>
+          {up ? "+" : ""}
+          {item.changePercent.toFixed(1)}%
+        </span>{" "}
+        in StackMarket
+      </span>
+      <span className="shrink-0 text-xs font-semibold text-ink-500">View →</span>
     </button>
   );
 }
@@ -64,6 +87,7 @@ function DetailBody({ item }: { item: NewsItem }) {
       <p className="text-sm leading-relaxed text-ink-600">
         <GlossaryText text={item.body} />
       </p>
+      <MarketImpactLine item={item} />
       <div className="rounded-md border border-ochre-200 bg-ochre-50 p-3.5">
         <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.06em] text-ochre-600">
           <Lightbulb size={13} /> What this could mean for your money
@@ -86,13 +110,22 @@ export function NewsPage() {
   const news = useMemo(() => generateDailyNews(), []);
   const { isBookmarked, toggle } = useBookmarks();
   const { showToast } = useToast();
+  const location = useLocation();
   const [activeCategory, setActiveCategory] = useState<Category | "All">("All");
   const [detailItem, setDetailItem] = useState<NewsItem | null>(null);
+
+  useEffect(() => {
+    const openStoryId = (location.state as { openStoryId?: string } | null)?.openStoryId;
+    if (!openStoryId) return;
+    const match = news.find((i) => i.id === openStoryId);
+    if (match) setDetailItem(match);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.state]);
 
   function handleToggleBookmark(id: string) {
     const willBeBookmarked = !isBookmarked(id);
     toggle(id);
-    showToast(willBeBookmarked ? "Saved to your Signals" : "Removed from saved");
+    showToast(willBeBookmarked ? "Saved to your News" : "Removed from saved");
   }
 
   const today = new Date().toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric" });
@@ -112,11 +145,11 @@ export function NewsPage() {
 
   return (
     <div className="min-h-screen bg-ink-50 pb-8">
-      <header className="bg-ink-950 px-5 pb-5 pt-8 text-white">
+      <header className="bg-onyx-deep px-5 pb-5 pt-8 text-white">
         <div className="flex items-center justify-between">
           <div>
             <p className="label-caps text-white/50">{today}</p>
-            <h1 className="mt-1 font-display text-2xl text-white">Signals</h1>
+            <h1 className="mt-1 font-display text-2xl text-white">News</h1>
           </div>
         </div>
         <p className="mt-1.5 text-sm text-white/60">Clues to help you think about money — never instructions to act on.</p>
@@ -131,7 +164,7 @@ export function NewsPage() {
         </div>
       </header>
 
-      <div className="border-b border-ink-200 bg-white px-5 py-2.5 text-center text-xs text-ink-500">
+      <div className="border-b border-ink-200 bg-surface px-5 py-2.5 text-center text-xs text-ink-500">
         Educational only. Not financial advice — every story here is a prompt to think, not a directive to act.
       </div>
 
@@ -194,7 +227,7 @@ export function NewsPage() {
               </button>
 
               {restItems.length > 0 && (
-                <div className="mt-2 divide-y divide-ink-100 rounded-lg border border-ink-200 bg-white">
+                <div className="mt-2 divide-y divide-ink-100 rounded-lg border border-ink-200 bg-surface">
                   {restItems.map((item) => (
                     <button key={item.id} onClick={() => setDetailItem(item)} className="flex w-full items-center gap-3 px-3.5 py-3 text-left transition-colors duration-150 hover:bg-ink-50">
                       {item.symbol && <span className="label-caps w-10 shrink-0">{item.symbol}</span>}

@@ -1,40 +1,37 @@
-import { Award, Flame, Lock, Sparkles } from "lucide-react";
-import { useAuth } from "../context/AuthContext";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Award, Flame, Lock, Sparkles, Settings, Zap, TrendingUp, TrendingDown } from "lucide-react";
+import { supabase } from "../lib/supabase";
 import { RANKS } from "../data/ranks";
 import { units } from "../data/units";
 import { getRankProgress } from "../lib/ranks";
+import { priceOnDate } from "../lib/market";
 import { toLaDateString } from "../lib/streak";
+import { xpLevel, xpProgressInLevel } from "../lib/levels";
 import { useProgress } from "../hooks/useProgress";
 import { ProgressRing } from "../components/ui/ProgressRing";
 import { Skeleton } from "../components/ui/Skeleton";
 
-const CALENDAR_DAYS = 28;
-
-function StreakCalendar({ completedAt }: { completedAt: string[] }) {
-  const completedDays = new Set(completedAt.map((ts) => toLaDateString(new Date(ts))));
-  const today = new Date();
-  const days = Array.from({ length: CALENDAR_DAYS }, (_, i) => {
-    const d = new Date(today);
-    d.setDate(d.getDate() - (CALENDAR_DAYS - 1 - i));
-    return { date: d, laDate: toLaDateString(d) };
-  });
-
-  return (
-    <div className="grid grid-cols-7 gap-1.5">
-      {days.map(({ laDate }) => (
-        <div
-          key={laDate}
-          title={laDate}
-          className={`aspect-square rounded-sm ${completedDays.has(laDate) ? "bg-forest-600" : "bg-ink-100"}`}
-        />
-      ))}
-    </div>
-  );
+interface Holding {
+  ticker: string;
+  shares: number;
+  avg_cost_stacks: number;
 }
 
 export function ProfilePage() {
-  const { signOut } = useAuth();
-  const { loading, profile, streak, currentRank, completedLessonIds, completedAt, passedExamRankIds } = useProgress();
+  const navigate = useNavigate();
+  const { user, profile, streak, currentRank, completedLessonIds, passedExamRankIds, loading } = useProgress();
+  const [holdings, setHoldings] = useState<Holding[] | null>(null);
+
+  useEffect(() => {
+    if (!user) return;
+    supabase
+      .from("holdings")
+      .select("ticker, shares, avg_cost_stacks")
+      .eq("user_id", user.id)
+      .gt("shares", 0)
+      .then(({ data }) => setHoldings((data ?? []) as Holding[]));
+  }, [user]);
 
   const badges = [
     { id: "streak3", label: "3-day streak", earned: streak.current >= 3 },
@@ -44,30 +41,61 @@ export function ProfilePage() {
     { id: "intern", label: "Intern certified", earned: passedExamRankIds.has(1) },
   ].filter((b) => b.earned);
 
+  const xp = profile?.xp ?? 0;
+  const level = xpLevel(xp);
+  const levelProgress = xpProgressInLevel(xp);
+
+  const today = toLaDateString(new Date());
+  const lifetimeReturn = (() => {
+    if (!holdings || holdings.length === 0) return null;
+    const costBasis = holdings.reduce((sum, h) => sum + h.shares * h.avg_cost_stacks, 0);
+    if (costBasis <= 0) return null;
+    const currentValue = holdings.reduce((sum, h) => sum + h.shares * priceOnDate(h.ticker, today), 0);
+    return ((currentValue - costBasis) / costBasis) * 100;
+  })();
+
   return (
     <div className="min-h-screen bg-ink-50">
-      <header className="bg-ink-950 px-6 pb-7 pt-8 text-white">
+      <header className="bg-onyx-deep px-6 pb-7 pt-8 text-white">
         <div className="flex items-center gap-4">
           <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-white/15 font-display text-xl text-white">
             {profile?.display_name?.[0]?.toUpperCase() ?? "?"}
           </div>
-          <div className="min-w-0">
+          <div className="min-w-0 flex-1">
             <h1 className="truncate font-display text-xl text-white">{profile?.display_name ?? "…"}</h1>
             <p className="truncate text-sm text-white/50">{profile?.school ?? ""}</p>
           </div>
+          <button onClick={() => navigate("/settings")} aria-label="Settings" className="tap flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/15 text-white/70 hover:bg-white/10">
+            <Settings size={16} />
+          </button>
         </div>
 
-        <div className="mt-6 flex gap-3">
-          <div className="flex-1 rounded-md border border-white/15 px-4 py-3">
-            <p className="font-display text-lg text-white">{currentRank.title}</p>
-            <p className="mt-0.5 text-xs text-white/50">current rank</p>
+        <div className="mt-6 grid grid-cols-3 gap-3">
+          <div className="rounded-md border border-white/15 px-3 py-3">
+            <p className="font-display text-base text-white">{currentRank.title}</p>
+            <p className="mt-0.5 text-xs text-white/50">rank</p>
           </div>
-          <div className="flex-1 rounded-md border border-white/15 px-4 py-3">
-            <p className="flex items-center gap-1.5 font-display text-lg tabular-nums text-white">
-              <Flame size={16} className="text-ochre-400" /> {streak.current}
+          <div className="rounded-md border border-white/15 px-3 py-3">
+            <p className="flex items-center gap-1 font-display text-base tabular-nums text-white">
+              <Flame size={14} className="text-ochre-400" /> {streak.current}
             </p>
-            <p className="mt-0.5 text-xs text-white/50">day streak</p>
+            <p className="mt-0.5 text-xs text-white/50">streak</p>
           </div>
+          <div className="rounded-md border border-white/15 px-3 py-3">
+            <p className="flex items-center gap-1 font-display text-base tabular-nums text-white">
+              <Zap size={14} className="fill-forest-400 text-forest-400" /> {level}
+            </p>
+            <p className="mt-0.5 text-xs text-white/50">level</p>
+          </div>
+        </div>
+
+        <div className="mt-3">
+          <div className="h-1 w-full overflow-hidden rounded-full bg-white/15">
+            <div className="h-full rounded-full bg-forest-400 transition-all duration-500" style={{ width: `${levelProgress.percent}%` }} />
+          </div>
+          <p className="mt-1.5 text-xs text-white/50">
+            {levelProgress.current}/{levelProgress.target} XP to level {level + 1}
+          </p>
         </div>
       </header>
 
@@ -89,9 +117,17 @@ export function ProfilePage() {
             </section>
 
             <section className="mb-8">
-              <p className="label-caps">Last 4 weeks</p>
-              <div className="card mt-3 p-4">
-                <StreakCalendar completedAt={completedAt} />
+              <p className="label-caps">StackMarket</p>
+              <div className="card mt-3 flex items-center gap-4 p-4">
+                <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-md ${lifetimeReturn !== null && lifetimeReturn >= 0 ? "bg-forest-50 text-forest-600" : lifetimeReturn !== null ? "bg-rust-50 text-rust-600" : "bg-ink-100 text-ink-400"}`}>
+                  {lifetimeReturn !== null && lifetimeReturn < 0 ? <TrendingDown size={18} /> : <TrendingUp size={18} />}
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="font-semibold text-ink-900">
+                    {lifetimeReturn === null ? "No trades yet" : `${lifetimeReturn >= 0 ? "+" : ""}${lifetimeReturn.toFixed(1)}% lifetime return`}
+                  </p>
+                  <p className="text-sm text-ink-500">Simulated — virtual currency only</p>
+                </div>
               </div>
             </section>
 
@@ -100,7 +136,7 @@ export function ProfilePage() {
                 <p className="label-caps">Badges</p>
                 <div className="no-scrollbar mt-3 flex gap-2 overflow-x-auto">
                   {badges.map((b) => (
-                    <span key={b.id} className="chip shrink-0 border-ink-900 bg-ink-900 text-white">
+                    <span key={b.id} className="chip shrink-0 border-ink-900 bg-onyx text-white">
                       <Award size={12} />
                       {b.label}
                     </span>
@@ -138,7 +174,7 @@ export function ProfilePage() {
 
                   return (
                     <div key={rank.id} className={`card flex items-center gap-4 p-4 ${!earned && "opacity-60"}`}>
-                      <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-md ${earned ? "bg-ink-900 text-white" : "bg-ink-100 text-ink-400"}`}>
+                      <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-md ${earned ? "bg-onyx text-white" : "bg-ink-100 text-ink-400"}`}>
                         {earned ? <Award size={17} /> : <Lock size={15} />}
                       </div>
                       <div className="min-w-0 flex-1">
@@ -153,14 +189,9 @@ export function ProfilePage() {
           </>
         )}
 
-        <section className="mb-8">
-          <p className="label-caps">Settings</p>
-          <div className="mt-4 flex flex-col gap-2.5">
-            <button onClick={() => signOut()} className="card p-4 text-left font-semibold text-ink-700 transition-colors duration-150 hover:border-ink-400">
-              Log out
-            </button>
-          </div>
-        </section>
+        <button onClick={() => navigate("/settings")} className="btn btn-outline w-full">
+          Settings
+        </button>
       </main>
     </div>
   );

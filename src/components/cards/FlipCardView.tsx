@@ -26,13 +26,13 @@ export function FlipCardView({ card, onContinue }: Props) {
             className="relative min-h-[220px] w-full"
           >
             <div
-              className="absolute inset-0 flex items-center justify-center rounded-md border border-ink-200 bg-white p-6"
+              className="absolute inset-0 flex items-center justify-center rounded-md border border-ink-200 bg-surface p-6"
               style={{ backfaceVisibility: "hidden" }}
             >
               <p className="text-center font-display text-xl leading-snug text-ink-900">{card.frontText}</p>
             </div>
             <div
-              className="absolute inset-0 flex items-center justify-center rounded-md border border-ink-800 bg-ink-900 p-6"
+              className="absolute inset-0 flex items-center justify-center rounded-md border border-ink-800 bg-onyx p-6"
               style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
             >
               <p className="text-center text-lg font-medium leading-snug text-white">{card.backText}</p>

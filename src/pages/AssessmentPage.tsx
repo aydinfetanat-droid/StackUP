@@ -54,7 +54,7 @@ export function AssessmentPage() {
 
   if (finished) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-ink-950 px-6 text-center text-white">
+      <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-onyx-deep px-6 text-center text-white">
         <div className="flex h-16 w-16 items-center justify-center rounded-full border border-white/15">
           <CheckCircle2 size={26} className="text-forest-400" />
         </div>
@@ -77,12 +77,12 @@ export function AssessmentPage() {
   const q = questions[index];
 
   return (
-    <div className="flex min-h-screen flex-col bg-white px-6 pb-10 pt-6">
+    <div className="flex min-h-screen flex-col bg-surface px-6 pb-10 pt-6">
       <div>
         <p className="label-caps">{validPhase === "pre" ? "Quick baseline check" : "Progress check"}</p>
         <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-ink-100">
           <div
-            className="h-full rounded-full bg-ink-900 transition-all"
+            className="h-full rounded-full bg-onyx transition-all"
             style={{ width: `${(index / questions.length) * 100}%` }}
           />
         </div>
@@ -99,7 +99,7 @@ export function AssessmentPage() {
             key={i}
             onClick={() => selectAnswer(i)}
             className={`rounded-md border px-4 py-3.5 text-left text-base font-medium text-ink-900 transition-colors duration-150 ${
-              answers[index] === i ? "border-ink-900 bg-ink-100" : "border-ink-300 bg-white hover:border-ink-400"
+              answers[index] === i ? "border-ink-900 bg-ink-100" : "border-ink-300 bg-surface hover:border-ink-400"
             }`}
           >
             {option}

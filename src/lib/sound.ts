@@ -1,11 +1,12 @@
 // Lightweight synthesized sound effects via the Web Audio API — no audio
 // asset files needed. Safe to call from a click handler (satisfies browser
 // autoplay policies since it's triggered by a user gesture).
+import { isSoundEnabled } from "./preferences";
 
 let ctx: AudioContext | null = null;
 
 function getContext(): AudioContext | null {
-  if (typeof window === "undefined") return null;
+  if (typeof window === "undefined" || !isSoundEnabled()) return null;
   const AudioCtx = window.AudioContext ?? (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
   if (!AudioCtx) return null;
   if (!ctx) ctx = new AudioCtx();

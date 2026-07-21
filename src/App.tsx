@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
+import { ThemeProvider } from "./context/ThemeContext";
 import { ToastProvider } from "./components/ui/Toast";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { TabShell } from "./components/TabShell";
@@ -15,98 +16,111 @@ import { AssessmentPage } from "./pages/AssessmentPage";
 import { SimulatorPage } from "./pages/SimulatorPage";
 import { NewsPage } from "./pages/NewsPage";
 import { ProfilePage } from "./pages/ProfilePage";
+import { SettingsPage } from "./pages/SettingsPage";
 import { AdminPage } from "./pages/AdminPage";
 import { CompoundInterestTool } from "./pages/tools/CompoundInterestTool";
 import { BudgetSplitTool } from "./pages/tools/BudgetSplitTool";
 import { EngagedTimeTracker } from "./components/EngagedTimeTracker";
+import { HelpChatbot } from "./components/HelpChatbot";
 
 export default function App() {
   return (
     <BrowserRouter>
-      <AuthProvider>
-        <ToastProvider>
-          <EngagedTimeTracker />
-          <Routes>
-            <Route path="/signup" element={<SignUpPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/admin" element={<AdminPage />} />
+      <ThemeProvider>
+        <AuthProvider>
+          <ToastProvider>
+            <EngagedTimeTracker />
+            <Routes>
+              <Route path="/signup" element={<SignUpPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/admin" element={<AdminPage />} />
 
-            <Route
-              element={
-                <ProtectedRoute>
-                  <TabShell />
-                </ProtectedRoute>
-              }
-            >
-              <Route path="/" element={<HomePage />} />
-              <Route path="/learn" element={<LearnPage />} />
-              <Route path="/market" element={<SimulatorPage />} />
-              <Route path="/signals" element={<NewsPage />} />
-              <Route path="/profile" element={<ProfilePage />} />
-            </Route>
+              <Route
+                element={
+                  <ProtectedRoute>
+                    <TabShell />
+                  </ProtectedRoute>
+                }
+              >
+                <Route path="/" element={<HomePage />} />
+                <Route path="/learn" element={<LearnPage />} />
+                <Route path="/market" element={<SimulatorPage />} />
+                <Route path="/news" element={<NewsPage />} />
+                <Route path="/profile" element={<ProfilePage />} />
+              </Route>
 
-            <Route path="/news" element={<Navigate to="/signals" replace />} />
+              <Route path="/signals" element={<Navigate to="/news" replace />} />
 
-            <Route
-              path="/lesson/:lessonId"
-              element={
-                <ProtectedRoute>
-                  <LessonPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/review"
-              element={
-                <ProtectedRoute>
-                  <ReviewPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/promotion-exam"
-              element={
-                <ProtectedRoute>
-                  <PromotionExamPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/placement-test"
-              element={
-                <ProtectedRoute>
-                  <PlacementTestPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/assessment/:phase"
-              element={
-                <ProtectedRoute>
-                  <AssessmentPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/tools/compound-interest"
-              element={
-                <ProtectedRoute>
-                  <CompoundInterestTool />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/tools/budget-split"
-              element={
-                <ProtectedRoute>
-                  <BudgetSplitTool />
-                </ProtectedRoute>
-              }
-            />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </ToastProvider>
-      </AuthProvider>
+              <Route
+                path="/settings"
+                element={
+                  <ProtectedRoute>
+                    <SettingsPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/lesson/:lessonId"
+                element={
+                  <ProtectedRoute>
+                    <LessonPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/review"
+                element={
+                  <ProtectedRoute>
+                    <ReviewPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/promotion-exam"
+                element={
+                  <ProtectedRoute>
+                    <PromotionExamPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/placement-test"
+                element={
+                  <ProtectedRoute>
+                    <PlacementTestPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/assessment/:phase"
+                element={
+                  <ProtectedRoute>
+                    <AssessmentPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/tools/compound-interest"
+                element={
+                  <ProtectedRoute>
+                    <CompoundInterestTool />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/tools/budget-split"
+                element={
+                  <ProtectedRoute>
+                    <BudgetSplitTool />
+                  </ProtectedRoute>
+                }
+              />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+            <HelpChatbot />
+          </ToastProvider>
+        </AuthProvider>
+      </ThemeProvider>
     </BrowserRouter>
   );
 }

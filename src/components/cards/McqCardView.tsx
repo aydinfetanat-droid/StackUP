@@ -22,7 +22,7 @@ export function McqCardView({ card, onComplete, showMascot }: Props) {
 
       <div className="mt-6 flex flex-col gap-2.5">
         {card.options.map((option, i) => {
-          let style = "border-ink-200 bg-white";
+          let style = "border-ink-200 bg-surface";
           let badgeStyle = "bg-ink-100 text-ink-500";
           if (answered) {
             if (i === card.correctIndex) {
@@ -32,7 +32,7 @@ export function McqCardView({ card, onComplete, showMascot }: Props) {
               style = "border-rust-500 bg-rust-50";
               badgeStyle = "bg-rust-600 text-white";
             } else {
-              style = "border-ink-200 bg-white opacity-50";
+              style = "border-ink-200 bg-surface opacity-50";
             }
           }
           return (

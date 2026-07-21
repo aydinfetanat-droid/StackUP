@@ -34,7 +34,7 @@ export function FillNumberCardView({ card, onComplete, showMascot }: Props) {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="0"
-          className="w-32 rounded-md border border-ink-300 bg-white px-4 py-3 text-center font-display text-3xl tabular-nums text-ink-900 outline-none focus:border-ink-900"
+          className="w-32 rounded-md border border-ink-300 bg-surface px-4 py-3 text-center font-display text-3xl tabular-nums text-ink-900 outline-none focus:border-ink-900"
         />
       </div>
 

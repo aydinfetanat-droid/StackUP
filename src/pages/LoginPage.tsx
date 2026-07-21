@@ -37,7 +37,7 @@ export function LoginPage() {
             <label className="mb-1.5 block text-sm font-medium text-ink-700">Email</label>
             <input
               type="email"
-              className="w-full rounded-md border border-ink-300 bg-white px-4 py-3 text-base outline-none focus:border-ink-900"
+              className="w-full rounded-md border border-ink-300 bg-surface px-4 py-3 text-base outline-none focus:border-ink-900"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@example.com"
@@ -50,7 +50,7 @@ export function LoginPage() {
             <label className="mb-1.5 block text-sm font-medium text-ink-700">Password</label>
             <input
               type="password"
-              className="w-full rounded-md border border-ink-300 bg-white px-4 py-3 text-base outline-none focus:border-ink-900"
+              className="w-full rounded-md border border-ink-300 bg-surface px-4 py-3 text-base outline-none focus:border-ink-900"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Your password"

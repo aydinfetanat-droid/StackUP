@@ -38,7 +38,7 @@ export function SortCardView({ card, onComplete, showMascot }: Props) {
   const allCorrect = checked && correctCount === card.items.length;
 
   function itemStyle(itemId: string, bucket: 0 | 1) {
-    if (!checked) return "border-ink-300 bg-white";
+    if (!checked) return "border-ink-300 bg-surface";
     const item = card.items.find((i) => i.id === itemId)!;
     return item.bucket === bucket ? "border-forest-500 bg-forest-50" : "border-rust-500 bg-rust-50";
   }
@@ -54,7 +54,7 @@ export function SortCardView({ card, onComplete, showMascot }: Props) {
               key={item.id}
               onClick={() => selectItem(item.id)}
               className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors duration-150 ${
-                selectedId === item.id ? "border-ink-900 bg-ink-900 text-white" : "border-ink-300 bg-white text-ink-900 hover:border-ink-400"
+                selectedId === item.id ? "border-ink-900 bg-onyx text-white" : "border-ink-300 bg-surface text-ink-900 hover:border-ink-400"
               }`}
             >
               {item.label}

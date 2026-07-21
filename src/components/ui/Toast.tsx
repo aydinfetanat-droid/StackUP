@@ -28,7 +28,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
       {children}
       {toast && (
         <div className="pointer-events-none fixed inset-x-0 bottom-20 z-[200] flex justify-center px-5">
-          <div key={toast.id} className="toast-in elevate-lg pointer-events-auto flex items-center gap-2 rounded-full bg-ink-950 px-4 py-2.5 text-sm font-medium text-white">
+          <div key={toast.id} className="toast-in elevate-lg pointer-events-auto flex items-center gap-2 rounded-full bg-onyx-deep px-4 py-2.5 text-sm font-medium text-white">
             <CheckCircle2 size={15} className="text-forest-400" />
             {toast.message}
           </div>

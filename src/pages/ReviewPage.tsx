@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { BrainCircuit } from "lucide-react";
+import { BrainCircuit, X } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { supabase } from "../lib/supabase";
 import { getLesson } from "../data/lessons";
@@ -60,7 +60,7 @@ export function ReviewPage() {
 
   if (items.length === 0 || done) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-ink-950 px-6 text-center text-white">
+      <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-onyx-deep px-6 text-center text-white">
         <div className="flex h-16 w-16 items-center justify-center rounded-full border border-white/15">
           <BrainCircuit size={26} className="text-forest-400" />
         </div>
@@ -81,11 +81,14 @@ export function ReviewPage() {
   const progress = (index / items.length) * 100;
 
   return (
-    <div className="flex min-h-screen flex-col bg-white">
+    <div className="flex min-h-screen flex-col bg-surface">
       <div className="flex items-center gap-3 px-5 pt-6">
+        <button onClick={() => navigate("/")} className="text-ink-500" aria-label="Exit review">
+          <X size={20} />
+        </button>
         <span className="label-caps">Quick review</span>
         <div className="h-1 flex-1 overflow-hidden rounded-full bg-ink-100">
-          <div className="h-full rounded-full bg-ink-900 transition-all duration-300" style={{ width: `${progress}%` }} />
+          <div className="h-full rounded-full bg-onyx transition-all duration-300" style={{ width: `${progress}%` }} />
         </div>
       </div>
 

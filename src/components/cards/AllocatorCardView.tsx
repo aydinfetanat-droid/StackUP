@@ -8,7 +8,7 @@ interface Props {
   showMascot?: boolean;
 }
 
-const COLORS = ["bg-ink-900", "bg-forest-600", "bg-ink-500", "bg-forest-300", "bg-ink-300"];
+const COLORS = ["bg-onyx", "bg-forest-600", "bg-ink-500", "bg-forest-300", "bg-ink-300"];
 
 export function AllocatorCardView({ card, onComplete, showMascot }: Props) {
   const [values, setValues] = useState<Record<string, number>>(

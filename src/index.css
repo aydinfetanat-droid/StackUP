@@ -1,7 +1,14 @@
 @import "tailwindcss";
 
+/* Class-based dark mode: toggled by ThemeProvider adding/removing `.dark`
+   on <html>. Lets us use `dark:` utilities where needed, though most of the
+   app adapts automatically via the CSS-variable flip below. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
-  /* Neutral ramp — does most of the work. Primary chrome, text, borders. */
+  /* Neutral ramp — does most of the work. Primary chrome, text, borders.
+     Flips in dark mode (see .dark block) — write text-ink-900,
+     bg-ink-50, border-ink-200 etc. and it adapts automatically. */
   --color-ink-50: #f7f8fa;
   --color-ink-100: #eef1f4;
   --color-ink-200: #e2e6eb;
@@ -14,18 +21,30 @@
   --color-ink-900: #0f172a;
   --color-ink-950: #05070d;
 
-  /* Forest — the single primary accent. Buttons, links, active states,
-     positive/gain values. Deliberately desaturated: a financial green,
-     not a candy one. */
-  --color-forest-50: #eef3f0;
-  --color-forest-100: #d7e4dc;
-  --color-forest-200: #b0c9bb;
-  --color-forest-300: #85ab95;
-  --color-forest-400: #4f8168;
-  --color-forest-500: #2f6b52;
-  --color-forest-600: #245943;
-  --color-forest-700: #1b4433;
-  --color-forest-800: #143327;
+  /* Fixed-dark chrome — primary buttons, hero headers, filled badges,
+     active nav/chip states. Intentionally does NOT flip in dark mode: these
+     are "always dark accent surface" by design, not theme-relative text. */
+  --color-onyx: #0f172a;
+  --color-onyx-deep: #05070d;
+
+  /* Raised surface (cards, modals, inputs) vs. the page background
+     (ink-50). White in light mode, dark charcoal in dark mode. */
+  --color-surface: #ffffff;
+  /* Fixed-light — for controls that must stay light regardless of theme
+     because they sit on a permanently-dark surface (onyx/onyx-deep). */
+  --color-paper: #ffffff;
+
+  /* Growth — the signature accent. Buttons, links, progress, streaks,
+     success states. A fresh, confident green with real pop — not neon. */
+  --color-forest-50: #e9f7ee;
+  --color-forest-100: #cbedd8;
+  --color-forest-200: #9fddb9;
+  --color-forest-300: #6bc796;
+  --color-forest-400: #3fad74;
+  --color-forest-500: #22935c;
+  --color-forest-600: #17784a;
+  --color-forest-700: #10603c;
+  --color-forest-800: #0b4a2e;
 
   /* Rust — the only other semantic color. Losses, errors, incorrect
      answers. A muted brick, not a bright red. */
@@ -54,10 +73,61 @@
   --shadow-lg: 0 12px 32px rgba(15, 23, 42, 0.14);
 }
 
+/* Dark mode: invert the neutral ramp and re-tint the accent washes so every
+   component built on these tokens adapts without per-component overrides. */
+.dark {
+  --color-ink-50: #0b0f14;
+  --color-ink-100: #131920;
+  --color-ink-200: #1e2530;
+  --color-ink-300: #2b3440;
+  --color-ink-400: #5b6472;
+  --color-ink-500: #8890a0;
+  --color-ink-600: #a6adbb;
+  --color-ink-700: #c2c8d1;
+  --color-ink-800: #dde1e6;
+  --color-ink-900: #f5f7f9;
+  --color-ink-950: #fbfcfd;
+
+  --color-surface: #12171f;
+
+  --color-forest-50: #10261a;
+  --color-forest-100: #143820;
+  --color-forest-200: #1c5230;
+  --color-forest-300: #266d3e;
+  --color-forest-400: #3c9a5f;
+  --color-forest-500: #4bb872;
+  --color-forest-600: #5ecb85;
+  --color-forest-700: #7fdba0;
+  --color-forest-800: #a6ecc0;
+
+  --color-rust-50: #2a1512;
+  --color-rust-100: #3d1e18;
+  --color-rust-300: #8a4638;
+  --color-rust-500: #d97a63;
+  --color-rust-600: #e69683;
+  --color-rust-700: #f0b3a5;
+
+  --color-ochre-50: #241d0e;
+  --color-ochre-100: #372c15;
+  --color-ochre-400: #d3a545;
+  --color-ochre-600: #e8c26f;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.55);
+}
+
 html,
 body,
 #root {
   height: 100%;
+}
+
+html {
+  color-scheme: light;
+}
+html.dark {
+  color-scheme: dark;
 }
 
 body {
@@ -69,6 +139,7 @@ body {
   -webkit-tap-highlight-color: transparent;
   overscroll-behavior-y: none;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 200ms ease, color 200ms ease;
 }
 
 .no-scrollbar::-webkit-scrollbar {
@@ -111,10 +182,10 @@ h6,
   }
 
   .btn-primary {
-    @apply bg-ink-900 text-white;
+    @apply bg-onyx text-white;
   }
   .btn-primary:hover {
-    @apply bg-ink-950;
+    @apply bg-onyx-deep;
   }
 
   .btn-accent {
@@ -125,7 +196,7 @@ h6,
   }
 
   .btn-outline {
-    @apply border border-ink-300 bg-white text-ink-900;
+    @apply border border-ink-300 bg-surface text-ink-900;
   }
   .btn-outline:hover {
     @apply border-ink-400 bg-ink-50;
@@ -139,7 +210,8 @@ h6,
   }
 
   .btn-invert {
-    @apply bg-white text-ink-900;
+    background-color: var(--color-paper);
+    color: var(--color-onyx);
   }
   .btn-invert:hover {
     @apply bg-ink-100;
@@ -153,7 +225,7 @@ h6,
   }
 
   .card {
-    @apply rounded-lg border border-ink-200 bg-white;
+    @apply rounded-lg border border-ink-200 bg-surface;
   }
 
   .label-caps {
@@ -181,13 +253,13 @@ h6,
   }
 
   .chip {
-    @apply inline-flex select-none items-center gap-1.5 rounded-full border border-ink-200 bg-white px-3 py-1.5 text-xs font-medium text-ink-600 transition-colors duration-150;
+    @apply inline-flex select-none items-center gap-1.5 rounded-full border border-ink-200 bg-surface px-3 py-1.5 text-xs font-medium text-ink-600 transition-colors duration-150;
   }
   .chip:hover {
     @apply border-ink-300;
   }
   .chip-active {
-    @apply border-ink-900 bg-ink-900 text-white;
+    @apply border-ink-900 bg-onyx text-white;
   }
 
   .badge {
@@ -210,12 +282,6 @@ h6,
   border-radius: 6px;
 }
 
-@keyframes ring-fill {
-  from {
-    stroke-dashoffset: var(--ring-circumference);
-  }
-}
-
 @keyframes toast-in {
   from {
     opacity: 0;
@@ -228,4 +294,20 @@ h6,
 }
 .toast-in {
   animation: toast-in 0.2s ease-out;
+}
+
+@keyframes heart-lose {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.3);
+  }
+  70% {
+    transform: scale(0.85);
+  }
+}
+.heart-lose {
+  animation: heart-lose 0.3s ease-out;
 }

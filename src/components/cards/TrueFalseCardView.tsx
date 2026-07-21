@@ -16,10 +16,10 @@ export function TrueFalseCardView({ card, onComplete, showMascot }: Props) {
   const correct = selected === card.correctAnswer;
 
   function styleFor(value: boolean) {
-    if (!answered) return "border-ink-200 bg-white hover:border-ink-400";
+    if (!answered) return "border-ink-200 bg-surface hover:border-ink-400";
     if (value === card.correctAnswer) return "border-forest-500 bg-forest-50";
     if (value === selected) return "border-rust-500 bg-rust-50";
-    return "border-ink-200 bg-white opacity-50";
+    return "border-ink-200 bg-surface opacity-50";
   }
 
   return (

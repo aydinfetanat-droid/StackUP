@@ -15,6 +15,10 @@ export interface NewsItem {
   verdict?: string;
   tone?: Tone;
   symbol?: string;
+  assetName?: string;
+  /** Signed same-day price move for `symbol`, when this story is tied to a
+   *  specific StackMarket asset. Powers the news→market "moved X%" line. */
+  changePercent?: number;
   category: Category;
   relatedLessonId?: string;
   kind: "market" | "tip";
@@ -238,6 +242,8 @@ export function generateDailyNews(): NewsItem[] {
       verdict: bucket.verdict,
       tone: bucket.tone,
       symbol: inst.symbol,
+      assetName: inst.name,
+      changePercent: change,
       category: TICKER_CATEGORY[inst.symbol] ?? "Markets",
       relatedLessonId: bucket.relatedLessonId,
       kind: "market",

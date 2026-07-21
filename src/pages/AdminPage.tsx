@@ -289,7 +289,7 @@ export function AdminPage() {
 
   if (!unlocked) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-ink-950 px-6 text-center">
+      <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-onyx-deep px-6 text-center">
         <Lock size={24} className="text-white/50" />
         <p className="text-white/70">Admin</p>
         <input

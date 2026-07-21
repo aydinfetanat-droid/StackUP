@@ -28,7 +28,7 @@ export function Modal({ open, onClose, title, children }: Props) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.15 }}
-            className="absolute inset-0 bg-ink-950/50"
+            className="absolute inset-0 bg-onyx-deep/50"
             onClick={onClose}
           />
           <motion.div
@@ -36,7 +36,7 @@ export function Modal({ open, onClose, title, children }: Props) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 16 }}
             transition={{ duration: 0.18, ease: "easeOut" }}
-            className="elevate-lg relative z-10 max-h-[85vh] w-full max-w-sm overflow-y-auto rounded-t-xl bg-white p-5 sm:rounded-xl"
+            className="elevate-lg relative z-10 max-h-[85vh] w-full max-w-sm overflow-y-auto rounded-t-xl bg-surface p-5 sm:rounded-xl"
           >
             <div className="flex items-start justify-between gap-4">
               {title && <h3 className="font-display text-lg text-ink-900">{title}</h3>}

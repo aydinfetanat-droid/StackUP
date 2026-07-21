@@ -1,11 +1,13 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Award, Lock, Clock, Compass, BookOpen } from "lucide-react";
+import { Award, Lock, Clock, Compass, BookOpen, ChevronLeft } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { supabase } from "../lib/supabase";
 import { drawPlacementQuestions } from "../data/exams";
+import { getRank } from "../data/ranks";
 import type { PlacementQuestion } from "../types/placement";
 
+const PLACEMENT_TARGET_RANK_ID = 3;
 const QUESTION_COUNT = 30;
 const PASS_THRESHOLD = 0.9;
 const MAX_ATTEMPTS = 3;
@@ -20,6 +22,7 @@ type Answer = { choiceIndex: number | null; numericValue: string };
 export function PlacementTestPage() {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const targetRank = getRank(PLACEMENT_TARGET_RANK_ID);
 
   const [stage, setStage] = useState<Stage>("loading");
   const [attemptCount, setAttemptCount] = useState(0);
@@ -154,7 +157,7 @@ export function PlacementTestPage() {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-ink-50 px-6 text-center">
         <Award size={32} className="text-ink-400" />
-        <p className="font-display text-lg text-ink-900">You've already placed into Vice President</p>
+        <p className="font-display text-lg text-ink-900">You've already placed into {targetRank.title}</p>
         <button onClick={() => navigate("/")} className="mt-2 font-semibold text-ink-700 underline underline-offset-2">
           Back home
         </button>
@@ -195,9 +198,12 @@ export function PlacementTestPage() {
 
   if (stage === "intro") {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-ink-50 px-6 text-center">
+      <div className="relative flex min-h-screen flex-col items-center justify-center gap-4 bg-ink-50 px-6 text-center">
+        <button onClick={() => navigate(-1)} aria-label="Back" className="tap absolute left-5 top-6 flex h-9 w-9 items-center justify-center rounded-full text-ink-600 hover:bg-ink-100">
+          <ChevronLeft size={20} />
+        </button>
         <Compass size={32} className="text-ink-400" />
-        <p className="font-display text-lg text-ink-900">Skip to Vice President</p>
+        <p className="font-display text-lg text-ink-900">Skip to {targetRank.title}</p>
         <p className="max-w-sm text-sm text-ink-500">
           {QUESTION_COUNT} hard questions, most with their own timer (60-75 seconds each), no going back once you
           answer. You need {Math.round(PASS_THRESHOLD * 100)}% ({Math.round(PASS_THRESHOLD * QUESTION_COUNT)}/{QUESTION_COUNT})
@@ -217,11 +223,11 @@ export function PlacementTestPage() {
 
   if (stage === "finished" && result) {
     return (
-      <div className={`flex min-h-screen flex-col items-center justify-center px-6 text-center text-white ${result.passed ? "bg-ink-950" : "bg-ink-800"}`}>
+      <div className={`flex min-h-screen flex-col items-center justify-center px-6 text-center text-white ${result.passed ? "bg-onyx-deep" : "bg-ink-800"}`}>
         <div className="flex h-16 w-16 items-center justify-center rounded-full border border-white/15">
           {result.passed ? <Award size={26} className="text-ochre-400" /> : <BookOpen size={26} className="text-white/60" />}
         </div>
-        <h1 className="mt-6 font-display text-2xl text-white">{result.passed ? "You placed into Vice President!" : "Not this time"}</h1>
+        <h1 className="mt-6 font-display text-2xl text-white">{result.passed ? `You placed into ${targetRank.title}!` : "Not this time"}</h1>
         <p className="mt-1 text-white/60">Score: {result.score}%</p>
 
         {!result.passed && (
@@ -252,7 +258,7 @@ export function PlacementTestPage() {
   const answer = answers[index];
 
   return (
-    <div className="flex min-h-screen select-none flex-col bg-white px-6 pb-10 pt-6">
+    <div className="flex min-h-screen select-none flex-col bg-surface px-6 pb-10 pt-6">
       <div className="flex items-center justify-between text-sm font-medium text-ink-500">
         <span>
           Question {index + 1} of {questions.length}
@@ -260,7 +266,7 @@ export function PlacementTestPage() {
         <span className={`tabular-nums ${secondsLeft <= 10 ? "text-rust-600" : ""}`}>{timeLabel}</span>
       </div>
       <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-ink-100">
-        <div className="h-full rounded-full bg-ink-900 transition-all" style={{ width: `${(index / questions.length) * 100}%` }} />
+        <div className="h-full rounded-full bg-onyx transition-all" style={{ width: `${(index / questions.length) * 100}%` }} />
       </div>
 
       <p className="mt-8 font-display text-xl leading-snug text-ink-900">{q.prompt}</p>
@@ -272,7 +278,7 @@ export function PlacementTestPage() {
               key={i}
               onClick={() => updateAnswer({ choiceIndex: i })}
               className={`rounded-md border px-4 py-3.5 text-left text-base font-medium text-ink-900 transition-colors duration-150 ${
-                answer.choiceIndex === i ? "border-ink-900 bg-ink-100" : "border-ink-300 bg-white hover:border-ink-400"
+                answer.choiceIndex === i ? "border-ink-900 bg-ink-100" : "border-ink-300 bg-surface hover:border-ink-400"
               }`}
             >
               {option}
@@ -288,7 +294,7 @@ export function PlacementTestPage() {
             value={answer.numericValue}
             onChange={(e) => updateAnswer({ numericValue: e.target.value })}
             placeholder="0"
-            className="w-32 rounded-md border border-ink-300 bg-white px-4 py-3 text-center font-display text-3xl tabular-nums text-ink-900 outline-none focus:border-ink-900"
+            className="w-32 rounded-md border border-ink-300 bg-surface px-4 py-3 text-center font-display text-3xl tabular-nums text-ink-900 outline-none focus:border-ink-900"
           />
         </div>
       )}

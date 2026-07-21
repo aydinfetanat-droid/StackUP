@@ -58,11 +58,11 @@ export function SequenceCardView({ card, onComplete, showMascot }: Props) {
                     ? isCorrect
                       ? "border-forest-500 bg-forest-50"
                       : "border-rust-500 bg-rust-50"
-                    : "border-ink-300 bg-white"
+                    : "border-ink-300 bg-surface"
                   : "border-dashed border-ink-300 bg-ink-50"
               }`}
             >
-              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-ink-900 text-xs font-semibold tabular-nums text-white">
+              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-onyx text-xs font-semibold tabular-nums text-white">
                 {i + 1}
               </span>
               <span className="font-medium text-ink-900">{id ? labelFor(id) : "Tap a step below"}</span>
@@ -77,7 +77,7 @@ export function SequenceCardView({ card, onComplete, showMascot }: Props) {
             <button
               key={step.id}
               onClick={() => appendStep(step.id)}
-              className="rounded-full border border-ink-300 bg-white px-4 py-2 text-sm font-medium text-ink-900 transition-colors duration-150 hover:border-ink-400"
+              className="rounded-full border border-ink-300 bg-surface px-4 py-2 text-sm font-medium text-ink-900 transition-colors duration-150 hover:border-ink-400"
             >
               {step.label}
             </button>

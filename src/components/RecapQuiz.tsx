@@ -2,15 +2,19 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import type { LessonCard } from "../types/lesson";
 import { CardRenderer } from "./cards/CardRenderer";
+import { Hearts } from "./Hearts";
 
 interface Props {
   questions: { card: LessonCard; cardIndex: number }[];
   showMascot: boolean;
+  hearts: number;
+  maxHearts: number;
+  heartsJustLost: boolean;
   onCardAnswered: (cardIndex: number, correct: boolean) => void;
   onDone: (results: boolean[]) => void;
 }
 
-export function RecapQuiz({ questions, showMascot, onCardAnswered, onDone }: Props) {
+export function RecapQuiz({ questions, showMascot, hearts, maxHearts, heartsJustLost, onCardAnswered, onDone }: Props) {
   const [index, setIndex] = useState(0);
   const [results, setResults] = useState<boolean[]>([]);
 
@@ -29,14 +33,15 @@ export function RecapQuiz({ questions, showMascot, onCardAnswered, onDone }: Pro
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-white">
+    <div className="flex min-h-screen flex-col bg-surface">
       <div className="flex items-center gap-3 px-5 pt-6">
         <div className="h-1 flex-1 overflow-hidden rounded-full bg-ink-100">
-          <div className="h-full rounded-full bg-ink-900 transition-all duration-300" style={{ width: `${progress}%` }} />
+          <div className="h-full rounded-full bg-onyx transition-all duration-300" style={{ width: `${progress}%` }} />
         </div>
         <span className="text-xs font-semibold tabular-nums text-ink-500">
           {index + 1}/{questions.length}
         </span>
+        <Hearts hearts={hearts} maxHearts={maxHearts} justLost={heartsJustLost} />
       </div>
       <p className="label-caps px-5 pt-2">Quick recap</p>
 
